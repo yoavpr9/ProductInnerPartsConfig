@@ -1,0 +1,281 @@
+<title>Config Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: three-column workbench — project/files/parts | 3D viewport | checks/inspector. Stacks to one column on phones. */
+:root{
+  --bg:#f3f4ef; --panel:#fbfcf8; --viewport:#e9ece4; --ink:#1b1c1a; --mute:#666b63; --line:#cfd3c8; --grid:#b7bcb1;
+  --accent:#1c3f8f; --accent-ink:#ffffff; --warn:#a86a05; --crit:#c5432c; --ok:#2f7d4f; --chip:#e6e9df;
+  --f-ui:"Heebo","Segoe UI",Arial,sans-serif; --f-head:"Space Grotesk","Heebo",Arial,sans-serif; --f-mono:"DM Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141613; --panel:#1c1f1b; --viewport:#232621; --ink:#eceee7; --mute:#9aa093; --line:#383c35; --grid:#4a4f46;
+  --accent:#8fb0ff; --accent-ink:#0f1626; --warn:#e0a640; --crit:#f07a62; --ok:#6cc48d; --chip:#2a2e28; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#141613; --panel:#1c1f1b; --viewport:#232621; --ink:#eceee7; --mute:#9aa093; --line:#383c35; --grid:#4a4f46;
+  --accent:#8fb0ff; --accent-ink:#0f1626; --warn:#e0a640; --crit:#f07a62; --ok:#6cc48d; --chip:#2a2e28; color-scheme:dark }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:14px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px}
+button,input,select,textarea{font:inherit;color:inherit}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr) 320px;gap:12px;height:100%;min-height:560px}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0;overflow-y:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.lab{font-family:var(--f-head);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+h1{font-family:var(--f-head);font-size:22px;margin:0;line-height:1.1}
+.brand p{margin:0;color:var(--mute);font-size:12.5px}
+.btn{border:1px solid var(--ink);background:transparent;border-radius:999px;padding:5px 12px;cursor:pointer;font-size:13px;white-space:nowrap}
+.btn:hover{background:var(--chip)}
+.btn.solid{background:var(--ink);color:var(--panel)}
+.btn.solid:hover{opacity:.88}
+.btn.small{padding:3px 9px;font-size:12px}
+.btn.danger{border-color:var(--crit);color:var(--crit)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+input[type=text],input[type=number],select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:5px 8px;min-width:0;width:100%}
+label.f{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--mute)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fields .wide{grid-column:1/-1}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:4px 11px;cursor:pointer;font-size:12.5px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+.drop{border:1.5px dashed var(--mute);border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;color:var(--mute);font-size:13px}
+.drop b{color:var(--ink);display:block;font-size:14px}
+.drop.over{border-color:var(--accent);background:var(--chip);color:var(--ink)}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;border:1px solid transparent;cursor:pointer;min-width:0}
+.item:hover{background:var(--chip)}
+.item.sel{border-color:var(--ink)}
+.item.on .nm{color:var(--mute)}
+.item .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .mono,.mono{font-family:var(--f-mono);font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.stat b,.big{direction:ltr;unicode-bidi:isolate;text-align:start}
+[dir=rtl] .stat b,[dir=rtl] .big{text-align:right}
+.sw{width:11px;height:11px;border-radius:3px;flex:none;border:1px solid var(--ink)}
+.cat{font-size:11px;color:var(--mute);margin-top:6px;letter-spacing:.05em}
+.center{display:flex;flex-direction:column;gap:8px;min-width:0}
+.bar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.viewport{position:relative;flex:1;min-height:340px;background:var(--viewport);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.viewport canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.tag{position:absolute;transform:translate(-50%,-130%);background:var(--panel);border:1px solid var(--ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.viewport.picking canvas{cursor:crosshair}
+.hint{position:absolute;bottom:8px;inset-inline-start:10px;font-size:11.5px;color:var(--mute);pointer-events:none;max-width:70%}
+.axes{position:absolute;top:8px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
+.chipname{position:absolute;top:8px;inset-inline-end:10px;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.big{font-family:var(--f-head);font-size:34px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:13px;color:var(--mute);font-weight:500;margin-inline-start:4px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:8px}
+.stat b{display:block;font-family:var(--f-mono);font-size:17px;font-variant-numeric:tabular-nums}
+.stat.bad{border-color:var(--crit)} .stat.bad b{color:var(--crit)}
+.stat.warn{border-color:var(--warn)} .stat.warn b{color:var(--warn)}
+.issues button{all:unset;cursor:pointer;display:flex;gap:7px;align-items:baseline;font-size:12.5px;padding:3px 0;width:100%}
+.issues button:hover{text-decoration:underline}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--crit)}
+.dot.w{background:var(--warn)} .dot.r{background:var(--accent)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin:0;font-size:12.5px}
+.kv dt{color:var(--mute)} .kv dd{margin:0;font-family:var(--f-mono);font-size:12px}
+.why{border-inline-start:3px solid var(--accent);padding-inline-start:8px;font-size:12.5px}
+.fine{font-size:11.5px;color:var(--mute);margin:0}
+.xyz{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pill{display:inline-block;background:var(--chip);border-radius:999px;padding:1px 8px;font-size:11.5px;margin:1px}
+.example{background:var(--warn);color:#fff;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:600}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;max-width:1180px;width:100%;max-height:92%;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.scroll{overflow:auto;min-height:0}
+table.grid{border-collapse:collapse;font-size:12.5px;width:max-content;min-width:100%}
+table.grid th{position:sticky;top:0;background:var(--panel);text-align:start;font-weight:600;font-size:11.5px;color:var(--mute);padding:4px 6px;border-bottom:1px solid var(--ink);white-space:nowrap}
+table.grid td{padding:2px 3px;border-bottom:1px solid var(--line)}
+table.grid input,table.grid select{border-color:transparent;background:transparent;padding:4px 5px}
+table.grid input:hover,table.grid select:hover{border-color:var(--line)}
+.w-s{width:64px}.w-m{width:110px}.w-l{width:170px}
+.drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(420px,100%);background:var(--panel);border-inline-start:1px solid var(--ink);z-index:60;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 0 40px rgba(0,0,0,.25);padding-top:calc(16px + env(safe-area-inset-top,0px))}
+.rule{border:1px solid var(--line);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:5px}
+.rule.onr{border-color:var(--accent)}
+.rule h4{margin:0;font-size:13.5px;display:flex;gap:8px;align-items:center}
+.rule p{margin:0;font-size:12px;color:var(--mute)}
+.code{font-family:var(--f-mono);font-size:11px;background:var(--chip);border-radius:4px;padding:0 5px}
+.toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:8px 16px;border-radius:999px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+@media (max-width:1020px){ html,body{height:auto} .app{grid-template-columns:1fr;height:auto} .col{overflow:visible} .viewport{min-height:420px} .center{order:-1} }
+</style>
+
+<div class="app" id="app">
+  <aside class="col">
+    <header class="brand">
+      <div class="head"><span class="lab" data-t="tagline"></span>
+        <span class="seg" id="segLang"><button type="button" data-v="he">עברית</button><button type="button" data-v="en">English</button></span></div>
+      <h1>Config Studio</h1>
+    </header>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="project"></span><span class="example" id="exBadge" hidden data-t="example"></span></div>
+      <select id="selProject" aria-label="project"></select>
+      <label class="f"><span data-t="projName"></span><input type="text" id="projName" maxlength="60"></label>
+      <div class="row">
+        <button type="button" class="btn small solid" id="btnNewProj" data-t="newProj"></button>
+        <button type="button" class="btn small" id="btnExportProj" data-t="exportProj"></button>
+        <button type="button" class="btn small" id="btnImportProj" data-t="importProj"></button>
+        <button type="button" class="btn small danger" id="btnDelProj" data-t="delProj"></button>
+        <input type="file" id="projFile" accept=".json" hidden>
+      </div>
+      <details><summary class="fine" data-t="refTitle" style="cursor:pointer"></summary>
+        <div class="fields" style="margin-top:8px">
+          <label class="f wide"><span data-t="refLabel"></span><input type="text" id="refLabel" maxlength="40"></label>
+          <label class="f"><span data-t="refX"></span><input type="number" id="refX" step="5"></label>
+          <label class="f"><span data-t="refZ"></span><input type="number" id="refZ" step="5"></label>
+          <label class="f wide"><span data-t="tol"></span><input type="number" id="tol" min="0" step="1"></label>
+        </div>
+        <p class="fine" data-t="refNote" style="margin-top:6px"></p>
+      </details>
+      <p class="fine" id="storage"></p>
+    </section>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="files"></span></div>
+      <div class="drop" id="drop" tabindex="0" role="button"><b data-t="dropTitle"></b><span data-t="dropSub"></span></div>
+      <input type="file" id="cadFile" accept=".stl,.obj,.step,.stp" multiple hidden>
+      <ul class="plain" id="shells"></ul>
+      <div class="head"><span class="lab" data-t="points"></span><button type="button" class="btn small" id="btnPoint" aria-pressed="false" data-t="addPoint"></button></div>
+      <p class="fine" data-t="pointsNote"></p>
+      <ul class="plain" id="points"></ul>
+      <details id="shSet" hidden><summary class="fine" data-t="shSettings" style="cursor:pointer"></summary>
+        <div class="fields" style="margin-top:8px">
+          <label class="f wide"><span data-t="name"></span><input type="text" id="shName" maxlength="40"></label>
+          <label class="f"><span data-t="units"></span><select id="shUnit"><option value="1">mm</option><option value="10">cm</option><option value="1000">m</option><option value="25.4">inch</option></select></label>
+          <label class="f"><span data-t="upAxis"></span><select id="shUp"><option value="y">Y</option><option value="z">Z</option></select></label>
+          <label class="f"><span data-t="turn"></span><select id="shTurn"><option value="0">0°</option><option value="1">90°</option><option value="2">180°</option><option value="3">270°</option></select></label>
+          <label class="f"><span data-t="under"></span><input type="number" id="shUnder" step="5"></label>
+          <label class="f wide"><span data-t="kind"></span><select id="shKind"><option value="hollow" data-t="kindHollow"></option><option value="solid" data-t="kindSolid"></option></select></label>
+        </div>
+        <p class="fine" id="shSize" style="margin-top:6px"></p>
+        <div class="row"><button type="button" class="btn small danger" id="btnShDel" data-t="removeShell"></button></div>
+      </details>
+    </section>
+    <section class="card" style="flex:1;min-height:180px">
+      <div class="head"><span class="lab" data-t="parts"></span><span class="mono" id="trayCount"></span></div>
+      <div class="row">
+        <button type="button" class="btn small solid" id="btnTable" data-t="openTable"></button>
+        <button type="button" class="btn small" id="btnBank" data-t="ruleBank"></button>
+      </div>
+      <div id="tray"></div>
+    </section>
+  </aside>
+
+  <main class="center">
+    <div class="bar">
+      <span class="seg" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
+      <div class="row">
+        <button type="button" class="btn" id="btnUndo" data-t="undo"></button>
+        <button type="button" class="btn" id="btnRedo" data-t="redo"></button>
+        <button type="button" class="btn solid" id="btnAuto" data-t="auto"></button>
+        <button type="button" class="btn" id="btnPng" data-t="exportPng"></button>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="row"><span class="lab" data-t="shell"></span><span class="seg" id="segShell"><button type="button" data-v="glass" data-t="mGlass"></button><button type="button" data-v="cut" data-t="mCut"></button><button type="button" data-v="solid" data-t="mSolid"></button><button type="button" data-v="off" data-t="mOff"></button></span></div>
+      <div class="row"><span class="lab" data-t="parts"></span><span class="seg" id="segMode"><button type="button" data-v="detail" data-t="mDetail"></button><button type="button" data-v="block" data-t="mBlock"></button></span></div>
+      <div class="row">
+        <button type="button" class="btn small" id="togLabels" aria-pressed="false" data-t="labels"></button>
+        <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
+        <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
+      </div>
+    </div>
+    <div class="viewport" id="viewport">
+      <canvas id="gl"></canvas>
+      <div class="tags" id="tags"></div>
+      <div class="axes" dir="ltr">X · Y↑ · Z · mm</div>
+      <div class="chipname" id="chipName"></div>
+      <div class="hint" data-t="hint"></div>
+    </div>
+  </main>
+
+  <aside class="col">
+    <section class="card">
+      <span class="lab" data-t="cogTitle"></span>
+      <div class="big"><span id="cogNum" dir="ltr">—</span><small>mm</small></div>
+      <p class="fine" id="cogSub"></p>
+      <p id="balTxt" style="margin:0;font-size:13px"></p>
+      <div class="row" id="fillRow" hidden><span class="lab" data-t="fill"></span><span class="seg" id="segFill"><button type="button" data-v="full" data-t="full"></button><button type="button" data-v="empty" data-t="empty"></button></span></div>
+      <p class="fine" id="fillTxt"></p>
+    </section>
+    <section class="stats">
+      <div class="stat"><span class="lab" data-t="mass"></span><b id="massNum">0</b></div>
+      <div class="stat"><span class="lab" data-t="placed"></span><b id="partsNum">0</b></div>
+      <div class="stat" id="stCol"><span class="lab" data-t="collisions"></span><b id="colNum">0</b></div>
+      <div class="stat" id="stOut"><span class="lab" data-t="outside"></span><b id="outNum">0</b></div>
+    </section>
+    <section class="card">
+      <span class="lab" data-t="issues"></span>
+      <ul class="plain issues" id="issues"></ul>
+    </section>
+    <section class="card" id="inspector"></section>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="saved"></span><span class="mono" id="savedCount"></span></div>
+      <div class="row" style="flex-wrap:nowrap"><input type="text" id="cfgName" maxlength="60"><button type="button" class="btn solid" id="btnSave" data-t="save"></button></div>
+      <div class="row"><button type="button" class="btn small" id="btnEmpty" data-t="emptyLayout"></button></div>
+      <ul class="plain" id="saved"></ul>
+    </section>
+  </aside>
+</div>
+
+<div class="modal" id="tableModal" hidden><div class="box">
+  <div class="head"><b data-t="tableTitle" style="font-family:var(--f-head);font-size:17px"></b>
+    <div class="row">
+      <button type="button" class="btn small" id="btnTpl" data-t="template"></button>
+      <button type="button" class="btn small" id="btnImportTable" data-t="importTable"></button>
+      <button type="button" class="btn small" id="btnPaste" data-t="paste"></button>
+      <button type="button" class="btn small" id="btnAddRow" data-t="addRow"></button>
+      <button type="button" class="btn small solid" id="btnTableDone" data-t="done"></button>
+      <input type="file" id="tableFile" accept=".xlsx,.xls,.csv,.tsv" hidden>
+    </div></div>
+  <p class="fine" data-t="tableNote"></p>
+  <div id="pasteBox" hidden><textarea id="pasteArea" rows="5" dir="ltr"></textarea><div class="row" style="margin-top:6px"><button type="button" class="btn small solid" id="btnPasteGo" data-t="pasteGo"></button><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="pasteReplace" style="width:auto"><span data-t="replaceAll"></span></label></div></div>
+  <div class="scroll"><table class="grid" id="grid"></table></div>
+</div></div>
+
+<div class="modal" id="fileModal" hidden><div class="box" style="max-width:820px">
+  <div class="head"><b data-t="fileTitle" style="font-family:var(--f-head);font-size:17px"></b></div>
+  <p class="fine" data-t="fileNote"></p>
+  <div class="scroll"><table class="grid" id="fileGrid"></table></div>
+  <div class="row" style="justify-content:flex-end"><button type="button" class="btn" id="btnFileCancel" data-t="cancel"></button><button type="button" class="btn solid" id="btnFileGo" data-t="addFiles"></button></div>
+</div></div>
+
+<div class="modal" id="confirmModal" hidden><div class="box" style="max-width:420px">
+  <p id="confirmTxt" style="margin:0"></p>
+  <div class="row" style="justify-content:flex-end"><button type="button" class="btn" id="btnNo" data-t="cancel"></button><button type="button" class="btn solid danger" id="btnYes" data-t="confirm"></button></div>
+</div></div>
+
+<div class="modal" id="imgModal" hidden><div class="box">
+  <div class="head"><b id="imgTitle"></b><button type="button" class="btn small" id="imgClose" data-t="close"></button></div>
+  <p class="fine" data-t="imgNote"></p>
+  <div class="scroll"><img id="imgPrev" alt=""></div>
+</div></div>
+
+<aside class="drawer" id="drawer" hidden>
+  <div class="head"><b data-t="ruleBank" style="font-family:var(--f-head);font-size:17px"></b><button type="button" class="btn small" id="drawerClose" data-t="close"></button></div>
+  <p class="fine" id="drawerFor"></p>
+  <div class="scroll" style="display:flex;flex-direction:column;gap:8px" id="ruleList"></div>
+  <details><summary style="cursor:pointer;font-weight:600" data-t="newRule"></summary>
+    <div class="fields" style="margin-top:8px">
+      <label class="f wide"><span data-t="ruleName"></span><input type="text" id="nrName" maxlength="50"></label>
+      <label class="f wide"><span data-t="ruleDesc"></span><input type="text" id="nrDesc" maxlength="200"></label>
+      <label class="f wide"><span data-t="ruleBase"></span><select id="nrBase"></select></label>
+      <label class="f"><span data-t="ruleDist"></span><input type="number" id="nrDist" min="0" step="5"></label>
+      <div style="align-self:end"><button type="button" class="btn small solid" id="nrAdd" data-t="addRule"></button></div>
+    </div>
+  </details>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="app.js"></script>
