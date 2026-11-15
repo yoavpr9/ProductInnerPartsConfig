@@ -40,6 +40,12 @@ input[type=text],input[type=number],select,textarea{background:var(--bg);border:
 label.f{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--mute)}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .fields .wide{grid-column:1/-1}
+.infob{width:28px;height:28px;padding:0;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:700;font-size:15px;flex:none}
+.help h3{font-family:var(--f-head);font-size:15px;margin:14px 0 4px}
+.help h3:first-child{margin-top:0}
+.help ul,.help ol{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:3px}
+.help li{max-width:70ch}
+.help kbd{font-family:var(--f-mono);font-size:11.5px;background:var(--chip);border:1px solid var(--line);border-radius:4px;padding:0 5px}
 .seg{display:inline-flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
 .seg button{border:0;background:transparent;padding:4px 11px;cursor:pointer;font-size:12.5px}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
@@ -111,8 +117,9 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
   <aside class="col">
     <header class="brand">
       <div class="head"><span class="lab" data-t="tagline"></span>
-        <span class="seg" id="segLang"><button type="button" data-v="he">עברית</button><button type="button" data-v="en">English</button></span></div>
+        <span class="row" style="flex-wrap:nowrap"><span class="seg" id="segLang"><button type="button" data-v="he">עברית</button><button type="button" data-v="en">English</button></span><button type="button" class="btn infob" id="btnHelp" aria-label="Help" title="Help">i</button></span></div>
       <h1>Config Studio</h1>
+      <span class="mono" id="verBrand"></span>
     </header>
     <section class="card">
       <div class="head"><span class="lab" data-t="project"></span><span class="example" id="exBadge" hidden data-t="example"></span></div>
@@ -122,6 +129,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small solid" id="btnNewProj" data-t="newProj"></button>
         <button type="button" class="btn small" id="btnExportProj" data-t="exportProj"></button>
         <button type="button" class="btn small" id="btnImportProj" data-t="importProj"></button>
+        <button type="button" class="btn small" id="btnExample" data-t="openExample"></button>
         <button type="button" class="btn small danger" id="btnDelProj" data-t="delProj"></button>
         <input type="file" id="projFile" accept=".json" hidden>
       </div>
@@ -255,6 +263,12 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
   <div class="head"><b id="imgTitle"></b><button type="button" class="btn small" id="imgClose" data-t="close"></button></div>
   <p class="fine" data-t="imgNote"></p>
   <div class="scroll"><img id="imgPrev" alt=""></div>
+</div></div>
+
+<div class="modal" id="helpModal" hidden><div class="box" style="max-width:760px">
+  <div class="head"><b data-t="helpTitle" style="font-family:var(--f-head);font-size:17px"></b><button type="button" class="btn small" id="helpClose" data-t="close"></button></div>
+  <div class="scroll help" id="helpBody"></div>
+  <div class="head" style="border-top:1px solid var(--line);padding-top:10px"><span class="fine"><span data-t="feedback"></span> <a id="ghLink" href="https://github.com/yoavpr9/ProductInnerPartsConfig/issues" target="_blank" rel="noopener" data-t="feedbackLink" style="color:var(--accent)"></a></span><span class="mono" id="verTxt"></span></div>
 </div></div>
 
 <aside class="drawer" id="drawer" hidden>
