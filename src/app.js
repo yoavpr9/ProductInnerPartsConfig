@@ -54,14 +54,15 @@ qDelProj:['למחוק את הפרויקט "{a}" וכל מה שבתוכו?','Dele
 load:['טען','Load'],del:['מחק','Delete'],cfg:['קונפיגורציה','Configuration'],exName:['פרויקט לדוגמה','Example project'],
 whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכובד הכי קרוב לנקודת הייחוס.','Placed in the free spot that keeps the centre of gravity closest to the reference point.'],
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
-custom:['כלל שלי','My rule'],helpTitle:['איך משתמשים','How to use'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
+custom:['כלל שלי','My rule'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he';
+var lang='he',VERSION='1.3',UPDATED='2026-11-15';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
   document.querySelectorAll('[data-t]').forEach(function(e){e.textContent=t(e.dataset.t);});
   setSeg('segLang',lang);
+  $('#verTxt').textContent=t('version')+' '+VERSION+' · '+t('updated')+' '+UPDATED;$('#verBrand').textContent='v'+VERSION;
 }
 
 /* ================= rule bank ================= */
@@ -863,6 +864,7 @@ function bind(){
   $('#btnImportTable').onclick=function(){$('#tableFile').click();};$('#tableFile').onchange=function(e){if(e.target.files[0])importTable(e.target.files[0]);e.target.value='';};
   $('#btnPaste').onclick=function(){$('#pasteBox').hidden=!$('#pasteBox').hidden;};
   $('#btnPasteGo').onclick=function(){var rows=$('#pasteArea').value.split(/\r?\n/).filter(function(l){return l.trim();}).map(function(l){return l.split(l.indexOf('\t')>=0?'\t':',');});addRows(rowsToParts(rows),$('#pasteReplace').checked);$('#pasteArea').value='';};
+  $('#btnExample').onclick=function(){persist();var ex=projects.filter(function(p){return p.example;})[0];if(!ex){ex=exampleProject();projects.push(ex);}openProject(ex.id);if(!ex.configs.length&&onList().length<=2)autoArrangeQuiet();persist();};
   $('#btnHelp').onclick=function(){renderHelp();$('#helpModal').hidden=false;};$('#helpClose').onclick=function(){$('#helpModal').hidden=true;};
   $('#btnPoint').onclick=function(){setPick(!pickMode);};
   $('#btnBank').onclick=function(){openDrawer(null);};$('#drawerClose').onclick=function(){$('#drawer').hidden=true;};

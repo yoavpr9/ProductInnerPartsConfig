@@ -119,6 +119,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="head"><span class="lab" data-t="tagline"></span>
         <span class="row" style="flex-wrap:nowrap"><span class="seg" id="segLang"><button type="button" data-v="he">עברית</button><button type="button" data-v="en">English</button></span><button type="button" class="btn infob" id="btnHelp" aria-label="Help" title="Help">i</button></span></div>
       <h1>Config Studio</h1>
+      <span class="mono" id="verBrand"></span>
     </header>
     <section class="card">
       <div class="head"><span class="lab" data-t="project"></span><span class="example" id="exBadge" hidden data-t="example"></span></div>
@@ -128,6 +129,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small solid" id="btnNewProj" data-t="newProj"></button>
         <button type="button" class="btn small" id="btnExportProj" data-t="exportProj"></button>
         <button type="button" class="btn small" id="btnImportProj" data-t="importProj"></button>
+        <button type="button" class="btn small" id="btnExample" data-t="openExample"></button>
         <button type="button" class="btn small danger" id="btnDelProj" data-t="delProj"></button>
         <input type="file" id="projFile" accept=".json" hidden>
       </div>
@@ -266,6 +268,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 <div class="modal" id="helpModal" hidden><div class="box" style="max-width:760px">
   <div class="head"><b data-t="helpTitle" style="font-family:var(--f-head);font-size:17px"></b><button type="button" class="btn small" id="helpClose" data-t="close"></button></div>
   <div class="scroll help" id="helpBody"></div>
+  <div class="head" style="border-top:1px solid var(--line);padding-top:10px"><span class="fine"><span data-t="feedback"></span> <a id="ghLink" href="https://github.com/yoavpr9/ProductInnerPartsConfig/issues" target="_blank" rel="noopener" data-t="feedbackLink" style="color:var(--accent)"></a></span><span class="mono" id="verTxt"></span></div>
 </div></div>
 
 <aside class="drawer" id="drawer" hidden>
