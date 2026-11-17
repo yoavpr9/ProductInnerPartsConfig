@@ -91,8 +91,8 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .gout{right:-6px;cursor:crosshair;border:2px solid var(--panel)}.gout:hover{transform:scale(1.35)}
 .gnone{right:-6px;display:none}
 .gadd{all:unset;cursor:pointer;display:block;padding:3px 8px 5px;font-size:11px;color:var(--accent)}
-.gedit{position:absolute;width:240px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:5;cursor:default}
-.gedit #gEditBody{display:flex;flex-direction:column;gap:6px}
+.gedit{position:absolute;width:280px;max-height:calc(100% - 16px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:5;cursor:default}
+.gedit #gEditBody{display:flex;flex-direction:column;gap:6px}.gedit .pmunits{border:0;padding:0}.gedit .pmu select{max-width:200px}
 .mapview{flex:1;min-height:340px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
 .msys{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
 .msys h3{margin:0;font-family:var(--f-head);font-size:16px;display:flex;align-items:center;gap:7px}
