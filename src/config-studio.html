@@ -71,6 +71,28 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .tag{position:absolute;transform:translate(-50%,-130%);background:var(--panel);border:1px solid var(--ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
 .ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.gwide .app{grid-template-columns:minmax(0,1fr)}.gwide .app>.col{display:none}
+.graphview{flex:1;min-height:420px;display:flex;flex-direction:column;gap:8px}
+.gcanvas{flex:1;min-height:380px;position:relative;overflow:hidden;background:var(--viewport);border:1px solid var(--line);border-radius:12px;cursor:grab;touch-action:none;background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:22px 22px}
+#gWorld{position:absolute;left:0;top:0;transform-origin:0 0}
+#gWires{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
+#gWires .ghit{fill:none;stroke:transparent;stroke-width:12;pointer-events:stroke;cursor:pointer}
+.gwire{fill:none;stroke-width:2.4}.gwire.miss{stroke-dasharray:6 5;opacity:.55}.gwire.bad{stroke-dasharray:8 4}.gwire.on{stroke-width:4.5}.gwire.temp{stroke-dasharray:4 4}
+.gnode{position:absolute;min-width:190px;max-width:240px;background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.12);font-size:11.5px;cursor:move;user-select:none}
+.gnode.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}.gnode.drop{border-color:var(--ok);box-shadow:0 0 0 3px var(--ok)}
+.gmodel{border-color:var(--warn);border-width:2px}
+.ghead{display:flex;align-items:center;gap:6px;padding:6px 8px;border-bottom:1px solid var(--line);font-size:12.5px}.ghead b{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gsw{width:9px;height:9px;border-radius:2px;flex:none}
+.gbtn{all:unset;cursor:pointer;padding:0 5px;border:1px solid var(--line);border-radius:4px;font-size:12px}
+.grow{display:flex;align-items:center;gap:6px;height:18px;position:relative;padding:0 14px}.grow .glab{flex:1;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gport .glab{color:var(--ink)}
+.gin,.gout,.gnone{position:absolute;top:4px;width:10px;height:10px;border-radius:50%}
+.gin{left:-6px;background:var(--panel);border:2px solid var(--mute)}
+.gout{right:-6px;cursor:crosshair;border:2px solid var(--panel)}.gout:hover{transform:scale(1.35)}
+.gnone{right:-6px;display:none}
+.gadd{all:unset;cursor:pointer;display:block;padding:3px 8px 5px;font-size:11px;color:var(--accent)}
+.gedit{position:absolute;width:240px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:5;cursor:default}
+.gedit #gEditBody{display:flex;flex-direction:column;gap:6px}
 .mapview{flex:1;min-height:340px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
 .msys{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
 .msys h3{margin:0;font-family:var(--f-head);font-size:16px;display:flex;align-items:center;gap:7px}
@@ -205,7 +227,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 
   <main class="center">
     <div class="bar">
-      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button></span>
+      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button><button type="button" data-v="graph" data-t="pageGraph"></button></span>
       <span class="seg only3d" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
       <div class="row">
         <button type="button" class="btn" id="btnUndo" data-t="undo"></button>
@@ -231,6 +253,12 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="axes" dir="ltr">X · Y↑ · Z · mm</div>
       <div class="chipname" id="chipName"></div>
       <div class="hint" data-t="hint"></div>
+    </div>
+    <div class="graphview" id="graphView" hidden>
+      <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
+      <p class="fine" data-t="gIntro"></p>
+      <div class="gcanvas" id="gCanvas" dir="ltr"><div id="gWorld"></div>
+        <div class="gedit" id="gEdit" hidden><div id="gEditBody"></div></div></div>
     </div>
     <div class="mapview" id="mapView" hidden>
       <div class="bar"><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="mech" data-t="k_mech"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
