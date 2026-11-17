@@ -10,6 +10,7 @@ Config Studio: a browser tool for testing how the inner parts of a product fit t
 - Rule bank: placement rules per part (as low as possible, close to, away from, clearance, ...) and your own rules.
 - Connections: link parts to each other (data, power, water) with a maximum length, e.g. `link:gnss:300:data`. Lines are drawn in 3D and turn red when too long.
 - Connection map: a second page (#map) that shows each system (data, power, water) as a tree of what connects to what, with lengths, and lets you add or delete connections.
+- Central frame: a 3D model can be an outer shell (parts inside) or a central frame (parts mount on it), with its own mass in the centre of gravity.
 - 3D files: drop STL, OBJ or STEP files, several at once, as an outer shell or as the model of a part.
 - Live checks: centre of gravity against the reference point, full vs. empty mass, collisions, parts outside the shell, rule violations.
 - Auto-arrange, saved configurations, PNG sheet export, Hebrew and English.

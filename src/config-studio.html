@@ -183,6 +183,8 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
           <label class="f"><span data-t="upAxis"></span><select id="shUp"><option value="y">Y</option><option value="z">Z</option></select></label>
           <label class="f"><span data-t="turn"></span><select id="shTurn"><option value="0">0°</option><option value="1">90°</option><option value="2">180°</option><option value="3">270°</option></select></label>
           <label class="f"><span data-t="under"></span><input type="number" id="shUnder" step="5"></label>
+          <label class="f wide"><span data-t="shRole"></span><select id="shRole"><option value="shell" data-t="roleShell"></option><option value="frame" data-t="roleFrame"></option></select></label>
+          <label class="f"><span data-t="shMass"></span><input type="number" id="shMass" step="0.1" min="0"></label>
           <label class="f wide"><span data-t="kind"></span><select id="shKind"><option value="hollow" data-t="kindHollow"></option><option value="solid" data-t="kindSolid"></option></select></label>
         </div>
         <p class="fine" id="shSize" style="margin-top:6px"></p>
