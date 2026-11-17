@@ -56,7 +56,7 @@ whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכוב�
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
 custom:['כלל שלי','My rule'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he',VERSION='1.3',UPDATED='2026-11-15';
+var lang='he',VERSION='1.4',UPDATED='2026-11-17';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
@@ -308,9 +308,11 @@ function collide(a,b){var e=0.3;for(var i=0;i<3;i++)if(a.max[i]-e<=b.min[i]||b.m
 function gap(a,b){var s=0;for(var i=0;i<3;i++){var d=Math.max(a.min[i]-b.max[i],b.min[i]-a.max[i],0);s+=d*d;}return Math.sqrt(s);}
 function onList(){return INST.filter(function(i){return P.work.items[i.iid].on;});}
 function activePoints(){return (P.points||[]).filter(function(q){return !q.shellId||q.shellId===P.work.shellId;});}
-function targets(tg,self){var k=String(tg||'').trim().toLowerCase();if(!k)return [];
-  var pts=activePoints().filter(function(q){return q.id.toLowerCase()===k||q.name.toLowerCase()===k;}).map(function(q){return {min:q.p,max:q.p,cyl:-1};});if(pts.length)return pts;
-  return onList().filter(function(i){return i.iid!==self&&(i.part.id.toLowerCase()===k||i.part.name.toLowerCase()===k||(i.part.cat||'').toLowerCase()===k);}).map(function(i){return RT[i.iid];});}
+/* ids typed in a sheet may use _ where the site stored - (or the reverse); compare loosely */
+function nk(x){return String(x||'').toLowerCase().trim().replace(/[\s_\-]+/g,'-');}
+function targets(tg,self){var k=nk(tg);if(!k)return [];
+  var pts=activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;}).map(function(q){return {min:q.p,max:q.p,cyl:-1};});if(pts.length)return pts;
+  return onList().filter(function(i){return i.iid!==self&&(nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k);}).map(function(i){return RT[i.iid];});}
 function refPoint(){
   var xs=[],zs=[];onList().forEach(function(i){if((i.part.rules||[]).some(function(r){var d=ruleDef(r.r);return d&&d.base==='ref';})){var it=P.work.items[i.iid];xs.push(it.p[0]);zs.push(it.p[2]);}});
   if(xs.length)return [xs.reduce(function(a,b){return a+b;},0)/xs.length,zs.reduce(function(a,b){return a+b;},0)/zs.length,true];
@@ -522,6 +524,7 @@ function loop(){requestAnimationFrame(loop);if(!needsRender)return;needsRender=f
 
 /* ================= auto-arrange ================= */
 function autoArrange(){
+  INST.forEach(function(i){syncItem(i.iid);});
   var I=P.work.items,ref=refPoint(),total=INST.reduce(function(s,i){return s+pmass(i.part);},0)||1;
   function hasBase(p,b){return (p.rules||[]).some(function(r){var d=ruleDef(r.r);return d&&d.base===b;});}
   var todo=INST.filter(function(i){return !hasBase(i.part,'ref')&&!I[i.iid].lock;});
@@ -529,7 +532,7 @@ function autoArrange(){
   function rank(i){return hasBase(i.part,'trim')?2:hasBase(i.part,'low')?0:1;}
   todo.sort(function(a,b){return rank(a)-rank(b)||pmass(b.part)-pmass(a.part);});
   function clrOf(p){var c=0;(p.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(d&&d.base==='clear')c=Math.max(c,num(rl.d,d.ds));});return c;}
-  function farBetween(a,b){var m=0;(a.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(!d||d.base!=='far')return;var k=String(rl.t||'').toLowerCase();if(k&&(k===b.id.toLowerCase()||k===b.name.toLowerCase()||k===(b.cat||'').toLowerCase()))m=Math.max(m,num(rl.d,d.ds));});return m;}
+  function farBetween(a,b){var m=0;(a.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(!d||d.base!=='far')return;var k=nk(rl.t);if(k&&(k===nk(b.id)||k===nk(b.name)||k===nk(b.cat)))m=Math.max(m,num(rl.d,d.ds));});return m;}
   /* search region */
   var R;if(shell.n)R={x0:shell.box.min.x,x1:shell.box.max.x,y0:shell.box.min.y,y1:shell.box.max.y,z0:shell.box.min.z,z1:shell.box.max.z};
   else{var vol=INST.reduce(function(s,i){var z=psize(i.part);return s+z[0]*z[1]*z[2];},0),side=Math.max(200,Math.cbrt(vol*5));R={x0:ref[0]-side/2,x1:ref[0]+side/2,y0:0,y1:side,z0:ref[1]-side/2,z1:ref[1]+side/2};}
@@ -546,6 +549,7 @@ function autoArrange(){
       var fine=!others.some(function(o){return collide(r,o.q)||(o.need&&gap(r,o.q)<o.need);});if(fine&&shell.n){shellTest(r);fine=!r.sHit&&!r.sOut;}
       if(fine)best={p:it.p.slice(),q:it.q};}
     function evalAt(x,y,z,h){
+        if(x-h[0]<R.x0-0.01||x+h[0]>R.x1+0.01||y-h[1]<R.y0-0.01||y+h[1]>R.y1+0.01||z-h[2]<R.z0-0.01||z+h[2]>R.z1+0.01)return Infinity;
         it.p=[x,y,z];syncItem(iid);
         var okc=true,pen=0;for(var k=0;k<others.length;k++){var q=others[k].q;if(collide(r,q)||(others[k].need&&gap(r,q)<others[k].need)){okc=false;break;}
           if(others[k].top&&r.min[1]>=q.max[1]-0.5&&r.min[0]<q.max[0]&&r.max[0]>q.min[0]&&r.min[2]<q.max[2]&&r.max[2]>q.min[2])pen+=400;}
@@ -585,7 +589,7 @@ var COLS=[['id','cId','w-m'],['name','cName','w-l'],['model','cModel','w-l'],['c
 var HEAD={id:['id','מזהה'],name:['name','שם','שם הרכיב','component','part'],model:['model','דגם'],cat:['category','cat','קטגוריה','group'],qty:['qty','quantity','כמות'],
   x:['x','length','length_x','x length','אורך','x אורך','x_mm'],y:['y','height','height_y','y height','גובה','y גובה','y_mm'],z:['z','width','width_z','z width','רוחב','z רוחב','z_mm'],
   mass:['mass','mass_kg','mass kg','weight','משקל','מסה','מסה ק"ג','משקל ק"ג'],massE:['mass_empty_kg','empty mass kg','empty mass','מסה ריק','מסה ריק ק"ג'],shape:['shape','צורה'],rules:['rules','כללים'],notes:['notes','הערות','note'],src:['source','מקור','מקור הנתון']};
-function slug(s){return String(s||'').toLowerCase().trim().replace(/[^a-z0-9֐-׿]+/g,'-').replace(/^-|-$/g,'');}
+function slug(s){return String(s||'').toLowerCase().trim().replace(/[^a-z0-9_֐-׿]+/g,'-').replace(/^-|-$/g,'');}
 function newPart(o){o=o||{};var id=slug(o.id)||slug(o.name)||uid('c');var base=id,n=2;while(P.parts.some(function(p){return p.id===id;}))id=base+'-'+(n++);
   var sh=String(o.shape||'box').toLowerCase();sh=/x/.test(sh)&&/cyl|גליל/.test(sh)?'cylx':/z/.test(sh)&&/cyl|גליל/.test(sh)?'cylz':/cyl|גליל/.test(sh)?'cyly':'box';
   var p={id:id,name:String(o.name||id),model:String(o.model||''),cat:String(o.cat||''),qty:Math.max(1,Math.round(num(o.qty,1))),size:[num(o.x,50),num(o.y,50),num(o.z,50)],mass:num(o.mass,0),shape:sh,rules:Array.isArray(o.rules)?o.rules:parseRules(o.rules),notes:String(o.notes||''),src:String(o.src||'')};
@@ -647,7 +651,7 @@ function renderDrawer(){
       if(d.tg){var l=el('label','f');l.appendChild(el('span','',t('target')));var s=el('select');s.id='rt_'+d.id;var o0=el('option','','—');o0.value='';s.appendChild(o0);
         function grp(label,items){if(!items.length)return;var g=el('optgroup');g.label=label;items.forEach(function(x){var o=el('option','',x[1]);o.value=x[0];g.appendChild(o);});s.appendChild(g);}
         grp(t('optParts'),P.parts.filter(function(q){return q!==p;}).map(function(q){return [q.id,q.name];}));grp(t('optPoints'),(P.points||[]).map(function(q){return [q.id,q.name];}));grp(t('optCats'),cats().filter(function(c){return c!=='—';}).map(function(c){return [c,c];}));
-        s.value=cur.t||'';s.onchange=function(){cur.t=s.value;rulesChanged(true);};l.appendChild(s);row.appendChild(l);}
+        s.value=cur.t||'';if(cur.t&&s.value!==cur.t){[].some.call(s.options,function(o){if(nk(o.value)===nk(cur.t)){s.value=o.value;return true;}});}s.onchange=function(){cur.t=s.value;rulesChanged(true);};l.appendChild(s);row.appendChild(l);}
       if(d.ds!==undefined){var l2=el('label','f');l2.appendChild(el('span','',t('dist')));var i=el('input');i.type='number';i.id='rd_'+d.id;i.min=0;i.step=5;i.value=num(cur.d,d.ds);i.onchange=function(){cur.d=num(i.value,d.ds);rulesChanged(true);};l2.appendChild(i);row.appendChild(l2);}
       card.appendChild(row);}
     box.appendChild(card);});
