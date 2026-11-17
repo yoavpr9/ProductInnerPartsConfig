@@ -70,6 +70,8 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .tag{position:absolute;transform:translate(-50%,-130%);background:var(--panel);border:1px solid var(--ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
 .ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.ltag{position:absolute;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-family:var(--f-mono);font-size:10.5px;white-space:nowrap}
+.ltag.bad{border-color:var(--crit);color:var(--crit)}
 .viewport.picking canvas{cursor:crosshair}
 .hint{position:absolute;bottom:8px;inset-inline-start:10px;font-size:11.5px;color:var(--mute);pointer-events:none;max-width:70%}
 .axes{position:absolute;top:8px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
@@ -192,6 +194,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small" id="togLabels" aria-pressed="false" data-t="labels"></button>
         <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
         <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
+        <button type="button" class="btn small" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
       </div>
     </div>
     <div class="viewport" id="viewport">
@@ -221,6 +224,10 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <section class="card">
       <span class="lab" data-t="issues"></span>
       <ul class="plain issues" id="issues"></ul>
+    </section>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="links"></span><span class="mono" id="linkCount"></span></div>
+      <ul class="plain issues" id="links"></ul>
     </section>
     <section class="card" id="inspector"></section>
     <section class="card">

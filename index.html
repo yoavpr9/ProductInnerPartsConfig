@@ -78,6 +78,8 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .tag{position:absolute;transform:translate(-50%,-130%);background:var(--panel);border:1px solid var(--ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
 .ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.ltag{position:absolute;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-family:var(--f-mono);font-size:10.5px;white-space:nowrap}
+.ltag.bad{border-color:var(--crit);color:var(--crit)}
 .viewport.picking canvas{cursor:crosshair}
 .hint{position:absolute;bottom:8px;inset-inline-start:10px;font-size:11.5px;color:var(--mute);pointer-events:none;max-width:70%}
 .axes{position:absolute;top:8px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
@@ -200,6 +202,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small" id="togLabels" aria-pressed="false" data-t="labels"></button>
         <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
         <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
+        <button type="button" class="btn small" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
       </div>
     </div>
     <div class="viewport" id="viewport">
@@ -229,6 +232,10 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <section class="card">
       <span class="lab" data-t="issues"></span>
       <ul class="plain issues" id="issues"></ul>
+    </section>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="links"></span><span class="mono" id="linkCount"></span></div>
+      <ul class="plain issues" id="links"></ul>
     </section>
     <section class="card" id="inspector"></section>
     <section class="card">
@@ -357,9 +364,9 @@ qDelProj:['למחוק את הפרויקט "{a}" וכל מה שבתוכו?','Dele
 load:['טען','Load'],del:['מחק','Delete'],cfg:['קונפיגורציה','Configuration'],exName:['פרויקט לדוגמה','Example project'],
 whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכובד הכי קרוב לנקודת הייחוס.','Placed in the free spot that keeps the centre of gravity closest to the reference point.'],
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
-custom:['כלל שלי','My rule'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
+custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר בכבל או צינור".','No connections. Give a part the rule "Connected by cable or hose".'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he',VERSION='1.4',UPDATED='2026-11-17';
+var lang='he',VERSION='1.5',UPDATED='2026-11-17';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
@@ -370,8 +377,9 @@ function applyLang(){
 
 /* ================= rule bank ================= */
 /* base behaviours: how a rule is checked and how auto-arrange scores it */
-var BASES={low:1,high:1,near:1,far:1,center:1,wall:1,clear:1,top:1,sym:1,trim:1,ref:1,manual:1};
+var BASES={link:1,low:1,high:1,near:1,far:1,center:1,wall:1,clear:1,top:1,sym:1,trim:1,ref:1,manual:1};
 var BANK=[
+ {id:'link',base:'link',tg:1,ds:300,n:['מחובר בכבל או צינור','Connected by cable or hose'],d:['חיבור בין שני רכיבים, למשל מחשב ל-GPS. אפשר להוסיף סוג: data, power, water. נבדק: אורך הקו הישר בין מרכזי הרכיבים קטן מהאורך המרבי.','A connection between two parts, e.g. computer to GPS. An optional type: data, power, water. Checked: the straight line between the part centres is shorter than the maximum length.']},
  {id:'low',base:'low',n:['נמוך ככל האפשר','As low as possible'],d:['לרכיבים כבדים: מוריד את מרכז הכובד. נבדק: מרכז הרכיב בשליש התחתון של הגובה.','For heavy parts: lowers the centre of gravity. Checked: part centre in the lower third of the height.']},
  {id:'high',base:'high',n:['גבוה ככל האפשר','As high as possible'],d:['לאנטנות, GPS ומצלמות שצריכות שדה ראייה. נבדק: מרכז הרכיב בשליש העליון.','For antennas, GPS and cameras that need a clear view. Checked: part centre in the upper third.']},
  {id:'near',base:'near',tg:1,ds:50,n:['קרוב לרכיב אחר','Close to another part'],d:['לקיצור חיווט או צנרת, למשל בקר ליד המנוע שלו. נבדק: המרווח קטן מהמרחק שהוגדר.','Keeps wiring or piping short, e.g. a controller beside its motor. Checked: gap below the set distance.']},
@@ -391,11 +399,13 @@ var BANK=[
 ];
 function bank(){return BANK.concat((P&&P.customRules)||[]);}
 function ruleDef(id){return bank().filter(function(r){return r.id===id;})[0];}
-function ruleName(r){var d=ruleDef(r.r);if(!d)return r.r;var s=d.n[lang==='he'?0:1]||d.n[0];if(d.tg&&r.t){var pq=P&&(P.points||[]).filter(function(q){return q.id===r.t;})[0];s+=' · '+(pq?pq.name:r.t);}if(d.ds!==undefined&&d.base!=='manual')s+=' · '+num(r.d,d.ds)+' '+t('dist');return s;}
+function ruleName(r){var d=ruleDef(r.r);if(!d)return r.r;var s=d.n[lang==='he'?0:1]||d.n[0];if(d.tg&&r.t){var pq=P&&(P.points||[]).filter(function(q){return q.id===r.t;})[0];s+=' · '+(pq?pq.name:r.t);}if(d.ds!==undefined&&d.base!=='manual')s+=' · '+(d.base==='link'?'≤ ':'')+num(r.d,d.ds)+' '+t('dist');if(r.k)s+=' · '+t('k_'+r.k);return s;}
 function parseRules(txt){var out=[];String(txt||'').split(/[;\n]/).forEach(function(s){s=s.trim();if(!s)return;var a=s.split(':').map(function(x){return x.trim();}),d=ruleDef(a[0]);if(!d)return;
-  var r={r:d.id};if(d.tg){r.t=a[1]||'';if(a[2]!==undefined)r.d=num(a[2],d.ds);}else if(a[1]!==undefined&&d.ds!==undefined)r.d=num(a[1],d.ds);out.push(r);});return out;}
-function rulesText(rs){return (rs||[]).map(function(r){var d=ruleDef(r.r),s=r.r;if(d&&d.tg)s+=':'+(r.t||'')+(r.d!==undefined?':'+r.d:'');else if(r.d!==undefined)s+=':'+r.d;return s;}).join('; ');}
+  var r={r:d.id};if(d.tg){r.t=a[1]||'';if(a[2]!==undefined&&a[2]!=='')r.d=num(a[2],d.ds);if(d.base==='link'&&a[3])r.k=LKIND(a[3]);}else if(a[1]!==undefined&&d.ds!==undefined)r.d=num(a[1],d.ds);out.push(r);});return out;}
+function rulesText(rs){return (rs||[]).map(function(r){var d=ruleDef(r.r),s=r.r;if(d&&d.tg)s+=':'+(r.t||'')+(r.d!==undefined||r.k?':'+(r.d!==undefined?r.d:d.ds):'')+(r.k?':'+r.k:'');else if(r.d!==undefined)s+=':'+r.d;return s;}).join('; ');}
 
+var KINDS=['data','power','water','other'],KCOL={data:'#2f6fd0',power:'#d08a12',water:'#1a9aa8',other:'#7a5d74'};
+function LKIND(x){x=String(x||'').toLowerCase().trim();var al={signal:'data',data:'data','נתונים':'data','תקשורת':'data',power:'power','חשמל':'power','מתח':'power',water:'water','מים':'water',hose:'water',fluid:'water'};return al[x]||(KINDS.indexOf(x)>=0?x:'other');}
 /* ================= project model ================= */
 var CAT_COL=['#3d4a63','#8a6f4d','#5d7a66','#9a9f93','#7a5d74','#b08a3c','#4f7f8a','#2b2c29'];
 var projects=[],P=null,geo={};   /* geo[id]=Float32Array of triangle positions (raw file units) */
@@ -408,9 +418,9 @@ function exampleProject(){
    {id:'base',name:lang==='he'?'יחידת הנעה':'Drive unit',model:'',cat:lang==='he'?'הנעה':'Drive',qty:2,size:[120,120,40],mass:1.5,shape:'cylz',rules:[{r:'ref'},{r:'sym'}],notes:'',src:src},
    {id:'battery',name:lang==='he'?'סוללה':'Battery',model:'',cat:lang==='he'?'חשמל':'Power',qty:1,size:[200,50,120],mass:2,shape:'box',rules:[{r:'low'},{r:'top'}],notes:'',src:src},
    {id:'tank',name:lang==='he'?'מיכל':'Tank',model:'',cat:lang==='he'?'נוזלים':'Fluid',qty:1,size:[160,200,160],mass:4.5,massE:0.5,shape:'cyly',rules:[{r:'center',d:20}],notes:'',src:src},
-   {id:'ctrl',name:lang==='he'?'לוח בקרה':'Control board',model:'',cat:lang==='he'?'בקרה':'Control',qty:1,size:[100,25,80],mass:0.2,shape:'box',rules:[{r:'dry',t:'tank',d:40},{r:'clear',d:15}],notes:'',src:src},
+   {id:'ctrl',name:lang==='he'?'לוח בקרה':'Control board',model:'',cat:lang==='he'?'בקרה':'Control',qty:1,size:[100,25,80],mass:0.2,shape:'box',rules:[{r:'dry',t:'tank',d:40},{r:'clear',d:15},{r:'link',t:'cam',d:400,k:'data'},{r:'link',t:'aux',d:250,k:'power'}],notes:'',src:src},
    {id:'cam',name:lang==='he'?'מצלמה':'Camera',model:'',cat:lang==='he'?'חישה':'Sensing',qty:1,size:[60,40,30],mass:0.1,shape:'box',rules:[{r:'high'},{r:'wall',d:10},{r:'los'}],notes:'',src:src},
-   {id:'aux',name:lang==='he'?'ממיר מתח':'Converter',model:'',cat:lang==='he'?'חשמל':'Power',qty:1,size:[80,30,60],mass:0.4,shape:'box',rules:[{r:'trim'}],notes:'',src:src}
+   {id:'aux',name:lang==='he'?'ממיר מתח':'Converter',model:'',cat:lang==='he'?'חשמל':'Power',qty:1,size:[80,30,60],mass:0.4,shape:'box',rules:[{r:'trim'},{r:'link',t:'battery',d:250,k:'power'}],notes:'',src:src}
   ];
   var sid='exshell';geo[sid]=boxShellGeo(420,520,260,6);
   p.shells=[{id:sid,name:lang==='he'?'מעטפת לדוגמה':'Example shell',unit:'1',up:'y',turn:'0',under:0,kind:'hollow',gen:[420,520,260,6]}];
@@ -471,7 +481,7 @@ var shellGroup=new THREE.Group();scene.add(shellGroup);
 var cutPlane=new THREE.Plane(new THREE.Vector3(0,0,-1),0);
 var shellMat=new THREE.MeshStandardMaterial({color:'#c9cdc4',roughness:0.6,metalness:0.02,side:THREE.DoubleSide});
 var edgeMat=new THREE.LineBasicMaterial({color:0x1b1c1a});
-var ui={view:'iso',shell:'glass',mode:'detail',labels:false,grid:true,magnet:true};
+var ui={view:'iso',shell:'glass',mode:'detail',labels:false,grid:true,magnet:true,links:true};
 var shell={n:0,T:null,box:new THREE.Box3(),idx:null,kind:'hollow',ver:0};
 var partsGroup=new THREE.Group();scene.add(partsGroup);
 var RT={},selected=null,pointsGroup=new THREE.Group(),pickMode=false;scene.add(pointsGroup);
@@ -603,7 +613,22 @@ function syncItem(iid){
 function syncAll(){INST.forEach(function(i){syncItem(i.iid);});runChecks();requestRender();}
 
 /* ================= checks ================= */
-var checks={placed:0,mass:0,cog:null,ref:[0,0],pairs:[],outs:[],rules:[]};
+var checks={placed:0,mass:0,cog:null,ref:[0,0],pairs:[],outs:[],rules:[],links:[]};
+var linkGroup=new THREE.Group();scene.add(linkGroup);linkGroup.renderOrder=25;
+function drawLinks(){
+  while(linkGroup.children.length){var c=linkGroup.children.pop();c.geometry.dispose();c.material.dispose();}
+  document.querySelectorAll('.ltag').forEach(function(e){e.remove();});
+  linkGroup.visible=ui.links;if(!ui.links)return;var sb=sceneBounds(),LSPAN=sb.isEmpty()?500:sb.getSize(new THREE.Vector3()).length();
+  checks.links.forEach(function(l,n){if(l.missing)return;var a=P.work.items[l.from].p,b=l.pt,hot=selected&&(l.from===selected||l.to===selected);
+    /* a thin tube sized to the scene, so connections stay visible at any zoom; drawn over the parts */
+    var A=new THREE.Vector3(a[0],a[1],a[2]),B=new THREE.Vector3(b[0],b[1],b[2]),len=A.distanceTo(B);if(len<0.5)return;
+    var rad=Math.max(1.2,LSPAN*0.0025)*(hot?1.6:1),g=new THREE.CylinderGeometry(rad,rad,len,8,1,false);
+    var m=new THREE.MeshBasicMaterial({color:l.ok?(KCOL[l.kind]||KCOL.other):theme.crit,depthTest:false,transparent:true,opacity:selected&&!hot?0.3:0.95});
+    var ln=new THREE.Mesh(g,m);ln.position.copy(A).add(B).multiplyScalar(0.5);ln.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),B.clone().sub(A).normalize());ln.renderOrder=25;linkGroup.add(ln);
+    [A,B].forEach(function(P0){var e=new THREE.Mesh(new THREE.SphereGeometry(rad*2,10,8),m.clone());e.position.copy(P0);e.renderOrder=26;linkGroup.add(e);});
+    if(hot||!l.ok){var tg=el('div','ltag'+(l.ok?'':' bad'),fmt(l.len)+' / '+fmt(l.max));tg.dataset.n=n;tg.dir='ltr';$('#tags').appendChild(tg);}});
+}
+function updateLtags(){var w=vp.clientWidth,h=vp.clientHeight;document.querySelectorAll('.ltag').forEach(function(e){var l=checks.links[+e.dataset.n];if(!l||l.missing||!P.work.items[l.from]){e.hidden=true;return;}var a=P.work.items[l.from].p,b=l.pt;_v.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
 function cylBox(c,b){var ax=c.cyl,u=(ax+1)%3,v=(ax+2)%3,cu=(c.min[u]+c.max[u])/2,cv=(c.min[v]+c.max[v])/2,r=(c.max[u]-c.min[u])/2-0.3;
   var du=Math.max(b.min[u]-cu,0,cu-b.max[u]),dv=Math.max(b.min[v]-cv,0,cv-b.max[v]);return du*du+dv*dv<r*r;}
 function collide(a,b){var e=0.3;for(var i=0;i<3;i++)if(a.max[i]-e<=b.min[i]||b.max[i]-e<=a.min[i])return false;
@@ -616,6 +641,13 @@ function nk(x){return String(x||'').toLowerCase().trim().replace(/[\s_\-]+/g,'-'
 function targets(tg,self){var k=nk(tg);if(!k)return [];
   var pts=activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;}).map(function(q){return {min:q.p,max:q.p,cyl:-1};});if(pts.length)return pts;
   return onList().filter(function(i){return i.iid!==self&&(nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k);}).map(function(i){return RT[i.iid];});}
+/* connections: each link rule joins a part to its nearest placed target (part, category or marked point) */
+function linkOf(inst,rl){var d=ruleDef(rl.r),D=num(rl.d,d.ds),a=P.work.items[inst.iid].p,k=nk(rl.t),o={from:inst.iid,to:null,pt:null,name:rl.t||'—',max:D,kind:rl.k||'data',len:0,ok:false,missing:true};
+  if(!k)return o;var best=Infinity;
+  activePoints().forEach(function(q){if(nk(q.id)===k||nk(q.name)===k){var L=Math.hypot(q.p[0]-a[0],q.p[1]-a[1],q.p[2]-a[2]);if(L<best){best=L;o.pt=q.p;o.to=null;o.name=q.name;}}});
+  if(!o.pt)onList().forEach(function(i){if(i.iid!==inst.iid&&(nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k)){var b=P.work.items[i.iid].p,L=Math.hypot(b[0]-a[0],b[1]-a[1],b[2]-a[2]);if(L<best){best=L;o.to=i.iid;o.pt=b;o.name=i.label;}}});
+  if(o.pt){o.missing=false;o.len=best;o.ok=best<=D+0.5;}return o;}
+function allLinks(){var out=[];onList().forEach(function(i){(i.part.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(d&&d.base==='link')out.push(linkOf(i,rl));});});return out;}
 function refPoint(){
   var xs=[],zs=[];onList().forEach(function(i){if((i.part.rules||[]).some(function(r){var d=ruleDef(r.r);return d&&d.base==='ref';})){var it=P.work.items[i.iid];xs.push(it.p[0]);zs.push(it.p[2]);}});
   if(xs.length)return [xs.reduce(function(a,b){return a+b;},0)/xs.length,zs.reduce(function(a,b){return a+b;},0)/zs.length,true];
@@ -637,6 +669,7 @@ function ruleIssues(inst,env,ref){
     else if(d.base==='high'&&env)bad=c[1]<env.y1-(env.y1-env.y0)/3-0.5;
     else if(d.base==='near'){var ts=targets(rl.t,inst.iid);if(ts.length)bad=Math.min.apply(null,ts.map(function(x){return gap(r,x);}))>D+0.5;}
     else if(d.base==='far'){var tf=targets(rl.t,inst.iid);if(tf.length)bad=Math.min.apply(null,tf.map(function(x){return gap(r,x);}))<D-0.5;}
+    else if(d.base==='link'){var lk=linkOf(inst,rl);if(lk.missing){out.push(ruleName(rl)+t('linkMissing'));return;}if(!lk.ok){out.push(ruleName(rl)+' ('+fmt(lk.len)+' '+t('dist')+')');return;}}
     else if(d.base==='center')bad=Math.hypot(c[0]-ref[0],c[2]-ref[1])>D+0.5;
     else if(d.base==='wall'&&shell.n)bad=Math.min(r.min[0]-env.x0,env.x1-r.max[0],r.min[2]-env.z0,env.z1-r.max[2],r.min[1]-env.y0,env.y1-r.max[1])>D+0.5;
     else if(d.base==='clear')bad=onList().some(function(o){return o.iid!==inst.iid&&gap(r,RT[o.iid])<D-0.5;});
@@ -656,6 +689,7 @@ function runChecks(){
     if(!P.work.items[on[a].iid].ext&&shell.n){shellTest(ra);if(ra.sHit){ra.hit=true;checks.pairs.push([on[a].iid,null]);}else if(ra.sOut){ra.out=true;checks.outs.push(on[a].iid);}}
     ruleIssues(on[a],env,checks.ref).forEach(function(tx){checks.rules.push([on[a].iid,tx]);});
   }
+  checks.links=allLinks();drawLinks();
   INST.forEach(function(i){var r=RT[i.iid],it=P.work.items[i.iid],show=it.on&&(r.hit||r.out||selected===i.iid);r.outline.visible=show;
     if(show){r.outline.material.color.set(r.hit?theme.crit:r.out?theme.warn:theme.accent);
       r.outline.position.set((r.min[0]+r.max[0])/2,(r.min[1]+r.max[1])/2,(r.min[2]+r.max[2])/2);r.outline.scale.set(Math.max(r.max[0]-r.min[0],1),Math.max(r.max[1]-r.min[1],1),Math.max(r.max[2]-r.min[2],1));}});
@@ -713,6 +747,11 @@ function renderStatus(){
   c.outs.forEach(function(i){add('w',i,INST_BY[i].label+t('isOut'));});
   c.rules.forEach(function(r){add('r',r[0],INST_BY[r[0]].label+': '+r[1]);});
   if(!ul.children.length)ul.appendChild(el('li','fine',t('none')));
+  var lu=$('#links');lu.textContent='';var nb=c.links.filter(function(l){return !l.ok;}).length;$('#linkCount').textContent=c.links.length?(c.links.length-nb)+' / '+c.links.length:'';
+  c.links.forEach(function(l){var b=el('button');b.type='button';var dt=el('span','dot');dt.style.background=l.ok?(KCOL[l.kind]||KCOL.other):'var(--crit)';b.appendChild(dt);
+    b.appendChild(el('span','',INST_BY[l.from].label+' → '+l.name+' · '+t('k_'+l.kind)));var nm=el('span','mono',l.missing?t('notPlaced'):fmt(l.len)+' / '+fmt(l.max)+' mm');if(!l.ok)nm.style.color='var(--crit)';nm.style.marginInlineStart='auto';b.appendChild(nm);
+    b.onclick=function(){select(l.from);};var li=el('li');li.appendChild(b);lu.appendChild(li);});
+  if(!c.links.length)lu.appendChild(el('li','fine',t('linkNone')));
   $('#chipName').textContent=P.work.name+(curShell()?' · '+curShell().name:'');
   $('#trayCount').textContent=c.placed+' / '+INST.length;
 }
@@ -743,7 +782,7 @@ function renderSaved(){
     li.appendChild(btn('small danger','✕',function(e){e.stopPropagation();confirmBox(t('qDelCfg',c.name),function(){P.configs=P.configs.filter(function(x){return x!==c;});touch();renderSaved();});}));ul.appendChild(li);});
 }
 function refreshUI(){renderTray();renderInspector();renderStatus();renderSaved();$('#btnUndo').disabled=histIdx<=0;$('#btnRedo').disabled=histIdx>=hist.length-1;
-  ['togLabels','togGrid','togMagnet'].forEach(function(id,i){$('#'+id).setAttribute('aria-pressed',String([ui.labels,ui.grid,ui.magnet][i]));});
+  ['togLabels','togGrid','togMagnet','togLinks'].forEach(function(id,i){$('#'+id).setAttribute('aria-pressed',String([ui.labels,ui.grid,ui.magnet,ui.links][i]));});
   setSeg('segView',ui.view);setSeg('segShell',ui.shell);setSeg('segMode',ui.mode);}
 
 /* ================= history ================= */
@@ -823,7 +862,7 @@ var needsRender=true;function requestRender(){needsRender=true;}
 function updateTags(){var w=vp.clientWidth,h=vp.clientHeight;INST.forEach(function(i){var r=RT[i.iid],it=P.work.items[i.iid],show=ui.labels&&it.on;r.tag.hidden=!show;if(!show)return;
   _v.set(it.p[0],r.max[1],it.p[2]).project(camera);r.tag.style.left=((_v.x+1)/2*w)+'px';r.tag.style.top=((1-_v.y)/2*h)+'px';});}
 function updatePtags(){var w=vp.clientWidth,h=vp.clientHeight,pts=activePoints();document.querySelectorAll('.ptag').forEach(function(e){var q=pts.filter(function(x){return x.id===e.dataset.pid;})[0];if(!q){e.hidden=true;return;}_v.set(q.p[0],q.p[1],q.p[2]).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
-function loop(){requestAnimationFrame(loop);if(!needsRender)return;needsRender=false;renderer.render(scene,camera);updateTags();updatePtags();}
+function loop(){requestAnimationFrame(loop);if(!needsRender)return;needsRender=false;renderer.render(scene,camera);updateTags();updatePtags();updateLtags();}
 
 /* ================= auto-arrange ================= */
 function autoArrange(){
@@ -846,6 +885,8 @@ function autoArrange(){
     var clr=clrOf(p),others=onList().map(function(o){return {q:RT[o.iid],need:Math.max(clr,clrOf(o.part),farBetween(p,o.part),farBetween(o.part,p)),top:hasBase(o.part,'top')};});
     /* running centre of gravity of what is already placed */
     var cm=0,cx=0,cz=0;onList().forEach(function(o){var k=pmass(o.part),q=I[o.iid].p;cm+=k;cx+=k*q[0];cz+=k*q[2];});
+    /* placed parts that must connect to this one pull it toward them */
+    var incoming=[];onList().forEach(function(o){(o.part.rules||[]).forEach(function(rl){var d=ruleDef(rl.r),k=nk(rl.t);if(d&&d.base==='link'&&k&&(k===nk(p.id)||k===nk(p.name)||k===nk(p.cat)))incoming.push({q:I[o.iid].p,D:num(rl.d,d.ds)});});});
     var sibs=onList().filter(function(o){return o.part===p;}),mirror=null;if(sibs.length%2===1){var sp=I[sibs[sibs.length-1].iid].p;mirror=[2*ref[0]-sp[0],2*ref[1]-sp[2],sp[1]];}
     it.on=true;it.ext=false;
     if(mirror){it.q=I[sibs[sibs.length-1].iid].q.slice();it.p=[mirror[0],mirror[2],mirror[1]];syncItem(iid);
@@ -866,9 +907,11 @@ function autoArrange(){
           else if(d.base==='top'){s+=(R.y1-y-h[1])*0.5;}
           else if(d.base==='trim')s+=Math.hypot(nx-ref[0],nz-ref[1])*6;
           else if(d.base==='sym'&&mirror)s+=Math.hypot(x-mirror[0],z-mirror[1])*5+Math.abs(y-mirror[2])*5;
+          else if(d.base==='link'){var lk=linkOf(inst,rl);if(!lk.missing)s+=Math.max(0,lk.len-D)*3+lk.len*0.2;}
           else if(d.base==='near'||d.base==='far'){var ts=targets(rl.t,iid);if(ts.length){var g=Math.min.apply(null,ts.map(function(q2){return gap(r,q2);}));
             if(d.base==='near')s+=Math.max(0,g-D)*3+g*0.2;}}
         }
+        for(var ii=0;ii<incoming.length;ii++){var qa=incoming[ii].q,dd=Math.hypot(qa[0]-x,qa[1]-y,qa[2]-z);s+=Math.max(0,dd-incoming[ii].D)*3+dd*0.1;}
         return s;
     }
     for(var oi=0;oi<ORI.length&&!best;oi++){
@@ -956,6 +999,7 @@ function renderDrawer(){
         grp(t('optParts'),P.parts.filter(function(q){return q!==p;}).map(function(q){return [q.id,q.name];}));grp(t('optPoints'),(P.points||[]).map(function(q){return [q.id,q.name];}));grp(t('optCats'),cats().filter(function(c){return c!=='—';}).map(function(c){return [c,c];}));
         s.value=cur.t||'';if(cur.t&&s.value!==cur.t){[].some.call(s.options,function(o){if(nk(o.value)===nk(cur.t)){s.value=o.value;return true;}});}s.onchange=function(){cur.t=s.value;rulesChanged(true);};l.appendChild(s);row.appendChild(l);}
       if(d.ds!==undefined){var l2=el('label','f');l2.appendChild(el('span','',t('dist')));var i=el('input');i.type='number';i.id='rd_'+d.id;i.min=0;i.step=5;i.value=num(cur.d,d.ds);i.onchange=function(){cur.d=num(i.value,d.ds);rulesChanged(true);};l2.appendChild(i);row.appendChild(l2);}
+      if(d.base==='link'){var l3=el('label','f');l3.appendChild(el('span','',t('kind')));var ks=el('select');ks.id='rk2_'+d.id;KINDS.forEach(function(k){var o=el('option','',t('k_'+k));o.value=k;ks.appendChild(o);});ks.value=cur.k||'data';ks.onchange=function(){cur.k=ks.value;rulesChanged(true);};l3.appendChild(ks);row.appendChild(l3);}
       card.appendChild(row);}
     box.appendChild(card);});
 }
@@ -1124,6 +1168,7 @@ he:[
  ['נקודות על המודל','ul',['"סמן נקודה" ואז לחיצה על המודל יוצרת נקודה שאפשר לכוון אליה כללים.','נקודה שייכת למעטפת שעליה סומנה. שינוי יחידות, סיבוב או גובה של המעטפת לא מזיז אותה, וצריך לסמן מחדש.']],
  ['נקודת ייחוס ואיזון','ul',['מרכז הכובד נמדד כמרחק אופקי מנקודת הייחוס: ציר גלגלים, מרכז רוטורים, מרכז בסיס וכדומה.','אפשר להזין X ו-Z ידנית, או לתת לרכיב את הכלל "מגדיר נקודת ייחוס" ואז הנקודה נלקחת ממיקומו.','הסטייה המותרת היא החלטה שלך. הכלי לא יודע מה נכון למוצר שלך.','המתג "מלא / ריק" מראה כמה מרכז הכובד זז כשהמסה המשתנה מתרוקנת.']],
  ['בנק הכללים','ul',['כלל הוא דרישת מיקום לרכיב. חלק נבדקים אוטומטית וחלק מסומנים "לבדיקה ידנית".','כללי "קרוב ל" ו"רחוק מ" צריכים יעד: רכיב, נקודה או קטגוריה. בלי יעד הכלל לא נבדק.','אפשר להוסיף כלל משלך ולבחור איך הוא ייבדק.','בטבלה כותבים כללים כקוד, למשל ‎low; far:battery:30‎. רשימת הקודים בגיליון השני של התבנית.','כללים יכולים לסתור זה את זה. הפרה בלוח הבדיקות היא מידע לשיקול דעת, לא בהכרח טעות.']],
+ ['חיבורים','ul',['הכלל link מחבר רכיב לרכיב אחר, לקטגוריה או לנקודה על המודל. בטבלה: link:<יעד>:<אורך מרבי>:<סוג>, למשל link:gnss_hrtk_f9p:300:data.','סוג: data (כחול), power (כתום), water (טורקיז). בלי סוג, החיבור נחשב data.','שרשרת נבנית מכמה כללים: מחשב → GPS בשורה של המחשב, GPS → רכיב אחר בשורה של ה-GPS.','האורך הוא קו ישר בין מרכזי הרכיבים. כבל אמיתי עובר מסביב לרכיבים ויוצא ממחבר, אז תן מרווח באורך המרבי.','קו מקווקו אדום = ארוך מהמותר. בחירת רכיב מדגישה את החיבורים שלו ומציגה את האורך שלהם.','אם ליעד יש כמה יחידות (למשל 6 מנועים), החיבור הולך ליחידה הקרובה ביותר.']],
  ['הזזה ותצוגה','ul',['גרירת רכיב מזיזה אותו במישור המבט. Shift+גרירה מזיזה למעלה ולמטה.','R מסובב 90° סביב הציר האנכי, Shift+R סביב X. Del מחזיר לרשימה. Ctrl+Z מבטל.','"מגנט" מצמיד לדפנות ולרכיבים שכנים. Alt בזמן גרירה מבטל אותו זמנית.','"נעל" מקבע רכיב, והסידור האוטומטי לא יזיז אותו.','אדום = התנגשות, כתום = מחוץ למעטפת, כחול = הפרת כלל.']],
  ['סידור אוטומטי','ul',['מציב כל רכיב שאינו נעול לפי הכללים שלו, ושומר על מרכז הכובד קרוב לנקודת הייחוס.','זו הצעת פתיחה ולא פתרון מיטבי. הוא מחפש ברשת של מיקומים ולא בודק כל אפשרות.','הוא מבטל את הסידור הנוכחי של רכיבים לא נעולים. Ctrl+Z מחזיר.','רכיב שמגדיר נקודת ייחוס לא מוזז. הצב אותו ידנית קודם.']],
  ['קירובים שכדאי להכיר','ul',['התנגשות נבדקת לפי התיבה החוסמת של הרכיב (לגליל יש בדיקה עגולה), לא לפי הצורה המדויקת.','המסה של כל רכיב מחושבת כאילו היא במרכז התיבה שלו.','כבלים, צנרת, ברגים ומשקל המעטפת עצמה לא נכללים, אלא אם תוסיף אותם כרכיבים.','הספים של "נמוך" ו"גבוה" הם שליש תחתון ושליש עליון. זו בחירה של הכלי ולא תקן.','הכלי לא בודק חום, חוזק, אטימות או חיווט. הוא עוזר לבחון סידור, ולא מחליף בדיקה הנדסית.']],
@@ -1137,6 +1182,7 @@ en:[
  ['Points on the model','ul',['"Mark a point", then a click on the model, creates a point that rules can target.','A point belongs to the shell it was marked on. Changing that shell\'s units, turn or height does not move it; mark it again.']],
  ['Reference point and balance','ul',['The centre of gravity is measured as a horizontal distance from the reference point: wheel axle, rotor centre, base centre and so on.','Type X and Z by hand, or give a part the rule "Defines the reference point" and the point follows that part.','The allowed offset is your decision. The tool does not know what is right for your product.','The "Full / Empty" switch shows how far the centre of gravity moves as the variable mass empties.']],
  ['Rule bank','ul',['A rule is a placement demand on a part. Some are checked automatically, others are marked "check by hand".','"Close to" and "Away from" rules need a target: a part, a point or a category. Without one the rule is not checked.','You can add your own rule and choose how it is checked.','In the table, rules are written as codes, e.g. low; far:battery:30. The codes are listed on the second sheet of the template.','Rules can contradict each other. A violation in the checks panel is information for your judgement, not always a mistake.']],
+ ['Connections','ul',['The link rule connects a part to another part, a category or a point on the model. In the table: link:<target>:<max length>:<type>, e.g. link:gnss_hrtk_f9p:300:data.','Type: data (blue), power (orange), water (teal). Without a type the link counts as data.','A chain is built from several rules: computer → GPS in the computer row, GPS → another part in the GPS row.','Length is the straight line between part centres. A real cable leaves from a connector and runs around parts, so leave margin in the maximum.','Dashed red line = longer than allowed. Selecting a part highlights its connections and shows their lengths.','If the target has several units (for example 6 motors), the link goes to the nearest one.']],
  ['Moving and viewing','ul',['Dragging moves a part in the view plane. Shift-drag moves it up and down.','R turns 90° about the vertical axis, Shift+R about X. Del sends it back to the list. Ctrl+Z undoes.','"Magnet" snaps to walls and neighbouring parts. Hold Alt while dragging to switch it off.','"Lock" pins a part, and auto-arrange will not move it.','Red = collision, orange = outside the shell, blue = rule violation.']],
  ['Auto-arrange','ul',['Places every unlocked part by its rules and keeps the centre of gravity near the reference point.','It is a starting proposal, not an optimum. It searches a grid of positions and does not try everything.','It discards the current positions of unlocked parts. Ctrl+Z brings them back.','A part that defines the reference point is not moved. Place it by hand first.']],
  ['Approximations to know','ul',['Collisions use each part\'s bounding box (cylinders get a round check), not the exact shape.','Each part\'s mass is treated as sitting at the centre of its box.','Cables, piping, fasteners and the weight of the shell itself are not included unless you add them as parts.','The "low" and "high" thresholds are the bottom and top third. That is the tool\'s choice, not a standard.','The tool does not check heat, strength, sealing or wiring. It helps you study a layout and does not replace engineering review.']],
@@ -1176,13 +1222,13 @@ function bind(){
   $('#btnPoint').onclick=function(){setPick(!pickMode);};
   $('#btnBank').onclick=function(){openDrawer(null);};$('#drawerClose').onclick=function(){$('#drawer').hidden=true;};
   $('#nrAdd').onclick=function(){var n=$('#nrName').value.trim();if(!n)return;var base=$('#nrBase').value,id=slug(n).slice(0,14)||uid('r');while(ruleDef(id))id+='x';
-    var d={id:id,base:base,custom:true,n:[n,n],d:[$('#nrDesc').value.trim(),$('#nrDesc').value.trim()]};if(base==='near'||base==='far')d.tg=1;if(['near','far','center','wall','clear'].indexOf(base)>=0)d.ds=num($('#nrDist').value,20);
+    var d={id:id,base:base,custom:true,n:[n,n],d:[$('#nrDesc').value.trim(),$('#nrDesc').value.trim()]};if(base==='near'||base==='far'||base==='link')d.tg=1;if(['near','far','center','wall','clear','link'].indexOf(base)>=0)d.ds=num($('#nrDist').value,20);
     P.customRules.push(d);$('#nrName').value='';$('#nrDesc').value='';rulesChanged();};
   $('#segView').onclick=function(e){if(e.target.dataset.v)setView(e.target.dataset.v);};
   $('#segShell').onclick=function(e){if(e.target.dataset.v){ui.shell=e.target.dataset.v;applyShellMode();refreshUI();}};
   $('#segMode').onclick=function(e){if(e.target.dataset.v){ui.mode=e.target.dataset.v;syncAll();refreshUI();}};
   $('#segFill').onclick=function(e){if(e.target.dataset.v){fill=e.target.dataset.v;runChecks();refreshUI();requestRender();}};
-  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};
+  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};$('#togLinks').onclick=function(){ui.links=!ui.links;runChecks();refreshUI();requestRender();};
   $('#btnUndo').onclick=undo;$('#btnRedo').onclick=redo;$('#btnAuto').onclick=autoArrange;$('#btnPng').onclick=exportPng;
   $('#btnSave').onclick=function(){var n=$('#cfgName').value.trim()||P.work.name;P.work.name=n;var ex=P.configs.filter(function(c){return c.name===n;})[0],st=clone(P.work);
     if(ex){ex.state=st;ex.summary=summary();ex.updatedAt=Date.now();}else P.configs.push({id:uid('c'),name:n,state:st,summary:summary(),updatedAt:Date.now()});touch();refreshUI();toast(t('tSaved'));};
@@ -1201,7 +1247,7 @@ function start(){
   });
 }
 function autoArrangeQuiet(){var tt=toast;toast=function(){};try{autoArrange();}finally{toast=tt;}hist=[JSON.stringify(P.work)];histIdx=0;refreshUI();}
-window.__studio={get P(){return P;},get checks(){return checks;},autoArrange:autoArrange,rowsToParts:rowsToParts,pointState:pointState};
+window.__studio={get P(){return P;},get checks(){return checks;},select:select,syncAll:syncAll,autoArrange:autoArrange,rowsToParts:rowsToParts,pointState:pointState};
 start();
 })();
 
