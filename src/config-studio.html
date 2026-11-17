@@ -91,6 +91,7 @@ ul.tree ul>li::before{content:"";position:absolute;inset-inline-start:-20px;top:
 .mextra{font-size:11.5px;color:var(--mute);margin-inline-start:22px}
 .mrow{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
 .mrow select{max-width:220px}
+.mend{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;padding:6px;border:1px dashed var(--line);border-radius:8px}
 .ltag{position:absolute;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-family:var(--f-mono);font-size:10.5px;white-space:nowrap}
 .ltag.bad{border-color:var(--crit);color:var(--crit)}
 .viewport.picking canvas{cursor:crosshair}
@@ -227,18 +228,22 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="hint" data-t="hint"></div>
     </div>
     <div class="mapview" id="mapView" hidden>
-      <div class="bar"><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
+      <div class="bar"><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="mech" data-t="k_mech"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
       <p class="fine" data-t="mapIntro"></p>
       <div id="mapBody"></div>
       <section class="msys mform">
         <h3 data-t="mapAdd"></h3>
         <div class="mrow">
-          <label class="f"><span data-t="mapFrom"></span><select id="mfFrom"></select></label>
-          <label class="f"><span data-t="mapTo"></span><select id="mfTo"></select></label>
+          <div class="mend"><label class="f"><span data-t="mapFrom"></span><select id="mfFrom"></select></label><label class="f"><span data-t="mapPort"></span><select id="mfPa"></select></label><button type="button" class="btn small" id="mfPickA" data-t="mapPickBtn"></button></div>
+          <div class="mend"><label class="f"><span data-t="mapTo"></span><select id="mfTo"></select></label><label class="f"><span data-t="mapPort"></span><select id="mfPb"></select></label><button type="button" class="btn small" id="mfPickB" data-t="mapPickBtn"></button></div>
+        </div>
+        <div class="mrow">
+          <label class="f"><span data-t="mode"></span><select id="mfMode"></select></label>
           <label class="f"><span data-t="kind"></span><select id="mfKind"></select></label>
-          <label class="f"><span data-t="mapMax"></span><input type="number" id="mfMax" value="300" min="0" step="10"></label>
+          <label class="f"><span data-t="mapMax"></span><input type="number" id="mfMax" value="300" min="0" step="1"></label>
           <button type="button" class="btn solid" id="mfAdd" data-t="mapAdd"></button>
         </div>
+        <p class="fine" data-t="mapMaxHint"></p>
       </section>
     </div>
   </main>
