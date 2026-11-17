@@ -54,9 +54,9 @@ qDelProj:['למחוק את הפרויקט "{a}" וכל מה שבתוכו?','Dele
 load:['טען','Load'],del:['מחק','Delete'],cfg:['קונפיגורציה','Configuration'],exName:['פרויקט לדוגמה','Example project'],
 whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכובד הכי קרוב לנקודת הייחוס.','Placed in the free spot that keeps the centre of gravity closest to the reference point.'],
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
-custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר בכבל או צינור".','No connections. Give a part the rule "Connected by cable or hose".'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
+custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],page3d:['תלת-ממד','3D'],pageMap:['מפת חיבורים','Connection map'],mapAll:['הכול','All'],mapLinks:['חיבורים','links'],mapRoot:['מתחיל מ','Start from'],mapLone:['רכיבים בלי חיבור','Parts with no connection'],mapAlso:['מחובר גם ל','Also connected to '],mapDel:['מחק את החיבור','Delete this connection'],mapAdd:['הוסף חיבור','Add connection'],mapFrom:['מ','From'],mapTo:['אל','To'],mapMax:['אורך מרבי (מ"מ)','Max length (mm)'],mapPick:['בחר שני רכיבים שונים','Pick two different parts'],mapAdded:['החיבור נוסף','Connection added'],mapIntro:['כל מערכת מוצגת כעץ נפרד: מתחילים מהרכיב המרכזי ויורדים לפי סדר החיבור. ליד כל רכיב: האורך בפועל מול המותר. ירוק בתוך המותר, אדום חורג, אפור כשהרכיבים עוד לא הוצבו. ↺ = חיבור שסוגר מעגל.','Each system is its own tree, from the central part down in connection order. Beside each part: actual length vs. allowed. Green within the limit, red over it, grey when the parts are not placed yet. ↺ = a link that closes a loop.'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר בכבל או צינור".','No connections. Give a part the rule "Connected by cable or hose".'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he',VERSION='1.5',UPDATED='2026-11-17';
+var lang='he',VERSION='1.6',UPDATED='2026-11-17';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
@@ -332,7 +332,7 @@ function targets(tg,self){var k=nk(tg);if(!k)return [];
   var pts=activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;}).map(function(q){return {min:q.p,max:q.p,cyl:-1};});if(pts.length)return pts;
   return onList().filter(function(i){return i.iid!==self&&(nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k);}).map(function(i){return RT[i.iid];});}
 /* connections: each link rule joins a part to its nearest placed target (part, category or marked point) */
-function linkOf(inst,rl){var d=ruleDef(rl.r),D=num(rl.d,d.ds),a=P.work.items[inst.iid].p,k=nk(rl.t),o={from:inst.iid,to:null,pt:null,name:rl.t||'—',max:D,kind:rl.k||'data',len:0,ok:false,missing:true};
+function linkOf(inst,rl){var d=ruleDef(rl.r),D=num(rl.d,d.ds),a=P.work.items[inst.iid].p,k=nk(rl.t),o={rl:rl,from:inst.iid,to:null,pt:null,name:rl.t||'—',max:D,kind:rl.k||'data',len:0,ok:false,missing:true};
   if(!k)return o;var best=Infinity;
   activePoints().forEach(function(q){if(nk(q.id)===k||nk(q.name)===k){var L=Math.hypot(q.p[0]-a[0],q.p[1]-a[1],q.p[2]-a[2]);if(L<best){best=L;o.pt=q.p;o.to=null;o.name=q.name;}}});
   if(!o.pt)onList().forEach(function(i){if(i.iid!==inst.iid&&(nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k)){var b=P.work.items[i.iid].p,L=Math.hypot(b[0]-a[0],b[1]-a[1],b[2]-a[2]);if(L<best){best=L;o.to=i.iid;o.pt=b;o.name=i.label;}}});
@@ -471,7 +471,7 @@ function renderSaved(){
     li.appendChild(btn('small',t('load'),function(e){e.stopPropagation();P.work=clone(c.state);P.work.name=c.name;P.work.cfgId=c.id;selected=null;rebuildInst();buildRuntime();rebuildShell();syncAll();commit();refreshUI();setView(ui.view);}));
     li.appendChild(btn('small danger','✕',function(e){e.stopPropagation();confirmBox(t('qDelCfg',c.name),function(){P.configs=P.configs.filter(function(x){return x!==c;});touch();renderSaved();});}));ul.appendChild(li);});
 }
-function refreshUI(){renderTray();renderInspector();renderStatus();renderSaved();$('#btnUndo').disabled=histIdx<=0;$('#btnRedo').disabled=histIdx>=hist.length-1;
+function refreshUI(){renderTray();renderInspector();renderStatus();renderSaved();renderMap();$('#btnUndo').disabled=histIdx<=0;$('#btnRedo').disabled=histIdx>=hist.length-1;
   ['togLabels','togGrid','togMagnet','togLinks'].forEach(function(id,i){$('#'+id).setAttribute('aria-pressed',String([ui.labels,ui.grid,ui.magnet,ui.links][i]));});
   setSeg('segView',ui.view);setSeg('segShell',ui.shell);setSeg('segMode',ui.mode);}
 
@@ -533,6 +533,61 @@ window.addEventListener('keydown',function(e){var tg=e.target.tagName;if(tg==='I
   if(e.key==='Escape'){setPick(false);['tableModal','fileModal','confirmModal','imgModal','drawer','helpModal'].forEach(function(id){$('#'+id).hidden=true;});return;}
   if(!selected)return;if(e.key.toLowerCase()==='r')rotateSel(e.shiftKey?0:1);else if(e.key==='Delete'||e.key==='Backspace')removeItem(selected);});
 
+/* ================= connection map (second page) ================= */
+var mapRoots={},mapKind='all';
+/* edges at part level: one per link rule and resolved target part (a category target gives one edge per part in it) */
+function mapEdges(){var E=[],st=new Map();
+  (checks.links||[]).forEach(function(l){var s0=st.get(l.rl)||{n:0,bad:0,miss:0,len:0};s0.n++;if(l.missing)s0.miss++;else{if(!l.ok)s0.bad++;s0.len=Math.max(s0.len,l.len);}st.set(l.rl,s0);});
+  P.parts.forEach(function(p){(p.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(!d||d.base!=='link')return;var k=nk(rl.t),tg=[];if(!k)return;
+    var pt=(P.points||[]).filter(function(q){return nk(q.id)===k||nk(q.name)===k;})[0];
+    if(pt)tg=[{key:'pt:'+pt.id}];else P.parts.forEach(function(q){if(q!==p&&(nk(q.id)===k||nk(q.name)===k||nk(q.cat)===k))tg.push({key:q.id});});
+    if(!tg.length)tg=[{key:'?:'+rl.t}];
+    tg.forEach(function(x){E.push({a:p.id,b:x.key,kind:rl.k||'data',max:num(rl.d,d.ds),rl:rl,part:p,st:st.get(rl)||null});});});});
+  return E;}
+function nodeName(k){if(k.indexOf('pt:')===0){var q=(P.points||[]).filter(function(x){return 'pt:'+x.id===k;})[0];return '◎ '+(q?q.name:k.slice(3));}if(k.indexOf('?:')===0)return k.slice(2)+' ?';var p=P.parts.filter(function(x){return x.id===k;})[0];return p?p.name+(num(p.qty,1)>1?' ×'+num(p.qty,1):''):k;}
+function edgeState(e){if(!e.st||!e.st.n)return 'idle';if(e.st.miss)return 'miss';return e.st.bad?'bad':'ok';}
+/* tree per system: breadth-first from the chosen root; edges that close a loop are listed as extra links */
+function buildTree(E,root){var adj={};E.forEach(function(e){(adj[e.a]=adj[e.a]||[]).push({to:e.b,e:e,dir:1});(adj[e.b]=adj[e.b]||[]).push({to:e.a,e:e,dir:-1});});
+  var seen={},used=new Set(),forest=[];
+  function grow(r){seen[r]=1;var node={k:r,kids:[],extra:[]},q=[node];while(q.length){var n=q.shift();(adj[n.k]||[]).forEach(function(x){if(used.has(x.e))return;used.add(x.e);if(seen[x.to]){n.extra.push(x);return;}seen[x.to]=1;var c={k:x.to,kids:[],extra:[],via:x};n.kids.push(c);q.push(c);});}return node;}
+  if(root&&adj[root])forest.push(grow(root));
+  Object.keys(adj).sort(function(a,b){return adj[b].length-adj[a].length;}).forEach(function(k){if(!seen[k])forest.push(grow(k));});return forest;}
+function autoRoot(E){var deg={},inn={};E.forEach(function(e){deg[e.a]=(deg[e.a]||0)+1;deg[e.b]=(deg[e.b]||0)+1;inn[e.b]=(inn[e.b]||0)+1;});
+  var ks=Object.keys(deg);if(!ks.length)return null;var mx=Math.max.apply(null,ks.map(function(k){return deg[k];}));
+  if(mx<=2){var src=ks.filter(function(k){return !inn[k];});if(src.length)return src[0];}
+  return ks.filter(function(k){return deg[k]===mx;})[0];}
+function renderMap(){
+  var box=$('#mapBody');if(!box||$('#mapView').hidden)return;box.textContent='';var E=mapEdges();
+  setSeg('segMapKind',mapKind);
+  var kinds=KINDS.filter(function(k){return E.some(function(e){return e.kind===k;});});
+  if(!E.length)box.appendChild(el('p','fine',t('linkNone')));
+  kinds.forEach(function(k){if(mapKind!=='all'&&mapKind!==k)return;var Ek=E.filter(function(e){return e.kind===k;});
+    var sec=el('section','msys'),hd=el('div','head'),h=el('h3','',t('k_'+k)),sw=el('span','ksw');sw.style.background=KCOL[k];h.prepend(sw);hd.appendChild(h);
+    var nb=Ek.filter(function(e){var s=edgeState(e);return s==='bad'||s==='miss';}).length;hd.appendChild(el('span','mono',Ek.length+' '+t('mapLinks')+(nb?' · '+nb+' ✕':'')));
+    var nodes={};Ek.forEach(function(e){nodes[e.a]=1;nodes[e.b]=1;});var root=mapRoots[k]&&nodes[mapRoots[k]]?mapRoots[k]:autoRoot(Ek);
+    var lr=el('label','f rootsel');lr.appendChild(el('span','',t('mapRoot')));var rs=el('select');rs.id='mroot_'+k;Object.keys(nodes).forEach(function(n){var o=el('option','',nodeName(n));o.value=n;rs.appendChild(o);});rs.value=root;rs.onchange=function(){mapRoots[k]=rs.value;renderMap();};lr.appendChild(rs);hd.appendChild(lr);
+    sec.appendChild(hd);
+    buildTree(Ek,root).forEach(function(n){var ul=el('ul','tree');ul.appendChild(treeLi(n));sec.appendChild(ul);});
+    box.appendChild(sec);});
+  var linked={};E.forEach(function(e){linked[e.a]=1;linked[e.b]=1;});var lone=P.parts.filter(function(p){return !linked[p.id];});
+  if(lone.length&&mapKind==='all'){var s2=el('section','msys');s2.appendChild(el('h3','',t('mapLone')));var w=el('div');lone.forEach(function(p){w.appendChild(el('span','pill',p.name));});s2.appendChild(w);box.appendChild(s2);}
+  renderMapForm();
+}
+function treeLi(n){var li=el('li'),row=el('div','mnode'+(selected&&INST_BY[selected]&&INST_BY[selected].part.id===n.k?' sel':''));
+  var nm=el('button','mname',nodeName(n.k));nm.type='button';nm.onclick=function(){var p=P.parts.filter(function(x){return x.id===n.k;})[0];if(!p)return;var i=INST.filter(function(x){return x.part===p;})[0];if(i)select(i.iid);};row.appendChild(nm);
+  if(n.via){var e=n.via.e,s=edgeState(e),tag=el('span','medge '+s);tag.dir='ltr';tag.textContent=(s==='idle'?'—':s==='miss'?t('notPlaced'):fmt(e.st.len))+' / '+fmt(e.max)+' mm';row.appendChild(tag);
+    var rm=btn('small danger mdel','✕',function(){e.part.rules=(e.part.rules||[]).filter(function(r){return r!==e.rl;});rulesChanged(true);});rm.title=t('mapDel');rm.setAttribute('aria-label',t('mapDel'));row.appendChild(rm);}
+  li.appendChild(row);
+  n.extra.forEach(function(x){li.appendChild(el('div','mextra','↺ '+t('mapAlso')+nodeName(x.to)+' · '+fmt(x.e.max)+' mm'));});
+  if(n.kids.length){var ul=el('ul');n.kids.forEach(function(c){ul.appendChild(treeLi(c));});li.appendChild(ul);}return li;}
+function renderMapForm(){var a=$('#mfFrom'),b=$('#mfTo'),kk=$('#mfKind');
+  [a,b].forEach(function(s,ix){var keep=s.value;s.textContent='';P.parts.forEach(function(p){var o=el('option','',p.name);o.value=p.id;s.appendChild(o);});if(ix===1)(P.points||[]).forEach(function(q){var o=el('option','','◎ '+q.name);o.value=q.id;s.appendChild(o);});if(keep)s.value=keep;});
+  if(!kk.children.length||kk.dataset.l!==lang){kk.textContent='';kk.dataset.l=lang;KINDS.forEach(function(k){var o=el('option','',t('k_'+k));o.value=k;kk.appendChild(o);});}}
+function addMapLink(){var a=$('#mfFrom').value,b=$('#mfTo').value,p=P.parts.filter(function(x){return x.id===a;})[0];if(!p||!b||a===b){toast(t('mapPick'));return;}
+  p.rules=p.rules||[];p.rules.push({r:'link',t:b,d:num($('#mfMax').value,300),k:$('#mfKind').value});rulesChanged(true);toast(t('mapAdded'));}
+function showPage(pg){var map=pg==='map';$('#mapView').hidden=!map;$('#viewport').hidden=map;document.querySelectorAll('.only3d').forEach(function(e){e.hidden=map;});setSeg('segPage',pg);
+  try{if(map&&location.hash!=='#map')history.replaceState(null,'','#map');else if(!map&&location.hash==='#map')history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+  if(map)renderMap();else{resize();requestRender();}}
 /* ================= views ================= */
 function sceneBounds(){var b=new THREE.Box3();if(shell.n)b.copy(shell.box);onList().forEach(function(i){var r=RT[i.iid];b.expandByPoint(new THREE.Vector3(r.min[0],r.min[1],r.min[2]));b.expandByPoint(new THREE.Vector3(r.max[0],r.max[1],r.max[2]));});
   if(b.isEmpty())b.set(new THREE.Vector3(-250,0,-250),new THREE.Vector3(250,400,250));b.min.y=Math.min(b.min.y,0);return b;}
@@ -859,6 +914,7 @@ he:[
  ['נקודת ייחוס ואיזון','ul',['מרכז הכובד נמדד כמרחק אופקי מנקודת הייחוס: ציר גלגלים, מרכז רוטורים, מרכז בסיס וכדומה.','אפשר להזין X ו-Z ידנית, או לתת לרכיב את הכלל "מגדיר נקודת ייחוס" ואז הנקודה נלקחת ממיקומו.','הסטייה המותרת היא החלטה שלך. הכלי לא יודע מה נכון למוצר שלך.','המתג "מלא / ריק" מראה כמה מרכז הכובד זז כשהמסה המשתנה מתרוקנת.']],
  ['בנק הכללים','ul',['כלל הוא דרישת מיקום לרכיב. חלק נבדקים אוטומטית וחלק מסומנים "לבדיקה ידנית".','כללי "קרוב ל" ו"רחוק מ" צריכים יעד: רכיב, נקודה או קטגוריה. בלי יעד הכלל לא נבדק.','אפשר להוסיף כלל משלך ולבחור איך הוא ייבדק.','בטבלה כותבים כללים כקוד, למשל ‎low; far:battery:30‎. רשימת הקודים בגיליון השני של התבנית.','כללים יכולים לסתור זה את זה. הפרה בלוח הבדיקות היא מידע לשיקול דעת, לא בהכרח טעות.']],
  ['חיבורים','ul',['הכלל link מחבר רכיב לרכיב אחר, לקטגוריה או לנקודה על המודל. בטבלה: link:<יעד>:<אורך מרבי>:<סוג>, למשל link:gnss_hrtk_f9p:300:data.','סוג: data (כחול), power (כתום), water (טורקיז). בלי סוג, החיבור נחשב data.','שרשרת נבנית מכמה כללים: מחשב → GPS בשורה של המחשב, GPS → רכיב אחר בשורה של ה-GPS.','האורך הוא קו ישר בין מרכזי הרכיבים. כבל אמיתי עובר מסביב לרכיבים ויוצא ממחבר, אז תן מרווח באורך המרבי.','קו מקווקו אדום = ארוך מהמותר. בחירת רכיב מדגישה את החיבורים שלו ומציגה את האורך שלהם.','אם ליעד יש כמה יחידות (למשל 6 מנועים), החיבור הולך ליחידה הקרובה ביותר.']],
+ ['מפת חיבורים','ul',['הכפתור "מפת חיבורים" למעלה פותח עמוד שמראה מה מתחבר למה ובאיזה סדר. אפשר לשמור קישור ישיר אליו (‎#map בסוף הכתובת).','כל סוג חיבור הוא מערכת נפרדת עם עץ משלה. העץ מתחיל ברכיב עם הכי הרבה חיבורים, ואפשר לבחור רכיב התחלה אחר.','לחיצה על רכיב בוחרת אותו. ✕ מוחק חיבור, והטופס בתחתית מוסיף חיבור חדש.']],
  ['הזזה ותצוגה','ul',['גרירת רכיב מזיזה אותו במישור המבט. Shift+גרירה מזיזה למעלה ולמטה.','R מסובב 90° סביב הציר האנכי, Shift+R סביב X. Del מחזיר לרשימה. Ctrl+Z מבטל.','"מגנט" מצמיד לדפנות ולרכיבים שכנים. Alt בזמן גרירה מבטל אותו זמנית.','"נעל" מקבע רכיב, והסידור האוטומטי לא יזיז אותו.','אדום = התנגשות, כתום = מחוץ למעטפת, כחול = הפרת כלל.']],
  ['סידור אוטומטי','ul',['מציב כל רכיב שאינו נעול לפי הכללים שלו, ושומר על מרכז הכובד קרוב לנקודת הייחוס.','זו הצעת פתיחה ולא פתרון מיטבי. הוא מחפש ברשת של מיקומים ולא בודק כל אפשרות.','הוא מבטל את הסידור הנוכחי של רכיבים לא נעולים. Ctrl+Z מחזיר.','רכיב שמגדיר נקודת ייחוס לא מוזז. הצב אותו ידנית קודם.']],
  ['קירובים שכדאי להכיר','ul',['התנגשות נבדקת לפי התיבה החוסמת של הרכיב (לגליל יש בדיקה עגולה), לא לפי הצורה המדויקת.','המסה של כל רכיב מחושבת כאילו היא במרכז התיבה שלו.','כבלים, צנרת, ברגים ומשקל המעטפת עצמה לא נכללים, אלא אם תוסיף אותם כרכיבים.','הספים של "נמוך" ו"גבוה" הם שליש תחתון ושליש עליון. זו בחירה של הכלי ולא תקן.','הכלי לא בודק חום, חוזק, אטימות או חיווט. הוא עוזר לבחון סידור, ולא מחליף בדיקה הנדסית.']],
@@ -873,6 +929,7 @@ en:[
  ['Reference point and balance','ul',['The centre of gravity is measured as a horizontal distance from the reference point: wheel axle, rotor centre, base centre and so on.','Type X and Z by hand, or give a part the rule "Defines the reference point" and the point follows that part.','The allowed offset is your decision. The tool does not know what is right for your product.','The "Full / Empty" switch shows how far the centre of gravity moves as the variable mass empties.']],
  ['Rule bank','ul',['A rule is a placement demand on a part. Some are checked automatically, others are marked "check by hand".','"Close to" and "Away from" rules need a target: a part, a point or a category. Without one the rule is not checked.','You can add your own rule and choose how it is checked.','In the table, rules are written as codes, e.g. low; far:battery:30. The codes are listed on the second sheet of the template.','Rules can contradict each other. A violation in the checks panel is information for your judgement, not always a mistake.']],
  ['Connections','ul',['The link rule connects a part to another part, a category or a point on the model. In the table: link:<target>:<max length>:<type>, e.g. link:gnss_hrtk_f9p:300:data.','Type: data (blue), power (orange), water (teal). Without a type the link counts as data.','A chain is built from several rules: computer → GPS in the computer row, GPS → another part in the GPS row.','Length is the straight line between part centres. A real cable leaves from a connector and runs around parts, so leave margin in the maximum.','Dashed red line = longer than allowed. Selecting a part highlights its connections and shows their lengths.','If the target has several units (for example 6 motors), the link goes to the nearest one.']],
+ ['Connection map','ul',['The "Connection map" button at the top opens a page that shows what connects to what and in which order. You can bookmark it (#map at the end of the address).','Each connection type is its own system with its own tree. The tree starts at the part with the most links; you can pick another start.','Clicking a part selects it. ✕ deletes a connection, and the form at the bottom adds one.']],
  ['Moving and viewing','ul',['Dragging moves a part in the view plane. Shift-drag moves it up and down.','R turns 90° about the vertical axis, Shift+R about X. Del sends it back to the list. Ctrl+Z undoes.','"Magnet" snaps to walls and neighbouring parts. Hold Alt while dragging to switch it off.','"Lock" pins a part, and auto-arrange will not move it.','Red = collision, orange = outside the shell, blue = rule violation.']],
  ['Auto-arrange','ul',['Places every unlocked part by its rules and keeps the centre of gravity near the reference point.','It is a starting proposal, not an optimum. It searches a grid of positions and does not try everything.','It discards the current positions of unlocked parts. Ctrl+Z brings them back.','A part that defines the reference point is not moved. Place it by hand first.']],
  ['Approximations to know','ul',['Collisions use each part\'s bounding box (cylinders get a round check), not the exact shape.','Each part\'s mass is treated as sitting at the centre of its box.','Cables, piping, fasteners and the weight of the shell itself are not included unless you add them as parts.','The "low" and "high" thresholds are the bottom and top third. That is the tool\'s choice, not a standard.','The tool does not check heat, strength, sealing or wiring. It helps you study a layout and does not replace engineering review.']],
@@ -918,7 +975,8 @@ function bind(){
   $('#segShell').onclick=function(e){if(e.target.dataset.v){ui.shell=e.target.dataset.v;applyShellMode();refreshUI();}};
   $('#segMode').onclick=function(e){if(e.target.dataset.v){ui.mode=e.target.dataset.v;syncAll();refreshUI();}};
   $('#segFill').onclick=function(e){if(e.target.dataset.v){fill=e.target.dataset.v;runChecks();refreshUI();requestRender();}};
-  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};$('#togLinks').onclick=function(){ui.links=!ui.links;runChecks();refreshUI();requestRender();};
+  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};document.querySelectorAll('#segPage button').forEach(function(b){b.onclick=function(){showPage(b.dataset.v);};});document.querySelectorAll('#segMapKind button').forEach(function(b){b.onclick=function(){mapKind=b.dataset.v;renderMap();};});$('#mfAdd').onclick=addMapLink;window.addEventListener('hashchange',function(){showPage(location.hash==='#map'?'map':'3d');});
+  $('#togLinks').onclick=function(){ui.links=!ui.links;runChecks();refreshUI();requestRender();};
   $('#btnUndo').onclick=undo;$('#btnRedo').onclick=redo;$('#btnAuto').onclick=autoArrange;$('#btnPng').onclick=exportPng;
   $('#btnSave').onclick=function(){var n=$('#cfgName').value.trim()||P.work.name;P.work.name=n;var ex=P.configs.filter(function(c){return c.name===n;})[0],st=clone(P.work);
     if(ex){ex.state=st;ex.summary=summary();ex.updatedAt=Date.now();}else P.configs.push({id:uid('c'),name:n,state:st,summary:summary(),updatedAt:Date.now()});touch();refreshUI();toast(t('tSaved'));};
@@ -933,7 +991,7 @@ function start(){
     applyLang();if(!projects.length)projects.push(exampleProject());
     bind();readTheme();resize();openProject(cur||projects[0].id);
     if(P.example&&!P.configs.length&&onList().length<=2){autoArrangeQuiet();}
-    storageNote();loop();initRemote();
+    showPage(location.hash==='#map'?'map':'3d');storageNote();loop();initRemote();
   });
 }
 function autoArrangeQuiet(){var tt=toast;toast=function(){};try{autoArrange();}finally{toast=tt;}hist=[JSON.stringify(P.work)];histIdx=0;refreshUI();}
