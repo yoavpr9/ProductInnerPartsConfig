@@ -218,6 +218,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
         <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
         <button type="button" class="btn small" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
+        <button type="button" class="btn small" id="togEnforce" aria-pressed="true" data-t="enforce"></button>
       </div>
     </div>
     <div class="viewport" id="viewport">
@@ -239,8 +240,9 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         </div>
         <div class="mrow">
           <label class="f"><span data-t="mode"></span><select id="mfMode"></select></label>
+          <label class="f" id="mfWayL" hidden><span data-t="mapWay"></span><select id="mfWay"></select></label>
           <label class="f"><span data-t="kind"></span><select id="mfKind"></select></label>
-          <label class="f"><span data-t="mapMax"></span><input type="number" id="mfMax" value="300" min="0" step="1"></label>
+          <label class="f"><span data-t="mapMax"></span><input type="number" id="mfMax" value="" placeholder="300" min="0" step="1"></label>
           <button type="button" class="btn solid" id="mfAdd" data-t="mapAdd"></button>
         </div>
         <p class="fine" data-t="mapMaxHint"></p>
