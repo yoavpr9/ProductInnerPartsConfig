@@ -70,6 +70,30 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .tags{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .tag{position:absolute;transform:translate(-50%,-130%);background:var(--panel);border:1px solid var(--ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
 .ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
+.mapview{flex:1;min-height:340px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
+.msys{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.msys h3{margin:0;font-family:var(--f-head);font-size:16px;display:flex;align-items:center;gap:7px}
+.msys .head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.ksw{width:12px;height:12px;border-radius:3px;display:inline-block}
+label.rootsel{margin-inline-start:auto;flex-direction:row;align-items:center;gap:6px}
+.rootsel select{width:auto;max-width:240px}
+ul.tree,ul.tree ul{list-style:none;margin:0;padding:0}
+ul.tree ul{margin-inline-start:22px;padding-inline-start:20px;border-inline-start:2px solid var(--mute)}
+ul.tree li{position:relative;padding:2px 0}
+ul.tree ul>li::before{content:"";position:absolute;inset-inline-start:-20px;top:15px;width:18px;border-top:2px solid var(--mute)}
+.mnode{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mname{all:unset;cursor:pointer;font-size:13.5px;font-weight:600;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--chip)}
+.mname:hover,.mname:focus-visible{border-color:var(--accent)}
+.mnode.sel .mname{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.medge{font-family:var(--f-mono);font-size:11px;color:var(--mute)}
+.medge.ok{color:var(--ok)} .medge.bad,.medge.miss{color:var(--crit)}
+.mdel{padding:0 6px;opacity:.55} .mnode:hover .mdel,.mdel:focus-visible{opacity:1}
+.mextra{font-size:11.5px;color:var(--mute);margin-inline-start:22px}
+.mrow{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.mrow select{max-width:220px}
+.mend{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;padding:6px;border:1px dashed var(--line);border-radius:8px}
+.ltag{position:absolute;transform:translate(-50%,-50%);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-family:var(--f-mono);font-size:10.5px;white-space:nowrap}
+.ltag.bad{border-color:var(--crit);color:var(--crit)}
 .viewport.picking canvas{cursor:crosshair}
 .hint{position:absolute;bottom:8px;inset-inline-start:10px;font-size:11.5px;color:var(--mute);pointer-events:none;max-width:70%}
 .axes{position:absolute;top:8px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
@@ -159,6 +183,8 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
           <label class="f"><span data-t="upAxis"></span><select id="shUp"><option value="y">Y</option><option value="z">Z</option></select></label>
           <label class="f"><span data-t="turn"></span><select id="shTurn"><option value="0">0°</option><option value="1">90°</option><option value="2">180°</option><option value="3">270°</option></select></label>
           <label class="f"><span data-t="under"></span><input type="number" id="shUnder" step="5"></label>
+          <label class="f wide"><span data-t="shRole"></span><select id="shRole"><option value="shell" data-t="roleShell"></option><option value="frame" data-t="roleFrame"></option></select></label>
+          <label class="f"><span data-t="shMass"></span><input type="number" id="shMass" step="0.1" min="0"></label>
           <label class="f wide"><span data-t="kind"></span><select id="shKind"><option value="hollow" data-t="kindHollow"></option><option value="solid" data-t="kindSolid"></option></select></label>
         </div>
         <p class="fine" id="shSize" style="margin-top:6px"></p>
@@ -177,7 +203,8 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 
   <main class="center">
     <div class="bar">
-      <span class="seg" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
+      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button></span>
+      <span class="seg only3d" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
       <div class="row">
         <button type="button" class="btn" id="btnUndo" data-t="undo"></button>
         <button type="button" class="btn" id="btnRedo" data-t="redo"></button>
@@ -185,13 +212,15 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn" id="btnPng" data-t="exportPng"></button>
       </div>
     </div>
-    <div class="bar">
+    <div class="bar only3d">
       <div class="row"><span class="lab" data-t="shell"></span><span class="seg" id="segShell"><button type="button" data-v="glass" data-t="mGlass"></button><button type="button" data-v="cut" data-t="mCut"></button><button type="button" data-v="solid" data-t="mSolid"></button><button type="button" data-v="off" data-t="mOff"></button></span></div>
       <div class="row"><span class="lab" data-t="parts"></span><span class="seg" id="segMode"><button type="button" data-v="detail" data-t="mDetail"></button><button type="button" data-v="block" data-t="mBlock"></button></span></div>
       <div class="row">
         <button type="button" class="btn small" id="togLabels" aria-pressed="false" data-t="labels"></button>
         <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
         <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
+        <button type="button" class="btn small" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
+        <button type="button" class="btn small" id="togEnforce" aria-pressed="true" data-t="enforce"></button>
       </div>
     </div>
     <div class="viewport" id="viewport">
@@ -200,6 +229,26 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="axes" dir="ltr">X · Y↑ · Z · mm</div>
       <div class="chipname" id="chipName"></div>
       <div class="hint" data-t="hint"></div>
+    </div>
+    <div class="mapview" id="mapView" hidden>
+      <div class="bar"><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="mech" data-t="k_mech"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
+      <p class="fine" data-t="mapIntro"></p>
+      <div id="mapBody"></div>
+      <section class="msys mform">
+        <h3 data-t="mapAdd"></h3>
+        <div class="mrow">
+          <div class="mend"><label class="f"><span data-t="mapFrom"></span><select id="mfFrom"></select></label><label class="f"><span data-t="mapPort"></span><select id="mfPa"></select></label><button type="button" class="btn small" id="mfPickA" data-t="mapPickBtn"></button></div>
+          <div class="mend"><label class="f"><span data-t="mapTo"></span><select id="mfTo"></select></label><label class="f"><span data-t="mapPort"></span><select id="mfPb"></select></label><button type="button" class="btn small" id="mfPickB" data-t="mapPickBtn"></button></div>
+        </div>
+        <div class="mrow">
+          <label class="f"><span data-t="mode"></span><select id="mfMode"></select></label>
+          <label class="f" id="mfWayL" hidden><span data-t="mapWay"></span><select id="mfWay"></select></label>
+          <label class="f"><span data-t="kind"></span><select id="mfKind"></select></label>
+          <label class="f"><span data-t="mapMax"></span><input type="number" id="mfMax" value="" placeholder="300" min="0" step="1"></label>
+          <button type="button" class="btn solid" id="mfAdd" data-t="mapAdd"></button>
+        </div>
+        <p class="fine" data-t="mapMaxHint"></p>
+      </section>
     </div>
   </main>
 
@@ -221,6 +270,10 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <section class="card">
       <span class="lab" data-t="issues"></span>
       <ul class="plain issues" id="issues"></ul>
+    </section>
+    <section class="card">
+      <div class="head"><span class="lab" data-t="links"></span><span class="mono" id="linkCount"></span></div>
+      <ul class="plain issues" id="links"></ul>
     </section>
     <section class="card" id="inspector"></section>
     <section class="card">
