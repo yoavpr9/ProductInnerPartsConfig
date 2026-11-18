@@ -64,6 +64,28 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 [dir=rtl] .stat b,[dir=rtl] .big{text-align:right}
 .sw{width:11px;height:11px;border-radius:3px;flex:none;border:1px solid var(--ink)}
 .cat{font-size:11px;color:var(--mute);margin-top:6px;letter-spacing:.05em}
+/* foldable cards (SolidWorks-style property manager groups) */
+.card>.fh{cursor:pointer;user-select:none}
+.fchev{display:inline-block;width:12px;font-size:10px;color:var(--mute);transition:transform .15s}
+.card.folded .fchev{transform:rotate(-90deg)}[dir=rtl] .card.folded .fchev{transform:rotate(90deg)}
+.card.folded>:not(.fh){display:none!important}.card.folded{flex:0 0 auto!important;min-height:0!important}
+.led{width:9px;height:9px;border-radius:50%;flex:none;background:var(--line);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.led.ok{background:var(--ok)}.led.warn{background:var(--warn)}.led.bad{background:var(--crit)}
+.fh .fl{display:inline-flex;align-items:center;gap:7px}.ledn{font-family:var(--f-mono);font-size:11px;color:var(--mute);direction:ltr;unicode-bidi:isolate}
+.cardin{display:flex;flex-direction:column;gap:8px}
+.cath{display:flex;align-items:center;gap:7px;width:100%;border:0;background:transparent;padding:6px 4px 4px;cursor:pointer;font-size:11.5px;color:var(--mute);letter-spacing:.04em;text-align:start;border-top:1px solid var(--line);margin-top:4px}
+.cath b{flex:1;font-weight:600;color:var(--ink)}.cath.folded .fchev{transform:rotate(-90deg)}[dir=rtl] .cath.folded .fchev{transform:rotate(90deg)}
+/* heads-up view toolbar */
+.hud{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 6px;max-width:calc(100% - 16px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.hud .seg button{padding:3px 8px;font-size:12px}.hsep{width:1px;height:20px;background:var(--line)}
+.hwrap{position:relative}.hmenu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:2px;min-width:210px;box-shadow:0 6px 18px rgba(0,0,0,.15);z-index:6}
+.hmenu hr{border:0;border-top:1px solid var(--line);margin:4px 0;width:100%}
+.hchk{display:flex;align-items:center;gap:8px;border:0;background:transparent;padding:5px 6px;border-radius:6px;cursor:pointer;font-size:13px;text-align:start;color:var(--ink)}
+.hchk:hover{background:var(--chip)}.hchk::before{content:'';width:14px;height:14px;border:1.5px solid var(--ink);border-radius:3px;flex:none}
+.hchk[aria-pressed="true"]::before{background:var(--ink);box-shadow:inset 0 0 0 2px var(--panel)}
+.ico{font-size:15px;line-height:1}#segHist button{padding:5px 12px;font-size:13px}#segHist button:disabled{opacity:.4;cursor:default}
+.rotg{display:grid;grid-template-columns:auto 1fr 72px;gap:4px 8px;align-items:center}.rotg input[type=range]{width:100%;padding:0}
+.viewport.noann .axes,.viewport.noann .hint{display:none}
 .center{display:flex;flex-direction:column;gap:8px;min-width:0}
 .bar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .viewport{position:relative;flex:1;min-height:340px;background:var(--viewport);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -119,7 +141,7 @@ ul.tree ul>li::before{content:"";position:absolute;inset-inline-start:-20px;top:
 .ltag.bad{border-color:var(--crit);color:var(--crit)}
 .viewport.picking canvas{cursor:crosshair}
 .hint{position:absolute;bottom:8px;inset-inline-start:10px;font-size:11.5px;color:var(--mute);pointer-events:none;max-width:70%}
-.axes{position:absolute;top:8px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
+.axes{position:absolute;bottom:28px;inset-inline-start:10px;font-family:var(--f-mono);font-size:11px;color:var(--mute);pointer-events:none}
 .chipname{position:absolute;top:8px;inset-inline-end:10px;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
 .big{font-family:var(--f-head);font-size:34px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
 .big small{font-size:13px;color:var(--mute);font-weight:500;margin-inline-start:4px}
@@ -168,7 +190,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <h1>Config Studio</h1>
       <span class="mono" id="verBrand"></span>
     </header>
-    <section class="card">
+    <section class="card" data-fold="proj">
       <div class="head"><span class="lab" data-t="project"></span><span class="example" id="exBadge" hidden data-t="example"></span></div>
       <select id="selProject" aria-label="project"></select>
       <label class="f"><span data-t="projName"></span><input type="text" id="projName" maxlength="60"></label>
@@ -191,7 +213,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       </details>
       <p class="fine" id="storage"></p>
     </section>
-    <section class="card">
+    <section class="card" data-fold="files">
       <div class="head"><span class="lab" data-t="files"></span></div>
       <div class="drop" id="drop" tabindex="0" role="button"><b data-t="dropTitle"></b><span data-t="dropSub"></span></div>
       <input type="file" id="cadFile" accept=".stl,.obj,.step,.stp" multiple hidden>
@@ -215,9 +237,10 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <div class="row"><button type="button" class="btn small danger" id="btnShDel" data-t="removeShell"></button></div>
       </details>
     </section>
-    <section class="card" style="flex:1;min-height:180px">
+    <section class="card" data-fold="parts" style="flex:1;min-height:180px">
       <div class="head"><span class="lab" data-t="parts"></span><span class="mono" id="trayCount"></span></div>
       <div class="row">
+        <button type="button" class="btn small" id="btnCatAll" data-t="catAll"></button>
         <button type="button" class="btn small solid" id="btnTable" data-t="openTable"></button>
         <button type="button" class="btn small" id="btnBank" data-t="ruleBank"></button>
       </div>
@@ -228,27 +251,38 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
   <main class="center">
     <div class="bar">
       <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button><button type="button" data-v="graph" data-t="pageGraph"></button></span>
-      <span class="seg only3d" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
       <div class="row">
-        <button type="button" class="btn" id="btnUndo" data-t="undo"></button>
-        <button type="button" class="btn" id="btnRedo" data-t="redo"></button>
+        <span class="seg" id="segHist"><button type="button" id="btnUndo" title="Ctrl+Z"><span aria-hidden="true" class="ico">↶</span> <span data-t="undo"></span></button><button type="button" id="btnRedo" title="Ctrl+Shift+Z"><span aria-hidden="true" class="ico">↷</span> <span data-t="redo"></span></button></span>
         <button type="button" class="btn solid" id="btnAuto" data-t="auto"></button>
         <button type="button" class="btn" id="btnPng" data-t="exportPng"></button>
       </div>
     </div>
     <div class="bar only3d">
-      <div class="row"><span class="lab" data-t="shell"></span><span class="seg" id="segShell"><button type="button" data-v="glass" data-t="mGlass"></button><button type="button" data-v="cut" data-t="mCut"></button><button type="button" data-v="solid" data-t="mSolid"></button><button type="button" data-v="off" data-t="mOff"></button></span></div>
-      <div class="row"><span class="lab" data-t="parts"></span><span class="seg" id="segMode"><button type="button" data-v="detail" data-t="mDetail"></button><button type="button" data-v="block" data-t="mBlock"></button></span></div>
-      <div class="row">
-        <button type="button" class="btn small" id="togLabels" aria-pressed="false" data-t="labels"></button>
+      <div class="row"><span class="lab" data-t="behave"></span>
         <button type="button" class="btn small" id="togGrid" aria-pressed="true" data-t="grid"></button>
         <button type="button" class="btn small" id="togMagnet" aria-pressed="true" data-t="magnet"></button>
-        <button type="button" class="btn small" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
         <button type="button" class="btn small" id="togEnforce" aria-pressed="true" data-t="enforce"></button>
         <button type="button" class="btn small" id="togOnly" aria-pressed="true" data-t="onlyLinked"></button>
       </div>
     </div>
     <div class="viewport" id="viewport">
+      <div class="hud" id="hud">
+        <span class="seg" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
+        <span class="hsep"></span>
+        <span class="seg" id="segShell" title=""><button type="button" data-v="glass" data-t="mGlass"></button><button type="button" data-v="cut" data-t="mCut"></button><button type="button" data-v="solid" data-t="mSolid"></button><button type="button" data-v="off" data-t="mOff"></button></span>
+        <span class="seg" id="segMode"><button type="button" data-v="detail" data-t="mDetail"></button><button type="button" data-v="block" data-t="mBlock"></button></span>
+        <span class="hsep"></span>
+        <span class="hwrap"><button type="button" class="btn small" id="btnEye" aria-expanded="false"><span aria-hidden="true">👁</span> <span data-t="hideShow"></span> ▾</button>
+          <div class="hmenu" id="hudMenu" hidden>
+            <button type="button" class="hchk" id="togPts" aria-pressed="true" data-t="vPts"></button>
+            <button type="button" class="hchk" id="togLabels" aria-pressed="false" data-t="labels"></button>
+            <button type="button" class="hchk" id="togLinks" aria-pressed="true" data-t="linksTog"></button>
+            <button type="button" class="hchk" id="togLtags" aria-pressed="true" data-t="vLtags"></button>
+            <button type="button" class="hchk" id="togMarks" aria-pressed="true" data-t="vMarks"></button>
+            <button type="button" class="hchk" id="togFloor" aria-pressed="true" data-t="vFloor"></button>
+            <hr><button type="button" class="btn small" id="btnHideAll" data-t="hideAll"></button>
+          </div></span>
+      </div>
       <canvas id="gl"></canvas>
       <div class="tags" id="tags"></div>
       <div class="axes" dir="ltr">X · Y↑ · Z · mm</div>
@@ -284,8 +318,8 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
   </main>
 
   <aside class="col">
-    <section class="card">
-      <span class="lab" data-t="cogTitle"></span>
+    <section class="card" data-fold="cog">
+      <div class="head"><span class="lab" data-t="cogTitle"></span></div>
       <div class="big"><span id="cogNum" dir="ltr">—</span><small>mm</small></div>
       <p class="fine" id="cogSub"></p>
       <p id="balTxt" style="margin:0;font-size:13px"></p>
@@ -298,17 +332,17 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="stat" id="stCol"><span class="lab" data-t="collisions"></span><b id="colNum">0</b></div>
       <div class="stat" id="stOut"><span class="lab" data-t="outside"></span><b id="outNum">0</b></div>
     </section>
-    <section class="card">
-      <span class="lab" data-t="issues"></span>
+    <section class="card" data-fold="issues">
+      <div class="head"><span class="lab" data-t="issues"></span></div>
       <ul class="plain issues" id="issues"></ul>
     </section>
-    <section class="card">
+    <section class="card" data-fold="links">
       <div class="head"><span class="lab" data-t="links"></span><span class="mono" id="linkCount"></span></div>
       <div class="row"><button type="button" class="btn small" id="btnSnap" data-t="snap"></button></div>
       <ul class="plain issues" id="links"></ul>
     </section>
-    <section class="card" id="inspector"></section>
-    <section class="card">
+    <section class="card" data-fold="insp"><div class="head"><span class="lab" data-t="selPart"></span></div><div class="cardin" id="inspector"></div></section>
+    <section class="card" data-fold="saved">
       <div class="head"><span class="lab" data-t="saved"></span><span class="mono" id="savedCount"></span></div>
       <div class="row" style="flex-wrap:nowrap"><input type="text" id="cfgName" maxlength="60"><button type="button" class="btn solid" id="btnSave" data-t="save"></button></div>
       <div class="row"><button type="button" class="btn small" id="btnEmpty" data-t="emptyLayout"></button></div>
