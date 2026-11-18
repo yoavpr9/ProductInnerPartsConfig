@@ -21,7 +21,7 @@ kind:['סוג המודל','Model type'],kindHollow:['חלול (דפנות עם �
 parts:['רכיבים','Parts'],openTable:['טבלת רכיבים','Parts table'],ruleBank:['בנק כללים','Rule bank'],
 vFront:['חזית','Front'],vSide:['צד','Side'],vTop:['מבט על','Top'],undo:['בטל','Undo'],redo:['בצע שוב','Redo'],auto:['סידור אוטומטי','Auto-arrange'],exportPng:['ייצוא PNG','Export PNG'],
 shell:['מעטפת','Shell'],mGlass:['זכוכית','Glass'],mCut:['חתך','Cutaway'],mSolid:['אטום','Solid'],mOff:['כבוי','Off'],mDetail:['מודל','Model'],mBlock:['בלוקים','Blocks'],
-labels:['תוויות','Labels'],grid:['רשת 5 מ"מ','Grid 5 mm'],magnet:['מגנט','Magnet'],
+labels:['תוויות','Labels'],grid:['הצמדה 5 מ"מ','Snap 5 mm'],magnet:['מגנט','Magnet'],
 hint:['גרור רכיב כדי להזיז · Shift+גרירה למעלה/למטה · R סיבוב · Del חזרה לרשימה · גרירת רקע מסובבת את המבט','Drag a part to move · Shift-drag up/down · R rotate · Del back to list · drag empty space to orbit'],
 cogTitle:['מרכז כובד מנקודת הייחוס','Centre of gravity from reference'],fill:['מסה משתנה','Variable mass'],full:['מלא','Full'],empty:['ריק','Empty'],
 mass:['מסה שהונחה','Mass placed'],placed:['רכיבים שהונחו','Parts placed'],collisions:['התנגשויות','Collisions'],outside:['מחוץ למעטפת','Outside shell'],issues:['בדיקות','Checks'],
@@ -54,9 +54,9 @@ qDelProj:['למחוק את הפרויקט "{a}" וכל מה שבתוכו?','Dele
 load:['טען','Load'],del:['מחק','Delete'],cfg:['קונפיגורציה','Configuration'],exName:['פרויקט לדוגמה','Example project'],
 whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכובד הכי קרוב לנקודת הייחוס.','Placed in the free spot that keeps the centre of gravity closest to the reference point.'],
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
-custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],k_mech:['מכני','mechanical'],mode:['אופן','How'],m_cable:['כבל או צינור גמיש','flexible cable or hose'],m_rigid:['צינור קשיח, קו ישר','rigid, straight'],m_via:['דרך נקודה','through a point'],m_beside:['לצד (נוגע בדופן)','beside (touches its side)'],m_axis:['על אותו ציר','on the same axis'],m_inside:['בתוך (בתוך הקופסה)','inside (in the box)'],w_sticksOut:['בולט מחוץ לרכיב המכיל','sticks out of the container'],shRole:['תפקיד המודל','Model role'],roleShell:['מעטפת חיצונית (הרכיבים בפנים)','Outer shell (parts inside)'],roleFrame:['שלד מרכזי (הרכיבים מולבשים עליו)','Central frame (parts mount on it)'],shMass:['משקל המודל (ק"ג)','Model mass (kg)'],shPart:['שורת השלד בטבלה','Frame row in the table'],noneOpt:['אף אחת','None'],frameModel:['מוצג כמודל השלד','shown as the frame model'],tFrameRow:['השורה הזאת היא השלד ומוצגת כמודל. לחיצה כפולה לעריכה.','This row is the frame and is shown as the model. Double-click to edit.'],massFromRow:['משקל מהשורה בטבלה: {a}','Mass from the table row: {a}'],dblEdit:['לחיצה כפולה: פרטי הרכיב והחיבורים','Double-click: part details and connections'],editPart:['פרטי הרכיב והחיבורים','Part details and connections'],pmLinks:['החיבורים של הרכיב','This part\'s connections'],pmNoLinks:['אין חיבורים לרכיב הזה.','No connections for this part.'],pmRulesHint:['כללים בקוד, מופרדים ב־; (למשל link:box_1554s:2:mech:inside). שינוי כאן מעדכן את הטבלה.','Rules as codes, separated by ; (e.g. link:box_1554s:2:mech:inside). Changes here update the table.'],tBadRules:['לא זוהו: {a}. הכללים לא נשמרו.','Not recognised: {a}. Rules not saved.'],snap:['הצמד חיבורים','Snap connections'],snapOne:['הצמד','Snap'],tSnap:['הוצמדו {a} חיבורים. עדיין חורגים: {b}.','Snapped {a} connections. Still failing: {b}.'],tSnapNone:['אין חיבור חורג להצמדה','No failing connection to snap'],m_at:['בדיוק על הנקודה','exactly on the point'],mWhere:['איפה הוא יושב','Where it sits'],mCableT:['סוג הכבל','Cable type'],limGap:['מרווח מותר (מ"מ)','Allowed gap (mm)'],limLen:['אורך מרבי (מ"מ)','Max length (mm)'],onlyLinked:['רק מחוברים','Connected only'],tOnlyOn:['מוצגים רק רכיבים שיש להם חיבור. רכיב שמחברים מופיע ונצמד לבד.','Only parts with a connection are shown. A part you connect appears and snaps by itself.'],tOnlyOff:['כל הרכיבים זמינים להצבה','All parts available to place'],tShown:['נוספו לתלת-ממד: {a}. הוסתרו: {b}.','Added to 3D: {a}. Hidden: {b}.'],pageGraph:['גרף חיבורים','Connection graph'],gIntro:['גרור מנקודה צבעונית בצד ימין של כרטיס (סוג החיבור) אל כרטיס אחר, אל נקודת חיבור שלו, או אל נקודה על השלד. לחיצה על חוט: עריכה ומחיקה. לחיצה כפולה על כרטיס: פרטי הרכיב. גלגלת: זום, גרירה ברקע: הזזה.','Drag from a coloured dot on the right of a card (the connection type) to another card, one of its ports, or a point on the frame. Click a wire to edit or delete it. Double-click a card for the part details. Wheel zooms, dragging the background pans.'],gLayoutBtn:['סדר את הגרף','Tidy the graph'],gFitBtn:['התאם למסך','Fit to screen'],gExpAllBtn:['פרוס / קבץ עותקים','Expand / group copies'],gWide:['הרחב / הצר','Widen / narrow'],gExpand:['פרוס לכרטיס לכל עותק','One card per copy'],gCollapse:['קבץ לכרטיס אחד','Group into one card'],gCentre:['מרכז השלד','Frame centre'],gAddPort:['+ נקודת חיבור','+ Port'],gAddPt:['+ נקודה על המודל','+ Point on the model'],gDragHint:['גרור לרכיב אחר כדי לחבר','Drag to another part to connect'],gNeedPt:['בלי שורת שלד בטבלה צריך לגרור אל נקודה מסוימת על המודל','Without a frame row, drop on a specific point of the model'],gUpdated:['החיבור הקיים עודכן','Existing connection updated'],gFromPort:['מנקודה','From point'],gToPort:['אל נקודה','To point'],units:['איזו יחידה לאיזו','Which unit to which'],unitAuto:['אוטומטי','Auto'],unitHint:['כשמספר העותקים שווה, עותק 1 מתחבר ליעד 1, עותק 2 ליעד 2 וכן הלאה. אחרת לקרוב ביותר. אפשר לשנות כאן לכל עותק.','When the counts match, copy 1 connects to target 1, copy 2 to target 2 and so on; otherwise to the nearest. You can change it here for each copy.'],nearest:['הקרוב ביותר','nearest'],pattern:['תבנית לעותקים','Pattern for the copies'],patCirc:['סביב ציר','Around an axis'],patLin:['בשורה','In a row'],patAround:['סביב','Around'],patRef:['נקודת הייחוס','Reference point'],patModel:['מרכז המודל','Model centre'],patAxis:['ציר','Axis'],patR:['רדיוס (מ"מ)','Radius (mm)'],patA0:['זווית התחלה (°)','Start angle (°)'],patStep:['מרווח (מ"מ)','Spacing (mm)'],patRot:['סובב כל עותק עם התבנית','Turn each copy with the pattern'],patGo:['סדר בתבנית','Arrange in pattern'],patHint:['הגובה לאורך הציר נלקח מעותק 1. רכיבים שמחוברים לעותקים (למשל מדחף צמוד למנוע) זזים איתם.','The position along the axis comes from copy 1. Parts fixed to the copies (e.g. a prop touching a motor) move with them.'],tPat:['{a} עותקים סודרו בתבנית','{a} copies arranged'],delPart:['מחק רכיב','Delete part'],qDelPart:['למחוק את "{a}" מהרשימה? החיבורים אליו יימחקו גם.','Delete "{a}" from the list? Connections to it are deleted too.'],w_blocked:['רכיב חוסם את הקו הישר','a part blocks the straight line'],w_notLevel:['לא באותו גובה','not at the same height'],w_noWay:['נקודת המעבר לא נמצאה','waypoint not found'],mapWay:['דרך נקודה','Through point'],tWay:['בחר נקודת מעבר','Pick a waypoint'],tHeld:['חיבור מגביל את התנועה. Alt בזמן גרירה עוקף, או כבה "אכוף חיבורים".','A connection limits this move. Hold Alt while dragging to override, or turn off "Enforce connections".'],enforce:['אכוף חיבורים','Enforce connections'],tEnfOn:['גרירה מוגבלת לפי החיבורים','Dragging is limited by connections'],tEnfOff:['גרירה חופשית','Free dragging'],m_touch:['צמוד','touching'],m_above:['מעל (יושב עליו)','on top (sits on it)'],m_below:['מתחת (תלוי מתחתיו)','below (hangs under it)'],w_wrongSide:['בצד הלא נכון','on the wrong side'],w_noOverlap:['לא אחד מעל השני','not over each other'],port:['נקודת חיבור','Port'],centre:['מרכז הרכיב','Part centre'],mapPort:['נקודה','Point'],mapPickBtn:['סמן בתלת-ממד','Mark in 3D'],tPort:['נקודת חיבור נוספה ל: {a}','Port added to: {a}'],tPortPick:['לחץ על הרכיב במקום שבו נמצא המחבר','Click the part where the connector is'],tPortPart:['צריך ללחוץ על רכיב, לא על המעטפת','Click on a part, not the shell'],mapMaxHint:['מגבלה (מ"מ): אורך לכבל, מרווח לצמוד / מעל / מתחת','Limit (mm): length for a cable, gap for touching / above / below'],page3d:['תלת-ממד','3D'],pageMap:['מפת חיבורים','Connection map'],mapAll:['הכול','All'],mapBad:['חורגים','failing'],mapLinks:['חיבורים','links'],mapRoot:['מתחיל מ','Start from'],mapLone:['רכיבים בלי חיבור','Parts with no connection'],mapAlso:['מחובר גם ל','Also connected to '],mapDel:['מחק את החיבור','Delete this connection'],mapAdd:['הוסף חיבור','Add connection'],mapFrom:['מ','From'],mapTo:['אל','To'],mapMax:['מגבלה (מ"מ)','Limit (mm)'],mapPick:['בחר שני רכיבים שונים','Pick two different parts'],mapAdded:['החיבור נוסף','Connection added'],mapIntro:['כל מערכת מוצגת כעץ נפרד: מתחילים מהרכיב המרכזי ויורדים לפי סדר החיבור. ליד כל רכיב: האורך בפועל מול המותר. ירוק בתוך המותר, אדום חורג, אפור כשהרכיבים עוד לא הוצבו. ↺ = חיבור שסוגר מעגל.','Each system is its own tree, from the central part down in connection order. Beside each part: actual length vs. allowed. Green within the limit, red over it, grey when the parts are not placed yet. ↺ = a link that closes a loop.'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר ל", או הוסף חיבור בעמוד מפת החיבורים.','No connections. Give a part the rule "Connected to", or add one on the connection map page.'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
+custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],k_mech:['מכני','mechanical'],mode:['אופן','How'],m_cable:['כבל או צינור גמיש','flexible cable or hose'],m_rigid:['צינור קשיח, קו ישר','rigid, straight'],m_via:['דרך נקודה','through a point'],m_beside:['לצד (נוגע בדופן)','beside (touches its side)'],m_axis:['על אותו ציר','on the same axis'],m_inside:['בתוך (בתוך הקופסה)','inside (in the box)'],w_sticksOut:['בולט מחוץ לרכיב המכיל','sticks out of the container'],shRole:['תפקיד המודל','Model role'],roleShell:['מעטפת חיצונית (הרכיבים בפנים)','Outer shell (parts inside)'],roleFrame:['שלד מרכזי (הרכיבים מולבשים עליו)','Central frame (parts mount on it)'],shMass:['משקל המודל (ק"ג)','Model mass (kg)'],shPart:['שורת השלד בטבלה','Frame row in the table'],noneOpt:['אף אחת','None'],frameModel:['מוצג כמודל השלד','shown as the frame model'],tFrameRow:['השורה הזאת היא השלד ומוצגת כמודל. לחיצה כפולה לעריכה.','This row is the frame and is shown as the model. Double-click to edit.'],massFromRow:['משקל מהשורה בטבלה: {a}','Mass from the table row: {a}'],dblEdit:['לחיצה כפולה: פרטי הרכיב והחיבורים','Double-click: part details and connections'],editPart:['פרטי הרכיב והחיבורים','Part details and connections'],pmLinks:['החיבורים של הרכיב','This part\'s connections'],pmNoLinks:['אין חיבורים לרכיב הזה.','No connections for this part.'],pmRulesHint:['כללים בקוד, מופרדים ב־; (למשל link:box_1554s:2:mech:inside). שינוי כאן מעדכן את הטבלה.','Rules as codes, separated by ; (e.g. link:box_1554s:2:mech:inside). Changes here update the table.'],tBadRules:['לא זוהו: {a}. הכללים לא נשמרו.','Not recognised: {a}. Rules not saved.'],snap:['הצמד חיבורים','Snap connections'],snapOne:['הצמד','Snap'],tSnap:['הוצמדו {a} חיבורים. עדיין חורגים: {b}.','Snapped {a} connections. Still failing: {b}.'],tSnapNone:['אין חיבור חורג להצמדה','No failing connection to snap'],behave:['התנהגות','Behaviour'],hideShow:['הצג / הסתר','Hide / show'],vPts:['נקודות על השלדה ושמותיהן','Points on the frame + names'],vLtags:['אורכי חיבורים','Connection lengths'],vMarks:['מרכז כובד ונקודת ייחוס','Centre of gravity + reference'],vFloor:['רצפה (רשת)','Floor grid'],hideAll:['הסתר את כל ההערות','Hide all annotations'],showAll:['הצג את כל ההערות','Show all annotations'],catAll:['פרוס / קפל הכל','Expand / collapse all'],rotT:['סיבוב (מעלות)','Rotation (degrees)'],rotStep:['צעד','Step'],ledNone:['אין מה לבדוק','Nothing to check'],ledOk:['הכל תקין','All good'],ledWarn:['יש דברים לשים לב אליהם','Things to look at'],ledBad:['יש בעיות','Problems'],whyMount:['יושב לפי החיבור המכני: ','Sits by its mechanical connection: '],tTryFrame:['המודל מוגדר כקופסה סגורה. אם זו שלדה, בחר "שלדה" בהגדרות המודל.','The model is set as a closed box. If it is a frame, choose "frame" in the model settings.'],m_at:['בדיוק על הנקודה','exactly on the point'],mWhere:['איפה הוא יושב','Where it sits'],mCableT:['סוג הכבל','Cable type'],limGap:['מרווח מותר (מ"מ)','Allowed gap (mm)'],limLen:['אורך מרבי (מ"מ)','Max length (mm)'],onlyLinked:['רק מחוברים','Connected only'],tOnlyOn:['מוצגים רק רכיבים שיש להם חיבור. רכיב שמחברים מופיע ונצמד לבד.','Only parts with a connection are shown. A part you connect appears and snaps by itself.'],tOnlyOff:['כל הרכיבים זמינים להצבה','All parts available to place'],tShown:['נוספו לתלת-ממד: {a}. הוסתרו: {b}.','Added to 3D: {a}. Hidden: {b}.'],pageGraph:['גרף חיבורים','Connection graph'],gIntro:['גרור מנקודה צבעונית בצד ימין של כרטיס (סוג החיבור) אל כרטיס אחר, אל נקודת חיבור שלו, או אל נקודה על השלד. לחיצה על חוט: עריכה ומחיקה. לחיצה כפולה על כרטיס: פרטי הרכיב. גלגלת: זום, גרירה ברקע: הזזה.','Drag from a coloured dot on the right of a card (the connection type) to another card, one of its ports, or a point on the frame. Click a wire to edit or delete it. Double-click a card for the part details. Wheel zooms, dragging the background pans.'],gLayoutBtn:['סדר את הגרף','Tidy the graph'],gFitBtn:['התאם למסך','Fit to screen'],gExpAllBtn:['פרוס / קבץ עותקים','Expand / group copies'],gWide:['הרחב / הצר','Widen / narrow'],gExpand:['פרוס לכרטיס לכל עותק','One card per copy'],gCollapse:['קבץ לכרטיס אחד','Group into one card'],gCentre:['מרכז השלד','Frame centre'],gAddPort:['+ נקודת חיבור','+ Port'],gAddPt:['+ נקודה על המודל','+ Point on the model'],gDragHint:['גרור לרכיב אחר כדי לחבר','Drag to another part to connect'],gNeedPt:['בלי שורת שלד בטבלה צריך לגרור אל נקודה מסוימת על המודל','Without a frame row, drop on a specific point of the model'],gUpdated:['החיבור הקיים עודכן','Existing connection updated'],gFromPort:['מנקודה','From point'],gToPort:['אל נקודה','To point'],units:['איזו יחידה לאיזו','Which unit to which'],unitAuto:['אוטומטי','Auto'],unitHint:['כשמספר העותקים שווה, עותק 1 מתחבר ליעד 1, עותק 2 ליעד 2 וכן הלאה. אחרת לקרוב ביותר. אפשר לשנות כאן לכל עותק.','When the counts match, copy 1 connects to target 1, copy 2 to target 2 and so on; otherwise to the nearest. You can change it here for each copy.'],nearest:['הקרוב ביותר','nearest'],pattern:['תבנית לעותקים','Pattern for the copies'],patCirc:['סביב ציר','Around an axis'],patLin:['בשורה','In a row'],patAround:['סביב','Around'],patRef:['נקודת הייחוס','Reference point'],patModel:['מרכז המודל','Model centre'],patAxis:['ציר','Axis'],patR:['רדיוס (מ"מ)','Radius (mm)'],patA0:['זווית התחלה (°)','Start angle (°)'],patStep:['מרווח (מ"מ)','Spacing (mm)'],patRot:['סובב כל עותק עם התבנית','Turn each copy with the pattern'],patGo:['סדר בתבנית','Arrange in pattern'],patHint:['הגובה לאורך הציר נלקח מעותק 1. רכיבים שמחוברים לעותקים (למשל מדחף צמוד למנוע) זזים איתם.','The position along the axis comes from copy 1. Parts fixed to the copies (e.g. a prop touching a motor) move with them.'],tPat:['{a} עותקים סודרו בתבנית','{a} copies arranged'],delPart:['מחק רכיב','Delete part'],qDelPart:['למחוק את "{a}" מהרשימה? החיבורים אליו יימחקו גם.','Delete "{a}" from the list? Connections to it are deleted too.'],w_blocked:['רכיב חוסם את הקו הישר','a part blocks the straight line'],w_notLevel:['לא באותו גובה','not at the same height'],w_noWay:['נקודת המעבר לא נמצאה','waypoint not found'],mapWay:['דרך נקודה','Through point'],tWay:['בחר נקודת מעבר','Pick a waypoint'],tHeld:['חיבור מגביל את התנועה. Alt בזמן גרירה עוקף, או כבה "אכוף חיבורים".','A connection limits this move. Hold Alt while dragging to override, or turn off "Enforce connections".'],enforce:['אכוף חיבורים','Enforce connections'],tEnfOn:['גרירה מוגבלת לפי החיבורים','Dragging is limited by connections'],tEnfOff:['גרירה חופשית','Free dragging'],m_touch:['צמוד','touching'],m_above:['מעל (יושב עליו)','on top (sits on it)'],m_below:['מתחת (תלוי מתחתיו)','below (hangs under it)'],w_wrongSide:['בצד הלא נכון','on the wrong side'],w_noOverlap:['לא אחד מעל השני','not over each other'],port:['נקודת חיבור','Port'],centre:['מרכז הרכיב','Part centre'],mapPort:['נקודה','Point'],mapPickBtn:['סמן בתלת-ממד','Mark in 3D'],tPort:['נקודת חיבור נוספה ל: {a}','Port added to: {a}'],tPortPick:['לחץ על הרכיב במקום שבו נמצא המחבר','Click the part where the connector is'],tPortPart:['צריך ללחוץ על רכיב, לא על המעטפת','Click on a part, not the shell'],mapMaxHint:['מגבלה (מ"מ): אורך לכבל, מרווח לצמוד / מעל / מתחת','Limit (mm): length for a cable, gap for touching / above / below'],page3d:['תלת-ממד','3D'],pageMap:['מפת חיבורים','Connection map'],mapAll:['הכול','All'],mapBad:['חורגים','failing'],mapLinks:['חיבורים','links'],mapRoot:['מתחיל מ','Start from'],mapLone:['רכיבים בלי חיבור','Parts with no connection'],mapAlso:['מחובר גם ל','Also connected to '],mapDel:['מחק את החיבור','Delete this connection'],mapAdd:['הוסף חיבור','Add connection'],mapFrom:['מ','From'],mapTo:['אל','To'],mapMax:['מגבלה (מ"מ)','Limit (mm)'],mapPick:['בחר שני רכיבים שונים','Pick two different parts'],mapAdded:['החיבור נוסף','Connection added'],mapIntro:['כל מערכת מוצגת כעץ נפרד: מתחילים מהרכיב המרכזי ויורדים לפי סדר החיבור. ליד כל רכיב: האורך בפועל מול המותר. ירוק בתוך המותר, אדום חורג, אפור כשהרכיבים עוד לא הוצבו. ↺ = חיבור שסוגר מעגל.','Each system is its own tree, from the central part down in connection order. Beside each part: actual length vs. allowed. Green within the limit, red over it, grey when the parts are not placed yet. ↺ = a link that closes a loop.'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר ל", או הוסף חיבור בעמוד מפת החיבורים.','No connections. Give a part the rule "Connected to", or add one on the connection map page.'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he',VERSION='1.15',UPDATED='2026-11-17';
+var lang='he',VERSION='1.17',UPDATED='2026-11-17';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
@@ -105,7 +105,11 @@ function normLink(rl){var m=rl.m||'cable';
   else if((rl.k||'data')==='mech'){rl.m=(rl.pb||ptTarget(rl))?'at':'above';delete rl.d;delete rl.w;}
   return rl;}
 function setKind(rl,v){var was=rl.k||'data';rl.k=v;if(v==='mech'&&was!=='mech'){rl.m=(rl.pb||ptTarget(rl))?'at':'above';delete rl.d;delete rl.w;}else if(v!=='mech'&&MOUNT[rl.m||'cable']){delete rl.m;delete rl.d;}}
-function normAll(){P.parts.forEach(function(p){(p.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(d&&d.base==='link')normLink(rl);});});}
+function normAll(){var sh={};(P.shells||[]).forEach(function(S){sh[S.id]=1;});autoFrameRole();
+  P.parts.forEach(function(p){p.rules=(p.rules||[]).filter(function(rl){var d=ruleDef(rl.r);if(!d||d.base!=='link')return true;var q=(P.points||[]).filter(function(x){return x.id===rl.t;})[0];return !(q&&q.shellId&&!sh[q.shellId]);});
+    p.rules.forEach(function(rl){var d=ruleDef(rl.r);if(!d||d.base!=='link')return;normLink(rl);if(rl.u&&rl.u.every(function(v){return v<=1;})){var k=nk(rl.pb||rl.t),one=activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;});if(one.length===1&&ptFamily(one,rl).length>1)delete rl.u;}});});}
+/* a model that was never given a role, with a "frame" row in the table, is a frame (an open structure), not a closed box */
+function autoFrameRole(){var S=(P.shells||[]).filter(function(s){return s.id===P.work.shellId;})[0];if(!S||S.role)return;var g=guessFramePart();if(g){S.role='frame';S.part=g;if(typeof rebuildShell==='function'&&shell.n&&shell.role!=='frame'){rebuildShell();}}}
 function LMODE(x){x=String(x||'').toLowerCase().trim();var al={inside:'inside',in:'inside',within:'inside','בתוך':'inside',cable:'cable',flex:'cable',hose:'cable','כבל':'cable','גמיש':'cable',rigid:'rigid','קשיח':'rigid',via:'via',through:'via','דרך':'via',beside:'beside',side:'beside','לצד':'beside',axis:'axis',coaxial:'axis','ציר':'axis',touch:'touch',contact:'touch',flush:'touch','צמוד':'touch',above:'above',on:'above','מעל':'above',below:'below',under:'below','מתחת':'below'};return al[x]||'cable';}
 /* default limit per mode: cable = length, touch = allowed gap, above/below = allowed vertical gap */
 function linkMax(rl){if(rl.d!==undefined&&rl.d!==''&&rl.d!==null)return num(rl.d,300);var m=rl.m||'cable';if(m==='inside')return 0;if(m==='at')return 1;return m==='cable'||m==='rigid'?300:m==='via'?400:m==='touch'||m==='axis'?2:5;}
@@ -186,14 +190,17 @@ function readTheme(){
   Object.keys(theme).forEach(function(k){var v=cs.getPropertyValue('--'+k).trim();if(v)theme[k]=v;});
   renderer.setClearColor(new THREE.Color(theme.viewport),1);
   if(gridH)scene.remove(gridH);
-  gridH=new THREE.GridHelper(3000,30,new THREE.Color(theme.grid),new THREE.Color(theme.grid));gridH.material.transparent=true;gridH.material.opacity=0.5;gridH.position.y=0.3;scene.add(gridH);
+  gridH=new THREE.GridHelper(3000,30,new THREE.Color(theme.grid),new THREE.Color(theme.grid));gridH.material.transparent=true;gridH.material.opacity=0.5;gridH.position.y=0.3;gridH.visible=ui.floor;scene.add(gridH);
   edgeMat.color.set(theme.ink);requestRender();
 }
 var shellGroup=new THREE.Group();scene.add(shellGroup);
 var cutPlane=new THREE.Plane(new THREE.Vector3(0,0,-1),0);
 var shellMat=new THREE.MeshStandardMaterial({color:'#c9cdc4',roughness:0.6,metalness:0.02,side:THREE.DoubleSide});
 var edgeMat=new THREE.LineBasicMaterial({color:0x1b1c1a});
-var ui={view:'iso',shell:'glass',mode:'detail',labels:false,grid:true,magnet:true,links:true,enforce:true,onlyLinked:true};
+var ui={view:'iso',shell:'glass',mode:'detail',labels:false,grid:true,magnet:true,links:true,enforce:true,onlyLinked:true,pts:true,ltags:true,marks:true,floor:true,rotStep:90};
+/* per-viewer view preferences (fold state, hidden items) */
+var PREF=(function(){try{return JSON.parse(localStorage.getItem('cs.pref')||'{}')||{};}catch(e){return {};}})();function savePref(){try{localStorage.setItem('cs.pref',JSON.stringify(PREF));}catch(e){}}
+['pts','ltags','marks','floor','labels','links'].forEach(function(k){if(typeof PREF[k]==='boolean')ui[k]=PREF[k];});
 var shell={n:0,T:null,box:new THREE.Box3(),idx:null,kind:'hollow',ver:0};
 var partsGroup=new THREE.Group();scene.add(partsGroup);
 var RT={},selected=null,pointsGroup=new THREE.Group(),pickMode=false;scene.add(pointsGroup);
@@ -212,6 +219,9 @@ function renderPoints(){
     li.appendChild(btn('small danger','✕',function(){P.points=P.points.filter(function(x){return x!==q;});P.parts.forEach(function(p){(p.rules||[]).forEach(function(r){if(r.pa===q.id)delete r.pa;if(r.pb===q.id)delete r.pb;});});renderPoints();runChecks();refreshUI();touch();}));ul.appendChild(li);});
   requestRender();
 }
+function applyVis(){if(gridH)gridH.visible=ui.floor;pointsGroup.visible=ui.pts;refGroup.visible=ui.marks;if(!ui.marks)cogGroup.visible=false;else if(checks&&checks.cog)cogGroup.visible=true;
+  var ann=ui.pts||ui.labels||ui.links||ui.ltags||ui.marks||ui.floor;$('#viewport').classList.toggle('noann',!ann);var b=$('#btnHideAll');if(b)b.textContent=ann?t('hideAll'):t('showAll');
+  ['pts','labels','links','ltags','marks','floor'].forEach(function(k){PREF[k]=ui[k];});savePref();requestRender();}
 function setPick(on){pickMode=on;vp.classList.toggle('picking',on);$('#btnPoint').setAttribute('aria-pressed',String(on));if(on)toast(t('tPick'));}
 function pickPoint(e){setRay(e);var objs=[];shellGroup.children.forEach(function(c){if(c.isMesh)objs.push(c);});INST.forEach(function(i){if(P.work.items[i.iid].on){var r=RT[i.iid];objs.push(r.detail.visible?r.detail:r.block);}});
   var hits=ray.intersectObjects(objs,true).filter(function(x){return x.object.isMesh;}),pt=hits.length?hits[0].point:ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0,1,0),0),new THREE.Vector3());
@@ -362,7 +372,7 @@ function drawLinks(){
     [A,B].forEach(function(P0){var e=new THREE.Mesh(new THREE.SphereGeometry(rad*2,10,8),m.clone());e.position.copy(P0);e.renderOrder=26;linkGroup.add(e);});
     if(hot||!l.ok){var tg=el('div','ltag'+(l.ok?'':' bad'));if(l.mode!=='cable')tg.appendChild(el('span','',t('m_'+l.mode)+' '));var tn=el('span','',fmt(l.len)+' / '+fmt(l.max));tn.dir='ltr';tg.appendChild(tn);tg.dataset.n=n;$('#tags').appendChild(tg);}});
 }
-function updateLtags(){var w=vp.clientWidth,h=vp.clientHeight;document.querySelectorAll('.ltag').forEach(function(e){var l=checks.links[+e.dataset.n];if(!l||l.missing||!P.work.items[l.from]){e.hidden=true;return;}var a=l.a,b=l.pt;_v.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
+function updateLtags(){var w=vp.clientWidth,h=vp.clientHeight;document.querySelectorAll('.ltag').forEach(function(e){var l=checks.links[+e.dataset.n];if(!ui.ltags||!ui.links||!l||l.missing||!P.work.items[l.from]){e.hidden=true;return;}e.hidden=false;var a=l.a,b=l.pt;_v.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
 function cylBox(c,b){var ax=c.cyl,u=(ax+1)%3,v=(ax+2)%3,cu=(c.min[u]+c.max[u])/2,cv=(c.min[v]+c.max[v])/2,r=(c.max[u]-c.min[u])/2-0.3;
   var du=Math.max(b.min[u]-cu,0,cu-b.max[u]),dv=Math.max(b.min[v]-cv,0,cv-b.max[v]);return du*du+dv*dv<r*r;}
 function collide(a,b){var e=0.3;for(var i=0;i<3;i++)if(a.max[i]-e<=b.min[i]||b.max[i]-e<=a.min[i])return false;
@@ -391,10 +401,15 @@ function linkOf(inst,rl){var D=linkMax(rl),m=rl.m||'cable',k=nk(rl.t),o={rl:rl,f
   o.a=SA;o.pt=SB;o.path=W?[SA,W,SB]:[SA,SB];
   var ev=relEval(ra,rb,m,D,EA,EB,!!(pa||tpb),W,[inst.iid,o.to]);o.len=ev.len;o.ok=ev.ok;o.why=ev.why;o.exc=ev.ok?0:ev.exc;o.ports=!!(pa||tpb);o.A0=EA;o.B0=flex?EB:B00;return o;}
 /* everything a link rule can land on, in a stable order: marked points, units of parts, or the frame model (its points, else its centre) */
+/* "arm 2" on a part with 6 copies = the whole family arm 1..arm 6, in number order */
+function ptFamily(pts,rl){if(pts.length!==1)return pts;var own=P.parts.filter(function(p){return (p.rules||[]).indexOf(rl)>=0;})[0];if(!own||unitCount(own)<2)return pts;
+  var m=String(pts[0].name).trim().match(/^(.*?)[\s_-]*(\d+)$/);if(!m||!m[1])return pts;var base=nk(m[1]);
+  var fam=activePoints().filter(function(q){var mm=String(q.name).trim().match(/^(.*?)[\s_-]*(\d+)$/);return mm&&nk(mm[1])===base;});
+  if(fam.length<2)return pts;return fam.sort(function(a,b){return +a.name.match(/(\d+)\s*$/)[1]-(+b.name.match(/(\d+)\s*$/)[1]);});}
 function linkCands(rl){var k=nk(rl.t);if(!k)return [];
-  var pts=activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;});if(pts.length)return pts.map(function(q,i){return {pt:q,label:'◎ '+q.name+(pts.length>1?' '+(i+1):'')};});
+  var pts=ptFamily(activePoints().filter(function(q){return nk(q.id)===k||nk(q.name)===k;}),rl);if(pts.length)return pts.map(function(q,i){return {pt:q,label:'◎ '+q.name+(pts.length>1?' '+(i+1):'')};});
   var ins=INST.filter(function(i){return nk(i.part.id)===k||nk(i.part.name)===k||nk(i.part.cat)===k;});if(ins.length)return ins.map(function(i){return {inst:i,label:i.label};});
-  var fp=framePart();if(fp&&(k===nk(fp.id)||k===nk(fp.name))){var fq=rl.pb?activePoints().filter(function(q){return nk(q.id)===nk(rl.pb)||nk(q.name)===nk(rl.pb);}):[];
+  var fp=framePart();if(fp&&(k===nk(fp.id)||k===nk(fp.name))){var fq=rl.pb?ptFamily(activePoints().filter(function(q){return nk(q.id)===nk(rl.pb)||nk(q.name)===nk(rl.pb);}),rl):[];
     return fq.length?fq.map(function(q,i){return {pt:q,frame:fp,label:'◎ '+q.name+(fq.length>1?' '+(i+1):'')};}):[{frame:fp,label:fp.name}];}
   return [];}
 function unitIx(iid){var x=String(iid).split('#')[1];return x?+x:1;}
@@ -475,7 +490,7 @@ function runChecks(){
   INST.forEach(function(i){var r=RT[i.iid],it=P.work.items[i.iid],show=it.on&&selected===i.iid;r.outline.visible=show;tintPart(r);
     if(show){r.outline.material.color.set(r.hit?theme.crit:r.out?theme.warn:theme.accent);
       r.outline.position.set((r.min[0]+r.max[0])/2,(r.min[1]+r.max[1])/2,(r.min[2]+r.max[2])/2);r.outline.scale.set(Math.max(r.max[0]-r.min[0],1),Math.max(r.max[1]-r.min[1],1),Math.max(r.max[2]-r.min[2],1));}});
-  if(cg){cogGroup.visible=true;cogGroup.position.set(cg[0],cg[1],cg[2]);var d=cogGroup.getObjectByName('drop');d.scale.set(1,Math.max(cg[1],1),1);d.computeLineDistances();cogGroup.getObjectByName('ring').position.y=-cg[1]+1;}else cogGroup.visible=false;
+  if(cg){cogGroup.visible=true;cogGroup.position.set(cg[0],cg[1],cg[2]);var d=cogGroup.getObjectByName('drop');d.scale.set(1,Math.max(cg[1],1),1);d.computeLineDistances();cogGroup.getObjectByName('ring').position.y=-cg[1]+1;}else cogGroup.visible=false;if(!ui.marks)cogGroup.visible=false;
   var top=env?env.y1+60:400;refGroup.position.set(checks.ref[0],0.6,checks.ref[1]);var cr=refGroup.getObjectByName('cross');cr.geometry.attributes.position.setY(5,top);cr.geometry.attributes.position.needsUpdate=true;cr.material.color.set(theme.accent);
 }
 
@@ -507,9 +522,13 @@ function renderTray(){
   var box=$('#tray');box.textContent='';var fp=framePart();
   if(fp){var ful=el('ul','plain'),fli=el('li','item on');fli.dataset.pid=fp.id;fli.title=t('dblEdit');fli.appendChild(el('span','sw'));fli.lastChild.style.background=theme.accent;fli.appendChild(el('span','nm',fp.name+' · '+t('frameModel')));fli.appendChild(el('span','mono',kg(shell.mass||0)));fli.onclick=function(){if(!trayDbl(fp))toast(t('tFrameRow'));};ful.appendChild(fli);box.appendChild(ful);}
   if(!INST.length){box.appendChild(el('p','fine',t('noParts')));$('#trayCount').textContent='';return;}
+  PREF.cat=PREF.cat||{};
   cats().forEach(function(c){
-    box.appendChild(el('div','cat',c));var ul=el('ul','plain');
-    INST.filter(function(i){return (i.part.cat||'—')===c;}).forEach(function(i){
+    var mem=INST.filter(function(i){return (i.part.cat||'—')===c;}),onN=mem.filter(function(i){return P.work.items[i.iid].on;}).length,bad=mem.some(function(i){return checks.pairs.some(function(pp){return pp[0]===i.iid||pp[1]===i.iid;});}),fo=!!PREF.cat[c];
+    var hd=el('button','cath'+(fo?' folded':''));hd.type='button';hd.setAttribute('aria-expanded',String(!fo));hd.appendChild(el('span','fchev','▾'));var sw0=el('span','sw');sw0.style.background=catColor(c);hd.appendChild(sw0);hd.appendChild(el('b','',c));
+    if(bad){var lb=el('span','led bad');lb.title=t('ledBad');hd.appendChild(lb);}hd.appendChild(el('span','ledn',onN+' / '+mem.length));
+    hd.onclick=function(){PREF.cat[c]=!PREF.cat[c];savePref();renderTray();};box.appendChild(hd);if(fo)return;var ul=el('ul','plain');
+    mem.forEach(function(i){
       var it=P.work.items[i.iid],li=el('li','item'+(it.on?' on':'')+(selected===i.iid?' sel':''));
       var sw=el('span','sw');sw.style.background=catColor(c);li.appendChild(sw);li.appendChild(el('span','nm',i.label));li.appendChild(el('span','mono',kg(num(i.part.mass,0))));
       if(it.on)li.appendChild(el('span','mono','✓'));
@@ -542,7 +561,7 @@ function renderStatus(){
   $('#trayCount').textContent=c.placed+' / '+INST.length;
 }
 function renderInspector(){
-  var box=$('#inspector');box.textContent='';box.appendChild(el('span','lab',t('selPart')));
+  var box=$('#inspector');box.textContent='';
   if(!selected||!INST_BY[selected]){box.appendChild(el('p','fine',t('selEmpty')));return;}
   var inst=INST_BY[selected],p=inst.part,it=P.work.items[selected],s=psize(p);
   var nm=el('p','',inst.label);nm.style.cssText='margin:0;font-weight:600;font-size:15px';box.appendChild(nm);
@@ -555,10 +574,39 @@ function renderInspector(){
   if(!it.on){box.appendChild(btn('solid',t('place'),function(){placeAtHome(selected);commit();}));return;}
   var xyz=el('div','xyz');['X','Y','Z'].forEach(function(lab,i){var l=el('label','f');l.appendChild(el('span','',lab));var inp=el('input');inp.type='number';inp.step=ui.grid?5:1;inp.id='pos'+i;inp.value=fmt(it.p[i]);inp.disabled=it.lock;
     inp.addEventListener('change',function(){var v=Number(inp.value);if(!isFinite(v))return;if(!enforceOk(selected,function(){it.p[i]=v;})){inp.value=fmt(it.p[i]);return;}it.why=null;syncItem(selected);commit();});l.appendChild(inp);xyz.appendChild(l);});box.appendChild(xyz);
-  var rr=el('div','row');['X','Y','Z'].forEach(function(a,i){var b=btn('small',t('turnA')+a,function(){rotateSel(i);});b.disabled=it.lock;rr.appendChild(b);});
+  /* rotation: drag the slider to turn by hand, type a number to be exact (degrees about X, Y, Z of the model) */
+  var rh=el('div','row');rh.appendChild(el('span','lab',t('rotT')));box.appendChild(rh);
+  var eu=new THREE.Euler().setFromQuaternion(new THREE.Quaternion(it.q[0],it.q[1],it.q[2],it.q[3]),'XYZ'),deg=[eu.x,eu.y,eu.z].map(function(v){var d=Math.round(v*1800/PI)/10;return d===-0?0:d;}),q0=null;
+  var rg=el('div','rotg');rg.dir='ltr';var sl=[],nu=[];
+  function setRot(i,v,live){var d=deg.slice();d[i]=v;if(!q0)q0=it.q.slice();var q=new THREE.Quaternion().setFromEuler(new THREE.Euler(d[0]*PI/180,d[1]*PI/180,d[2]*PI/180,'XYZ'));
+    var nq=[q.x,q.y,q.z,q.w].map(function(n){return Math.round(n*1e6)/1e6;});
+    if(live){it.q=nq;deg=d;syncItem(selected);runChecks();renderStatus();requestRender();return;}
+    q0=null;it.q=nq;deg=d;it.why=null;syncItem(selected);resnapOwn(selected);commit();}
+  ['X','Y','Z'].forEach(function(a,i){rg.appendChild(el('span','mono',a));var r=el('input');r.type='range';r.min='-180';r.max='180';r.step='1';r.value=String(deg[i]);r.disabled=it.lock;r.id='rot'+a;r.setAttribute('aria-label',t('rotT')+' '+a);
+    var n=el('input');n.type='number';n.step='0.1';n.value=String(deg[i]);n.disabled=it.lock;n.id='rotN'+a;n.setAttribute('aria-label',t('rotT')+' '+a);
+    r.oninput=function(){n.value=r.value;setRot(i,+r.value,true);};r.onchange=function(){setRot(i,+r.value,false);};
+    n.onchange=function(){var v=Number(n.value);if(!isFinite(v))return;v=((v+180)%360+360)%360-180;setRot(i,Math.round(v*10)/10,false);};rg.appendChild(r);rg.appendChild(n);});box.appendChild(rg);
+  var rr=el('div','row');['X','Y','Z'].forEach(function(a,i){var b=btn('small','90° '+a,function(){rotateSel(i);});b.disabled=it.lock;rr.appendChild(b);});
   rr.appendChild(btn('small',it.lock?t('unlock'):t('lock'),function(){it.lock=!it.lock;commit();}));rr.appendChild(btn('small danger',t('back'),function(){removeItem(selected);}));box.appendChild(rr);
   var ck=el('label','row fine');ck.style.flexWrap='nowrap';var cb=el('input');cb.type='checkbox';cb.id='extChk';cb.style.width='auto';cb.checked=it.ext;cb.onchange=function(){it.ext=cb.checked;commit();};ck.appendChild(cb);ck.appendChild(el('span','',t('skipShell')));box.appendChild(ck);
 }
+/* every card can fold; its light says whether something inside needs a look */
+var FOLD_DEF={proj:1,files:1,cog:1,links:1,saved:1};
+function initFolds(){PREF.fold=PREF.fold||{};document.querySelectorAll('section[data-fold]').forEach(function(sec){var k=sec.dataset.fold,hd=sec.querySelector(':scope>.head');if(!hd)return;hd.classList.add('fh');
+    var lab=hd.querySelector('.lab'),fl=el('span','fl');fl.appendChild(el('span','fchev','▾'));var led=el('span','led');led.id='led_'+k;fl.appendChild(led);hd.insertBefore(fl,hd.firstChild);fl.appendChild(lab);var ln=el('span','ledn');ln.id='ledn_'+k;fl.appendChild(ln);
+    hd.setAttribute('role','button');hd.tabIndex=0;var fo=PREF.fold[k]!==undefined?PREF.fold[k]:!!FOLD_DEF[k];sec.classList.toggle('folded',fo);hd.setAttribute('aria-expanded',String(!fo));
+    function tog(){var f=!sec.classList.contains('folded');sec.classList.toggle('folded',f);hd.setAttribute('aria-expanded',String(!f));PREF.fold[k]=f;savePref();if(k==='parts'||k==='insp')requestRender();}
+    hd.addEventListener('click',function(e){if(e.target.closest('button,input,select,a')&&!e.target.closest('.fl'))return;tog();});hd.addEventListener('keydown',function(e){if(e.target===hd&&(e.key==='Enter'||e.key===' ')){e.preventDefault();tog();}});});}
+function setLed(k,st,n,tip){var l=document.getElementById('led_'+k);if(!l)return;l.className='led'+(st?' '+st:'');l.title=tip||t(st==='bad'?'ledBad':st==='warn'?'ledWarn':st==='ok'?'ledOk':'ledNone');var nn=document.getElementById('ledn_'+k);if(nn)nn.textContent=n===undefined||n===null?'':String(n);}
+function updateLeds(){if(!P||!checks)return;var c=checks,sel=selected&&INST_BY[selected];
+  setLed('proj',remote&&remote.partial?'warn':'',null);
+  setLed('files',shell.n?'ok':'',activePoints().length||null);
+  setLed('parts',c.pairs.length?'bad':c.outs.length?'warn':c.placed?'ok':'',null);
+  var cg=c.cog,a=cg?Math.hypot(cg[0]-c.ref[0],cg[2]-c.ref[1]):0;setLed('cog',!cg?'':a<=num(P.tol,10)?'ok':'bad',null);
+  var ni=c.pairs.length+c.outs.length+c.rules.length;setLed('issues',c.pairs.length?'bad':ni?'warn':(c.placed?'ok':''),ni||null);
+  var lb=c.links.filter(function(l){return !l.ok&&!l.missing;}).length,lm=c.links.filter(function(l){return l.missing;}).length;setLed('links',lb?'bad':lm?'warn':c.links.length?'ok':'',null);
+  setLed('insp',!sel?'':c.pairs.some(function(pp){return pp[0]===selected||pp[1]===selected;})?'bad':c.outs.indexOf(selected)>=0?'warn':'ok',null);
+  setLed('saved','',P.configs.length||null);}
 function refreshPos(){if(!selected)return;var it=P.work.items[selected];for(var i=0;i<3;i++){var e=document.getElementById('pos'+i);if(e&&document.activeElement!==e)e.value=fmt(it.p[i]);}}
 function summary(){var c=checks;return c.placed+'/'+INST.length+' · '+c.mass.toFixed(2)+' kg'+(c.cog?' · CoG '+fmt(Math.hypot(c.cog[0]-c.ref[0],c.cog[2]-c.ref[1]))+' mm':'')+' · '+c.pairs.length+'✕ '+c.outs.length+'△ '+c.rules.length+'●';}
 function renderSaved(){
@@ -568,13 +616,16 @@ function renderSaved(){
     li.appendChild(btn('small danger','✕',function(e){e.stopPropagation();confirmBox(t('qDelCfg',c.name),function(){P.configs=P.configs.filter(function(x){return x!==c;});touch();renderSaved();});}));ul.appendChild(li);});
 }
 function refreshUI(){renderTray();renderInspector();renderStatus();renderSaved();renderMap();renderGraph();$('#btnUndo').disabled=histIdx<=0;$('#btnRedo').disabled=histIdx>=hist.length-1;
-  ['togLabels','togGrid','togMagnet','togLinks','togEnforce','togOnly'].forEach(function(id,i){$('#'+id).setAttribute('aria-pressed',String([ui.labels,ui.grid,ui.magnet,ui.links,ui.enforce,ui.onlyLinked][i]));});
+  ['togLabels','togGrid','togMagnet','togLinks','togEnforce','togOnly','togPts','togLtags','togMarks','togFloor'].forEach(function(id,i){$('#'+id).setAttribute('aria-pressed',String([ui.labels,ui.grid,ui.magnet,ui.links,ui.enforce,ui.onlyLinked,ui.pts,ui.ltags,ui.marks,ui.floor][i]));});applyVis();updateLeds();
   setSeg('segView',ui.view);setSeg('segShell',ui.shell);setSeg('segMode',ui.mode);}
 
 /* ================= history ================= */
 var hist=[],histIdx=-1;
-function commit(){var s=JSON.stringify(P.work);if(hist[histIdx]!==s){hist=hist.slice(0,histIdx+1);hist.push(s);if(hist.length>80)hist.shift();histIdx=hist.length-1;}runChecks();refreshUI();requestRender();touch();}
-function restore(s){P.work=JSON.parse(s);rebuildInst();if(selected&&!INST_BY[selected])selected=null;rebuildShell();syncAll();refreshUI();renderShells();touch();}
+function snap(){return JSON.stringify({w:P.work,p:P.parts,pt:P.points||[]});}
+function histPush(){var s=snap();if(hist[histIdx]!==s){hist=hist.slice(0,histIdx+1);hist.push(s);if(hist.length>80)hist.shift();histIdx=hist.length-1;}}
+var histT=null;function histLater(){clearTimeout(histT);histT=setTimeout(function(){if(!P)return;histPush();$('#btnUndo').disabled=histIdx<=0;$('#btnRedo').disabled=histIdx>=hist.length-1;},250);}
+function commit(){histPush();runChecks();refreshUI();requestRender();touch();}
+function restore(s){var o=JSON.parse(s);if(!o.w)o={w:o};P.work=o.w;if(o.p)P.parts=o.p;if(o.pt)P.points=o.pt;rebuildInst();buildRuntime();if(selected&&!INST_BY[selected])selected=null;rebuildShell();syncAll();renderPoints();runChecks();refreshUI();renderShells();if(!$('#partModal').hidden)renderPart();touch();}
 function undo(){if(histIdx>0){histIdx--;restore(hist[histIdx]);}}
 function redo(){if(histIdx<hist.length-1){histIdx++;restore(hist[histIdx]);}}
 
@@ -591,7 +642,10 @@ function placeAtHome(iid){
 function removeItem(iid){var it=P.work.items[iid];it.on=false;it.lock=false;if(selected===iid)selected=null;syncItem(iid);commit();}
 function rotateSel(axis){if(!selected)return;var it=P.work.items[selected];if(!it.on||it.lock)return;
   var q=new THREE.Quaternion(it.q[0],it.q[1],it.q[2],it.q[3]),r=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(axis===0?1:0,axis===1?1:0,axis===2?1:0),PI/2);
-  q.premultiply(r);if(!enforceOk(selected,function(){it.q=[q.x,q.y,q.z,q.w].map(function(n){return Math.round(n*1e6)/1e6;});}))return;it.why=null;syncItem(selected);commit();}
+  q.premultiply(r);it.q=[q.x,q.y,q.z,q.w].map(function(n){return Math.round(n*1e6)/1e6;});it.why=null;syncItem(selected);resnapOwn(selected);commit();}
+/* after turning a part, its mechanical mounts put it back on its point (turning never breaks a mount) */
+function resnapOwn(iid){var p=INST_BY[iid]&&INST_BY[iid].part;if(!p)return;var rs=(p.rules||[]).filter(function(rl){var d=ruleDef(rl.r);return d&&d.base==='link'&&MOUNT[rl.m];});P.parts.forEach(function(o){(o.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(d&&d.base==='link'&&MOUNT[rl.m]&&linkCands(rl).some(function(c){return c.inst&&c.inst.part===p;}))rs.push(rl);});});
+  if(!rs.length)return;runChecks();var tt=toast,cm=commit;toast=function(){};commit=function(){};try{snapAll(rs);}finally{toast=tt;commit=cm;}}
 var ray=new THREE.Raycaster(),ndc=new THREE.Vector2(),drag=null,downAt=null,tmpHit=new THREE.Vector3();
 function setRay(e){var r=canvas.getBoundingClientRect();ndc.set(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(ndc,camera);}
 function pick(e){setRay(e);var objs=[];INST.forEach(function(i){if(P.work.items[i.iid].on){var r=RT[i.iid];objs.push(r.detail.visible?r.detail:r.block);}});
@@ -673,7 +727,7 @@ window.addEventListener('pointerup',function(e){
   if(drag){var ch=drag.moved,id=drag.iid;drag=null;controls.enabled=true;if(ch){P.work.items[id].why=null;commit();}return;}
   if(downAt&&!downAt.hit&&e.target===canvas&&Math.hypot(e.clientX-downAt.x,e.clientY-downAt.y)<4&&selected)select(null);downAt=null;});
 window.addEventListener('keydown',function(e){var tg=e.target.tagName;if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT')return;
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();return;}
+  if((e.ctrlKey||e.metaKey)&&(e.key.toLowerCase()==='z'||e.key.toLowerCase()==='y')){e.preventDefault();if(e.shiftKey||e.key.toLowerCase()==='y')redo();else undo();return;}
   if(e.key==='Escape'){setPick(false);['tableModal','fileModal','confirmModal','imgModal','drawer','helpModal','partModal','gEdit'].forEach(function(id){$('#'+id).hidden=true;});return;}
   if(!selected)return;if(e.key.toLowerCase()==='r')rotateSel(e.shiftKey?0:1);else if(e.key==='Delete'||e.key==='Backspace')removeItem(selected);});
 
@@ -868,7 +922,7 @@ function resize(){var w=vp.clientWidth,h=vp.clientHeight;if(!w||!h)return;render
 var needsRender=true;function requestRender(){needsRender=true;}
 function updateTags(){var w=vp.clientWidth,h=vp.clientHeight;INST.forEach(function(i){var r=RT[i.iid],it=P.work.items[i.iid],show=ui.labels&&it.on;r.tag.hidden=!show;if(!show)return;
   _v.set(it.p[0],r.max[1],it.p[2]).project(camera);r.tag.style.left=((_v.x+1)/2*w)+'px';r.tag.style.top=((1-_v.y)/2*h)+'px';});}
-function updatePtags(){var w=vp.clientWidth,h=vp.clientHeight,pts=activePoints();document.querySelectorAll('.ptag').forEach(function(e){var q=pts.filter(function(x){return x.id===e.dataset.pid;})[0];if(!q){e.hidden=true;return;}_v.set(q.p[0],q.p[1],q.p[2]).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
+function updatePtags(){var w=vp.clientWidth,h=vp.clientHeight,pts=activePoints();document.querySelectorAll('.ptag').forEach(function(e){var q=pts.filter(function(x){return x.id===e.dataset.pid;})[0];if(!q||!ui.pts){e.hidden=true;return;}e.hidden=false;_v.set(q.p[0],q.p[1],q.p[2]).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
 function loop(){requestAnimationFrame(loop);if(!needsRender)return;needsRender=false;renderer.render(scene,camera);updateTags();updatePtags();updateLtags();}
 
 /* ================= auto-arrange ================= */
@@ -879,6 +933,16 @@ function autoArrange(){
   var todo=INST.filter(function(i){return !hasBase(i.part,'ref')&&!I[i.iid].lock;});
   todo.forEach(function(i){I[i.iid].on=false;I[i.iid].why=null;syncItem(i.iid);});
   if(ui.onlyLinked&&anyLinks()){var LS=linkedSet();todo=todo.filter(function(i){return LS[i.part.id];});INST.forEach(function(i){if(!LS[i.part.id]&&!I[i.iid].lock&&I[i.iid].on){I[i.iid].on=false;syncItem(i.iid);}});}
+  /* parts with a mechanical mount sit where the mount says: model/point targets first, then the free parts, then parts that sit on other parts */
+  function mountRules(p){return (p.rules||[]).filter(function(rl){var d=ruleDef(rl.r);return d&&d.base==='link'&&MOUNT[rl.m]&&linkCands(rl).length;});}
+  function onModel(p){return mountRules(p).every(function(rl){return linkCands(rl).every(function(c){return !c.inst;});});}
+  var mounted=todo.filter(function(i){return mountRules(i.part).length;}),mA=mounted.filter(function(i){return onModel(i.part);}),mB=mounted.filter(function(i){return !onModel(i.part);}),placedM=0,failedM=0;
+  todo=todo.filter(function(i){return mounted.indexOf(i)<0;});
+  function mountPlace(list){if(!list.length)return;list.forEach(function(i){placeAtHome(i.iid);});runChecks();var rs=[];list.forEach(function(i){mountRules(i.part).forEach(function(rl){if(rs.indexOf(rl)<0)rs.push(rl);});});
+    var tt=toast,cm=commit;toast=function(){};commit=function(){};try{snapAll(rs);}finally{toast=tt;commit=cm;}
+    list.forEach(function(i){var it=I[i.iid],ls=checks.links.filter(function(l){return l.from===i.iid&&rs.indexOf(l.rl)>=0;});if(ls.length&&ls.every(function(l){return l.missing;})){it.on=false;failedM++;syncItem(i.iid);return;}
+      it.why=t('whyMount')+mountRules(i.part).map(ruleName).join(', ')+'.';placedM++;});}
+  mountPlace(mA);
   function rank(i){return hasBase(i.part,'trim')?3:INST.some(function(o){return o.part!==i.part&&insideRule(i.part,o.part);})?2:hasBase(i.part,'low')?0:1;}
   todo.sort(function(a,b){return rank(a)-rank(b)||pmass(b.part)-pmass(a.part);});
   function clrOf(p){var c=0;(p.rules||[]).forEach(function(rl){var d=ruleDef(rl.r);if(d&&d.base==='clear')c=Math.max(c,num(rl.d,d.ds));});return c;}
@@ -935,7 +999,9 @@ function autoArrange(){
     else{it.on=false;failed++;}
     syncItem(iid);
   });
-  selected=null;commit();setView(ui.view);toast(t('tAuto',placed,failed));
+  var guard=0;while(mB.length&&guard++<6){var ready=mB.filter(function(i){return mountRules(i.part).every(function(rl){return linkCands(rl).some(function(c){return !c.inst||I[c.inst.iid].on||mB.indexOf(c.inst)<0;});});});if(!ready.length)ready=mB.slice();mountPlace(ready);mB=mB.filter(function(i){return ready.indexOf(i)<0;});}
+  placed+=placedM;failed+=failedM;runChecks();
+  selected=null;commit();setView(ui.view);toast(t('tAuto',placed,failed)+(!placed&&failed&&shell.n&&shell.role!=='frame'?' '+t('tTryFrame'):''));
 }
 
 /* ================= parts table ================= */
@@ -948,7 +1014,7 @@ function newPart(o){o=o||{};var id=slug(o.id)||slug(o.name)||uid('c');var base=i
   var sh=String(o.shape||'box').toLowerCase();sh=/x/.test(sh)&&/cyl|גליל/.test(sh)?'cylx':/z/.test(sh)&&/cyl|גליל/.test(sh)?'cylz':/cyl|גליל/.test(sh)?'cyly':'box';
   var p={id:id,name:String(o.name||id),model:String(o.model||''),cat:String(o.cat||''),qty:Math.max(1,Math.round(num(o.qty,1))),size:[num(o.x,50),num(o.y,50),num(o.z,50)],mass:num(o.mass,0),shape:sh,rules:Array.isArray(o.rules)?o.rules:parseRules(o.rules),notes:String(o.notes||''),src:String(o.src||'')};
   if(o.massE!==undefined&&o.massE!==''&&o.massE!==null&&isFinite(Number(o.massE)))p.massE=Number(o.massE);return p;}
-function partsChanged(){normAll();rebuildInst();buildRuntime();syncAll();refreshUI();touch();}
+function partsChanged(){histLater();normAll();rebuildInst();buildRuntime();syncAll();refreshUI();touch();}
 function setPartField(p,k,v){
   if(k==='x')p.size[0]=num(v,p.size[0]);else if(k==='y')p.size[1]=num(v,p.size[1]);else if(k==='z')p.size[2]=num(v,p.size[2]);
   else if(k==='qty')p.qty=Math.max(1,Math.round(num(v,1)));else if(k==='mass')p.mass=num(v,0);
@@ -1084,7 +1150,7 @@ function renderDrawer(){
       card.appendChild(row);}
     box.appendChild(card);});
 }
-function rulesChanged(keep){P.example=false;normAll();if(!$('#partModal').hidden)setTimeout(renderPart,0);autoShow();runChecks();snapMounts();refreshUI();requestRender();touch();if(!$('#tableModal').hidden)renderGrid();if(!keep)renderDrawer();}
+function rulesChanged(keep){P.example=false;histLater();normAll();if(!$('#partModal').hidden)setTimeout(renderPart,0);autoShow();runChecks();snapMounts();refreshUI();requestRender();touch();if(!$('#tableModal').hidden)renderGrid();if(!keep)renderDrawer();}
 
 /* ================= CAD file import ================= */
 var pending=[],occtP=null;
@@ -1131,7 +1197,7 @@ function commitFiles(){
     if(!pos.length||pos.length%9)throw new Error('empty');var id=uid('g');geo[id]=pos;saveGeo(id);
     if(f.role==='part'){var p=P.parts.filter(function(q){return q.id===f.part;})[0];if(!p)throw new Error('part');p.mesh={id:id,unit:f.unit,up:f.up,turn:'0'};
       var g=transformGeo(pos,p.mesh,true),z=g.boundingBox.getSize(new THREE.Vector3());p.size=[Math.round(z.x*10)/10,Math.round(z.y*10)/10,Math.round(z.z*10)/10];g.dispose();}
-    else{P.shells.push({id:id,name:f.name,unit:f.unit,up:f.up,turn:'0',under:0,kind:guessKind(pos)});lastShell=id;}
+    else{var nS={id:id,name:f.name,unit:f.unit,up:f.up,turn:'0',under:0,kind:guessKind(pos)};var gf=guessFramePart();if(gf){nS.role='frame';nS.part=gf;}P.shells.push(nS);lastShell=id;}
   }).catch(function(e){failed.push(f.file.name);if(/\.(step|stp)$/i.test(f.file.name))toast(t('tStepFail'));});});
   chain.then(function(){pending=[];P.example=false;if(lastShell)P.work.shellId=lastShell;rebuildInst();buildRuntime();rebuildShell();syncAll();commit();renderShells();renderProjects();setView(ui.view);
     if(failed.length&&!/\.(step|stp)$/i.test(failed[0]))toast(t('tBad')+failed.join(', '));if(lastShell)$('#shSet').open=true;});
@@ -1187,7 +1253,7 @@ function loadLocal(){
 function openProject(id,keepView){
   P=projects.filter(function(p){return p.id===id;})[0]||projects[0];selected=null;fill='full';
   P.shells.forEach(function(s){if(s.gen&&!geo[s.id])geo[s.id]=boxShellGeo.apply(null,s.gen);});
-  rebuildInst();buildRuntime();rebuildShell();hist=[];histIdx=-1;syncAll();hist=[JSON.stringify(P.work)];histIdx=0;
+  rebuildInst();buildRuntime();rebuildShell();hist=[];histIdx=-1;syncAll();hist=[snap()];histIdx=0;
   renderProjects();renderShells();renderPoints();refreshUI();if(!keepView)setView('iso');else requestRender();
   var pid=P.id;setTimeout(function(){if(P&&P.id===pid){normAll();autoShow(true);runChecks();snapMounts();refreshUI();}},700);
   kvSet('index',JSON.stringify({ids:projects.map(function(p){return p.id;}),cur:P.id,lang:lang}));
@@ -1320,7 +1386,13 @@ function bind(){
   $('#segShell').onclick=function(e){if(e.target.dataset.v){ui.shell=e.target.dataset.v;applyShellMode();refreshUI();}};
   $('#segMode').onclick=function(e){if(e.target.dataset.v){ui.mode=e.target.dataset.v;syncAll();refreshUI();}};
   $('#segFill').onclick=function(e){if(e.target.dataset.v){fill=e.target.dataset.v;runChecks();refreshUI();requestRender();}};
-  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};document.querySelectorAll('#segPage button').forEach(function(b){b.onclick=function(){showPage(b.dataset.v);};});document.querySelectorAll('#segMapKind button').forEach(function(b){b.onclick=function(){mapKind=b.dataset.v;renderMap();};});$('#mfAdd').onclick=addMapLink;$('#mfFrom').onchange=renderMapForm;$('#mfKind').onchange=renderMapForm;$('#mfTo').onchange=renderMapForm;$('#mfPickA').onclick=function(){mapPick('a');};$('#mfPickB').onclick=function(){mapPick('b');};$('#mfMode').onchange=function(){var m=$('#mfMode').value;$('#mfMax').value='';$('#mfMax').placeholder=String(linkMax({m:m}));$('#mfWayL').hidden=m!=='via';};window.addEventListener('hashchange',function(){showPage(location.hash==='#map'?'map':location.hash==='#graph'?'graph':'3d');});gBind();
+  $('#togLabels').onclick=function(){ui.labels=!ui.labels;refreshUI();requestRender();};
+  [['togPts','pts'],['togLtags','ltags'],['togMarks','marks'],['togFloor','floor']].forEach(function(x){$('#'+x[0]).onclick=function(){ui[x[1]]=!ui[x[1]];if(x[1]==='marks')runChecks();refreshUI();};});
+  $('#btnEye').onclick=function(e){e.stopPropagation();var m=$('#hudMenu');m.hidden=!m.hidden;$('#btnEye').setAttribute('aria-expanded',String(!m.hidden));};
+  $('#hudMenu').addEventListener('click',function(e){e.stopPropagation();});document.addEventListener('pointerdown',function(e){var m=$('#hudMenu');if(!m.hidden&&!e.target.closest('.hwrap')){m.hidden=true;$('#btnEye').setAttribute('aria-expanded','false');}});
+  $('#btnHideAll').onclick=function(){var any=ui.pts||ui.labels||ui.links||ui.ltags||ui.marks||ui.floor;['pts','labels','links','ltags','marks','floor'].forEach(function(k){ui[k]=!any;});runChecks();refreshUI();};
+  $('#btnCatAll').onclick=function(){PREF.cat=PREF.cat||{};var cs=cats(),any=cs.some(function(c){return !PREF.cat[c];});cs.forEach(function(c){PREF.cat[c]=any;});savePref();renderTray();};
+  initFolds();$('#togGrid').onclick=function(){ui.grid=!ui.grid;refreshUI();};$('#togMagnet').onclick=function(){ui.magnet=!ui.magnet;refreshUI();};document.querySelectorAll('#segPage button').forEach(function(b){b.onclick=function(){showPage(b.dataset.v);};});document.querySelectorAll('#segMapKind button').forEach(function(b){b.onclick=function(){mapKind=b.dataset.v;renderMap();};});$('#mfAdd').onclick=addMapLink;$('#mfFrom').onchange=renderMapForm;$('#mfKind').onchange=renderMapForm;$('#mfTo').onchange=renderMapForm;$('#mfPickA').onclick=function(){mapPick('a');};$('#mfPickB').onclick=function(){mapPick('b');};$('#mfMode').onchange=function(){var m=$('#mfMode').value;$('#mfMax').value='';$('#mfMax').placeholder=String(linkMax({m:m}));$('#mfWayL').hidden=m!=='via';};window.addEventListener('hashchange',function(){showPage(location.hash==='#map'?'map':location.hash==='#graph'?'graph':'3d');});gBind();
     $('#pmClose').onclick=function(){$('#partModal').hidden=true;};$('#btnSnap').onclick=function(){snapAll(null);};
   $('#togOnly').onclick=function(){ui.onlyLinked=!ui.onlyLinked;refreshUI();toast(ui.onlyLinked?t('tOnlyOn'):t('tOnlyOff'));if(ui.onlyLinked)autoShow(true);runChecks();snapMounts();refreshUI();};
   $('#togEnforce').onclick=function(){ui.enforce=!ui.enforce;refreshUI();toast(ui.enforce?t('tEnfOn'):t('tEnfOff'));};
@@ -1342,7 +1414,7 @@ function start(){
     showPage(location.hash==='#map'?'map':location.hash==='#graph'?'graph':'3d');storageNote();loop();initRemote();
   });
 }
-function autoArrangeQuiet(){var tt=toast;toast=function(){};try{autoArrange();}finally{toast=tt;}hist=[JSON.stringify(P.work)];histIdx=0;refreshUI();}
-window.__studio={screenOf:function(iid){var it=P.work.items[iid];_v.set(it.p[0],RT[iid].max[1],it.p[2]).project(camera);var r=canvas.getBoundingClientRect();return [r.left+(_v.x+1)/2*r.width,r.top+(1-_v.y)/2*r.height];},get P(){return P;},get checks(){return checks;},select:select,syncAll:syncAll,parseRules:parseRules,rulesText:rulesText,commit:commit,autoArrange:autoArrange,rowsToParts:rowsToParts,pointState:pointState};
+function autoArrangeQuiet(){var tt=toast;toast=function(){};try{autoArrange();}finally{toast=tt;}hist=[snap()];histIdx=0;refreshUI();}
+window.__studio={screenOf:function(iid){var it=P.work.items[iid];_v.set(it.p[0],RT[iid].max[1],it.p[2]).project(camera);var r=canvas.getBoundingClientRect();return [r.left+(_v.x+1)/2*r.width,r.top+(1-_v.y)/2*r.height];},get P(){return P;},get checks(){return checks;},select:select,syncAll:syncAll,parseRules:parseRules,rulesText:rulesText,commit:commit,autoArrange:autoArrange,rowsToParts:rowsToParts,pointState:pointState,inject:function(pj,gid,pk){geo[gid]=unpackGeo(pk);projects.push(pj);openProject(pj.id);refreshUI();}};
 start();
 })();
