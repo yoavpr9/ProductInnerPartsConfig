@@ -95,6 +95,25 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .ptag{position:absolute;transform:translate(-50%,-150%);background:var(--accent);color:var(--accent-ink);border-radius:5px;padding:1px 6px;font-size:11px;white-space:nowrap}
 .gwide .app{grid-template-columns:minmax(0,1fr)}.gwide .app>.col{display:none}
 .graphview{flex:1;min-height:420px;display:flex;flex-direction:column;gap:8px}
+.sketchview{flex:1;min-height:420px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.skviews{display:flex;gap:10px;justify-content:center;min-width:0}
+.skcellv{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sklab{font-family:var(--f-head);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
+.skview{border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:var(--viewport);align-self:center}.skview canvas{display:block;cursor:grab;touch-action:none}
+.skbank{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}
+.skbanklist{display:flex;flex-wrap:nowrap;align-items:flex-end;gap:18px;overflow-x:auto;overflow-y:hidden;min-height:128px;padding:4px 2px}
+.skcell{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;touch-action:none}.skcell:hover .skpart{outline:2px solid var(--ink)}
+.skpart{border:1px solid var(--ink);flex:none}.skpart.skscaled{border-style:dashed}.sknm{font-size:10.5px;color:var(--mute);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sklegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;padding:2px 4px}.sklg{display:inline-flex;align-items:center;gap:6px}
+.sksheet{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}.sksheet textarea{width:100%;resize:vertical;font:inherit}
+.skrot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%}.skrot input[type=range]{width:110px;padding:0}.skrot input[type=number]{width:64px}
+.prbox{max-width:1100px;max-height:96%}.prgrid{display:grid;grid-template-columns:auto minmax(260px,1fr);gap:16px;min-height:0;overflow:auto}
+.prpage{line-height:0;align-self:start}.prpage canvas{box-shadow:0 2px 14px rgba(0,0,0,.25);background:#fff;cursor:grab;touch-action:none;max-width:100%}
+.prside{display:flex;flex-direction:column;gap:8px;min-width:0}.prside textarea{width:100%;resize:vertical;font:inherit}.prtexts{display:flex;flex-direction:column;gap:8px}.prtx{border:1px solid var(--line);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}.prtx.on{border-color:var(--accent)}.prtx textarea{width:100%;font:inherit}
+@media (max-width:820px){.prgrid{grid-template-columns:1fr}}
+.skzoom{display:inline-flex;align-items:center;gap:6px}.skzoom input[type=range]{width:120px;padding:0}
+.skfly{position:fixed;z-index:50;pointer-events:none;opacity:.8;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.skinfo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:32px}.skxyz{display:flex;align-items:center;gap:4px}.skxyz input{width:78px}
 .gcanvas{flex:1;min-height:380px;position:relative;overflow:hidden;background:var(--viewport);border:1px solid var(--line);border-radius:12px;cursor:grab;touch-action:none;background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:22px 22px}
 #gWorld{position:absolute;left:0;top:0;transform-origin:0 0}
 #gWires{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;pointer-events:none}
@@ -250,7 +269,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 
   <main class="center">
     <div class="bar">
-      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button><button type="button" data-v="graph" data-t="pageGraph"></button></span>
+      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button><button type="button" data-v="graph" data-t="pageGraph"></button><button type="button" data-v="sketch" data-t="pageSketch"></button></span>
       <div class="row">
         <span class="seg" id="segHist"><button type="button" id="btnUndo" title="Ctrl+Z"><span aria-hidden="true" class="ico">↶</span> <span data-t="undo"></span></button><button type="button" id="btnRedo" title="Ctrl+Shift+Z"><span aria-hidden="true" class="ico">↷</span> <span data-t="redo"></span></button></span>
         <button type="button" class="btn solid" id="btnAuto" data-t="auto"></button>
@@ -288,6 +307,24 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="axes" dir="ltr">X · Y↑ · Z · mm</div>
       <div class="chipname" id="chipName"></div>
       <div class="hint" data-t="hint"></div>
+    </div>
+    <div class="sketchview" id="sketchView" hidden>
+      <div class="bar"><div class="row">
+        <button type="button" class="btn small" id="skPull" data-t="skPull"></button>
+        <span class="skzoom"><span class="lab" data-t="skZoomT"></span><button type="button" class="btn small" id="skZout" aria-label="zoom out">−</button><input type="range" id="skZoom" min="-200" max="300" step="5" value="0" aria-label="zoom"><button type="button" class="btn small" id="skZin" aria-label="zoom in">+</button><span class="mono" id="skZoomL">100%</span></span>
+        <button type="button" class="btn small" id="skFit" data-t="skFitB"></button>
+        <button type="button" class="btn small" id="skGhost" aria-pressed="true" data-t="skGhostB"></button>
+        <span class="seg" id="skSegMode"><button type="button" data-v="detail" data-t="skModeD"></button><button type="button" data-v="block" data-t="skModeB"></button></span>
+        <span class="seg" id="skSegCol"><button type="button" data-v="part" data-t="skColPart"></button><button type="button" data-v="cat" data-t="skColCat"></button></span>
+        <span class="seg"><button type="button" id="skUndo" title="Ctrl+Z">↶</button><button type="button" id="skRedo" title="Ctrl+Shift+Z">↷</button></span>
+        <button type="button" class="btn small danger" id="skClear" data-t="skClearB"></button></div>
+        <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="skLockC" checked style="width:auto"><span data-t="skLock"></span></label><button type="button" class="btn solid" id="skSend" data-t="skSend"></button></div></div>
+      <p class="fine" data-t="skIntro"></p>
+      <div class="skinfo" id="skInfo"></div>
+      <div class="skviews" id="skViews"></div>
+      <div class="sklegend" id="skLegend" hidden></div>
+      <div class="skbank" id="skBank"><div class="head"><span class="lab"><span data-t="skBankT"></span> <span class="mono" id="skBankN"></span></span><span class="fine" data-t="skBankHint"></span></div><div class="skbanklist" id="skBankList"></div></div>
+      <div class="sksheet"><div class="head"><span class="lab" data-t="skSheetT"></span><button type="button" class="btn solid" id="skA4" data-t="prOpenB"></button></div></div>
     </div>
     <div class="graphview" id="graphView" hidden>
       <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
@@ -345,12 +382,27 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <section class="card" data-fold="saved">
       <div class="head"><span class="lab" data-t="saved"></span><span class="mono" id="savedCount"></span></div>
       <div class="row" style="flex-wrap:nowrap"><input type="text" id="cfgName" maxlength="60"><button type="button" class="btn solid" id="btnSave" data-t="save"></button></div>
-      <div class="row"><button type="button" class="btn small" id="btnEmpty" data-t="emptyLayout"></button></div>
+      <div class="row"><button type="button" class="btn small" id="btnEmpty" data-t="emptyLayout"></button><button type="button" class="btn small" id="btnCfgIn" data-t="cfgIn"></button><input type="file" id="cfgFile" accept=".json" hidden></div><p class="fine" data-t="cfgInHint"></p>
       <ul class="plain" id="saved"></ul>
     </section>
   </aside>
 </div>
 
+<div class="modal" id="printModal" hidden><div class="box prbox">
+  <div class="head"><b style="font-family:var(--f-head);font-size:17px" data-t="prHead"></b><div class="row"><button type="button" class="btn" id="prPng" data-t="prPngB"></button><button type="button" class="btn solid" id="prPdf" data-t="prPdfB"></button><button type="button" class="btn small" id="prClose" aria-label="close">✕</button></div></div>
+  <div class="prgrid">
+    <div class="prpage"><canvas id="prCanvas"></canvas></div>
+    <div class="prside">
+      <p class="fine" data-t="prHelp"></p>
+      <div class="row"><span class="lab" data-t="prZoomT"></span><button type="button" class="btn small" id="prZout">−</button><span class="mono" id="prZoomL">100%</span><button type="button" class="btn small" id="prZin">+</button><button type="button" class="btn small" id="prReset" data-t="prResetB"></button></div>
+      <label class="f"><span data-t="prTitleL"></span><input type="text" id="prTitle" maxlength="90"></label>
+      <label class="f"><span data-t="prNoteL"></span><textarea id="prNote" rows="5" maxlength="1500"></textarea></label>
+      <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLegend" style="width:auto"><span data-t="prLegendC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLabels" style="width:auto"><span data-t="prLabelsC"></span></label></div>
+      <div class="head"><span class="lab" data-t="prTextsT"></span><button type="button" class="btn small" id="prAddText" data-t="prAddTextB"></button></div>
+      <div id="prTextList" class="prtexts"></div>
+    </div>
+  </div>
+</div></div>
 <div class="modal" id="partModal" hidden><div class="box" style="max-width:680px;overflow:auto">
   <div class="head"><b id="pmTitle" style="font-family:var(--f-head);font-size:17px"></b><div class="row"><button type="button" class="btn small danger" id="pmDel" data-t="delPart"></button><button type="button" class="btn small solid" id="pmClose" data-t="done"></button></div></div>
   <div class="fields" id="pmFields"></div>
