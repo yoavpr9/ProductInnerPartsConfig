@@ -104,6 +104,9 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .skbanklist{display:flex;flex-wrap:nowrap;align-items:flex-end;gap:18px;overflow-x:auto;overflow-y:hidden;min-height:128px;padding:4px 2px}
 .skcell{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;touch-action:none}.skcell:hover .skpart{outline:2px solid var(--ink)}
 .skpart{border:1px solid var(--ink);flex:none}.skpart.skscaled{border-style:dashed}.sknm{font-size:10.5px;color:var(--mute);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sklegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;padding:2px 4px}.sklg{display:inline-flex;align-items:center;gap:6px}
+.sksheet{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}.sksheet textarea{width:100%;resize:vertical;font:inherit}
+.skrot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%}.skrot input[type=range]{width:110px;padding:0}.skrot input[type=number]{width:64px}
 .skzoom{display:inline-flex;align-items:center;gap:6px}.skzoom input[type=range]{width:120px;padding:0}
 .skfly{position:fixed;z-index:50;pointer-events:none;opacity:.8;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .skinfo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:32px}.skxyz{display:flex;align-items:center;gap:4px}.skxyz input{width:78px}
@@ -307,13 +310,19 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <span class="skzoom"><span class="lab" data-t="skZoomT"></span><button type="button" class="btn small" id="skZout" aria-label="zoom out">−</button><input type="range" id="skZoom" min="-200" max="300" step="5" value="0" aria-label="zoom"><button type="button" class="btn small" id="skZin" aria-label="zoom in">+</button><span class="mono" id="skZoomL">100%</span></span>
         <button type="button" class="btn small" id="skFit" data-t="skFitB"></button>
         <button type="button" class="btn small" id="skGhost" aria-pressed="true" data-t="skGhostB"></button>
+        <span class="seg" id="skSegMode"><button type="button" data-v="detail" data-t="skModeD"></button><button type="button" data-v="block" data-t="skModeB"></button></span>
+        <span class="seg" id="skSegCol"><button type="button" data-v="part" data-t="skColPart"></button><button type="button" data-v="cat" data-t="skColCat"></button></span>
         <span class="seg"><button type="button" id="skUndo" title="Ctrl+Z">↶</button><button type="button" id="skRedo" title="Ctrl+Shift+Z">↷</button></span>
         <button type="button" class="btn small danger" id="skClear" data-t="skClearB"></button></div>
         <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="skLockC" checked style="width:auto"><span data-t="skLock"></span></label><button type="button" class="btn solid" id="skSend" data-t="skSend"></button></div></div>
       <p class="fine" data-t="skIntro"></p>
       <div class="skinfo" id="skInfo"></div>
       <div class="skviews" id="skViews"></div>
+      <div class="sklegend" id="skLegend" hidden></div>
       <div class="skbank" id="skBank"><div class="head"><span class="lab"><span data-t="skBankT"></span> <span class="mono" id="skBankN"></span></span><span class="fine" data-t="skBankHint"></span></div><div class="skbanklist" id="skBankList"></div></div>
+      <div class="sksheet"><div class="head"><span class="lab" data-t="skSheetT"></span><button type="button" class="btn solid small" id="skA4" data-t="skA4B"></button></div>
+        <label class="f"><span data-t="skTitleL"></span><input type="text" id="skTitle" maxlength="80"></label>
+        <label class="f"><span data-t="skNoteL"></span><textarea id="skNote" rows="3" maxlength="1200"></textarea></label></div>
     </div>
     <div class="graphview" id="graphView" hidden>
       <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
