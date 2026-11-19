@@ -96,13 +96,15 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .gwide .app{grid-template-columns:minmax(0,1fr)}.gwide .app>.col{display:none}
 .graphview{flex:1;min-height:420px;display:flex;flex-direction:column;gap:8px}
 .sketchview{flex:1;min-height:420px;display:flex;flex-direction:column;gap:8px;min-width:0}
-.skrows{flex:1;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;min-height:300px}
-.skrow{display:flex;gap:14px;align-items:stretch;padding:10px 12px;border-bottom:1px solid var(--line);position:relative}.skrow:last-child{border-bottom:0}
-.sklab{position:absolute;top:6px;inset-inline-start:14px;font-family:var(--f-head);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);z-index:1;pointer-events:none}
-.skview{flex:none;border:1px solid var(--line);border-radius:6px;overflow:hidden;line-height:0;background:var(--viewport)}.skview canvas{display:block;cursor:grab;touch-action:none}
-.skshelf{flex:1;min-width:0;display:flex;flex-wrap:nowrap;align-items:flex-end;gap:18px;padding:6px 4px 4px;overflow-x:auto;overflow-y:hidden}.skcell{flex:none}
-.skcell{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;max-width:100%;touch-action:none}.skcell:hover .skpart{outline:2px solid var(--ink)}
-.skpart{border:1px solid var(--ink);flex:none;max-width:100%}.sknm{font-size:10.5px;color:var(--mute);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.skviews{display:flex;gap:10px;justify-content:center;min-width:0}
+.skcellv{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}
+.sklab{font-family:var(--f-head);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
+.skview{border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:var(--viewport);align-self:center}.skview canvas{display:block;cursor:grab;touch-action:none}
+.skbank{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}
+.skbanklist{display:flex;flex-wrap:nowrap;align-items:flex-end;gap:18px;overflow-x:auto;overflow-y:hidden;min-height:128px;padding:4px 2px}
+.skcell{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;touch-action:none}.skcell:hover .skpart{outline:2px solid var(--ink)}
+.skpart{border:1px solid var(--ink);flex:none}.skpart.skscaled{border-style:dashed}.sknm{font-size:10.5px;color:var(--mute);max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.skzoom{display:inline-flex;align-items:center;gap:6px}.skzoom input[type=range]{width:120px;padding:0}
 .skfly{position:fixed;z-index:50;pointer-events:none;opacity:.8;box-shadow:0 4px 12px rgba(0,0,0,.25)}
 .skinfo{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:32px}.skxyz{display:flex;align-items:center;gap:4px}.skxyz input{width:78px}
 .gcanvas{flex:1;min-height:380px;position:relative;overflow:hidden;background:var(--viewport);border:1px solid var(--line);border-radius:12px;cursor:grab;touch-action:none;background-image:radial-gradient(var(--grid) 1px,transparent 1px);background-size:22px 22px}
@@ -302,6 +304,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <div class="sketchview" id="sketchView" hidden>
       <div class="bar"><div class="row">
         <button type="button" class="btn small" id="skPull" data-t="skPull"></button>
+        <span class="skzoom"><span class="lab" data-t="skZoomT"></span><button type="button" class="btn small" id="skZout" aria-label="zoom out">−</button><input type="range" id="skZoom" min="-200" max="300" step="5" value="0" aria-label="zoom"><button type="button" class="btn small" id="skZin" aria-label="zoom in">+</button><span class="mono" id="skZoomL">100%</span></span>
         <button type="button" class="btn small" id="skFit" data-t="skFitB"></button>
         <button type="button" class="btn small" id="skGhost" aria-pressed="true" data-t="skGhostB"></button>
         <span class="seg"><button type="button" id="skUndo" title="Ctrl+Z">↶</button><button type="button" id="skRedo" title="Ctrl+Shift+Z">↷</button></span>
@@ -309,7 +312,8 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="skLockC" checked style="width:auto"><span data-t="skLock"></span></label><button type="button" class="btn solid" id="skSend" data-t="skSend"></button></div></div>
       <p class="fine" data-t="skIntro"></p>
       <div class="skinfo" id="skInfo"></div>
-      <div class="skrows" id="skRows"></div>
+      <div class="skviews" id="skViews"></div>
+      <div class="skbank" id="skBank"><div class="head"><span class="lab"><span data-t="skBankT"></span> <span class="mono" id="skBankN"></span></span><span class="fine" data-t="skBankHint"></span></div><div class="skbanklist" id="skBankList"></div></div>
     </div>
     <div class="graphview" id="graphView" hidden>
       <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
