@@ -324,7 +324,6 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="skviews" id="skViews"></div>
       <div class="sklegend" id="skLegend" hidden></div>
       <div class="skbank" id="skBank"><div class="head"><span class="lab"><span data-t="skBankT"></span> <span class="mono" id="skBankN"></span></span><span class="fine" data-t="skBankHint"></span></div><div class="skbanklist" id="skBankList"></div></div>
-      <div class="sksheet"><div class="head"><span class="lab" data-t="skSheetT"></span><button type="button" class="btn solid" id="skA4" data-t="prOpenB"></button></div></div>
     </div>
     <div class="graphview" id="graphView" hidden>
       <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
@@ -393,11 +392,12 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
   <div class="prgrid">
     <div class="prpage"><canvas id="prCanvas"></canvas></div>
     <div class="prside">
+      <div class="row"><span class="lab" data-t="prSrcT"></span><span class="seg" id="prSrc"><button type="button" data-v="sketch" data-t="prSrcSk"></button><button type="button" data-v="work" data-t="prSrcW"></button></span></div>
       <p class="fine" data-t="prHelp"></p>
       <div class="row"><span class="lab" data-t="prZoomT"></span><button type="button" class="btn small" id="prZout">−</button><span class="mono" id="prZoomL">100%</span><button type="button" class="btn small" id="prZin">+</button><button type="button" class="btn small" id="prReset" data-t="prResetB"></button></div>
       <label class="f"><span data-t="prTitleL"></span><input type="text" id="prTitle" maxlength="90"></label>
       <label class="f"><span data-t="prNoteL"></span><textarea id="prNote" rows="5" maxlength="1500"></textarea></label>
-      <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLegend" style="width:auto"><span data-t="prLegendC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLabels" style="width:auto"><span data-t="prLabelsC"></span></label></div>
+      <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLegend" style="width:auto"><span data-t="prLegendC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLabels" style="width:auto"><span data-t="prLabelsC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prFrame" style="width:auto"><span data-t="prFrameC"></span></label></div>
       <div class="head"><span class="lab" data-t="prTextsT"></span><button type="button" class="btn small" id="prAddText" data-t="prAddTextB"></button></div>
       <div id="prTextList" class="prtexts"></div>
     </div>
