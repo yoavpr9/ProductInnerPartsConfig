@@ -107,6 +107,7 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .sklegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;padding:2px 4px}.sklg{display:inline-flex;align-items:center;gap:6px}
 .sksheet{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}.sksheet textarea{width:100%;resize:vertical;font:inherit}
 .skrot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%}.skrot input[type=range]{width:110px;padding:0}.skrot input[type=number]{width:64px}
+[hidden]{display:none!important}
 .prbox{max-width:1100px;max-height:96%}.prgrid{display:grid;grid-template-columns:auto minmax(260px,1fr);gap:16px;min-height:0;overflow:auto}
 .prpage{line-height:0;align-self:start}.prpage canvas{box-shadow:0 2px 14px rgba(0,0,0,.25);background:#fff;cursor:grab;touch-action:none;max-width:100%}
 .prside{display:flex;flex-direction:column;gap:8px;min-width:0}.prside textarea{width:100%;resize:vertical;font:inherit}.prtexts{display:flex;flex-direction:column;gap:8px}.prtx{border:1px solid var(--line);border-radius:8px;padding:6px;display:flex;flex-direction:column;gap:4px}.prtx.on{border-color:var(--accent)}.prtx textarea{width:100%;font:inherit}
@@ -390,16 +391,17 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 <div class="modal" id="printModal" hidden><div class="box prbox">
   <div class="head"><b style="font-family:var(--f-head);font-size:17px" data-t="prHead"></b><div class="row"><button type="button" class="btn" id="prPng" data-t="prPngB"></button><button type="button" class="btn solid" id="prPdf" data-t="prPdfB"></button><button type="button" class="btn small" id="prClose" aria-label="close">✕</button></div></div>
   <div class="prgrid">
-    <div class="prpage"><canvas id="prCanvas"></canvas></div>
+    <div class="prpage"><canvas id="prCanvas"></canvas><div id="prSch" hidden></div></div>
     <div class="prside">
+      <div class="row"><span class="lab" data-t="prStyT"></span><span class="seg" id="prSty"><button type="button" data-v="model" data-t="prStyA"></button><button type="button" data-v="sch" data-t="prStyB"></button></span></div>
       <div class="row"><span class="lab" data-t="prSrcT"></span><span class="seg" id="prSrc"><button type="button" data-v="sketch" data-t="prSrcSk"></button><button type="button" data-v="work" data-t="prSrcW"></button></span></div>
-      <p class="fine" data-t="prHelp"></p>
-      <div class="row"><span class="lab" data-t="prZoomT"></span><button type="button" class="btn small" id="prZout">−</button><span class="mono" id="prZoomL">100%</span><button type="button" class="btn small" id="prZin">+</button><button type="button" class="btn small" id="prReset" data-t="prResetB"></button></div>
+      <p class="fine prA" data-t="prHelp"></p><div id="prSchSide" class="prside" hidden></div>
+      <div class="row prA"><span class="lab" data-t="prZoomT"></span><button type="button" class="btn small" id="prZout">−</button><span class="mono" id="prZoomL">100%</span><button type="button" class="btn small" id="prZin">+</button><button type="button" class="btn small" id="prReset" data-t="prResetB"></button></div>
       <label class="f"><span data-t="prTitleL"></span><input type="text" id="prTitle" maxlength="90"></label>
       <label class="f"><span data-t="prNoteL"></span><textarea id="prNote" rows="5" maxlength="1500"></textarea></label>
-      <div class="row"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLegend" style="width:auto"><span data-t="prLegendC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLabels" style="width:auto"><span data-t="prLabelsC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prFrame" style="width:auto"><span data-t="prFrameC"></span></label></div>
-      <div class="head"><span class="lab" data-t="prTextsT"></span><button type="button" class="btn small" id="prAddText" data-t="prAddTextB"></button></div>
-      <div id="prTextList" class="prtexts"></div>
+      <div class="row prA"><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLegend" style="width:auto"><span data-t="prLegendC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prLabels" style="width:auto"><span data-t="prLabelsC"></span></label><label class="row fine" style="flex-wrap:nowrap"><input type="checkbox" id="prFrame" style="width:auto"><span data-t="prFrameC"></span></label></div>
+      <div class="head prA"><span class="lab" data-t="prTextsT"></span><button type="button" class="btn small" id="prAddText" data-t="prAddTextB"></button></div>
+      <div id="prTextList" class="prtexts prA"></div>
     </div>
   </div>
 </div></div>
