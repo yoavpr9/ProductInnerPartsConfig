@@ -291,7 +291,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 
   <main class="center">
     <div class="bar">
-      <span class="seg" id="segPage"><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button><button type="button" data-v="graph" data-t="pageGraph"></button><button type="button" data-v="sketch" data-t="pageSketch"></button></span>
+      <span class="seg" id="segPage"><button type="button" data-v="sketch" data-t="pageSketch"></button><button type="button" data-v="3d" data-t="page3d"></button><button type="button" data-v="map" data-t="pageMap"></button></span>
       <div class="row">
         <span class="seg" id="segHist"><button type="button" id="btnUndo" title="Ctrl+Z"><span aria-hidden="true" class="ico">↶</span> <span data-t="undo"></span></button><button type="button" id="btnRedo" title="Ctrl+Shift+Z"><span aria-hidden="true" class="ico">↷</span> <span data-t="redo"></span></button></span>
         <button type="button" class="btn solid" id="btnAuto" data-t="auto"></button>
@@ -305,6 +305,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small" id="togEnforce" aria-pressed="true" data-t="enforce"></button>
         <button type="button" class="btn small" id="togOnly" aria-pressed="true" data-t="onlyLinked"></button>
       </div>
+      <button type="button" class="btn solid" id="btnTo2d" data-t="to2d"></button>
     </div>
     <div class="viewport" id="viewport">
       <div class="hud" id="hud">
@@ -348,13 +349,13 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
       <div class="skbank" id="skBank"><div class="head"><span class="lab"><span data-t="skBankT"></span> <span class="mono" id="skBankN"></span></span><span class="fine" data-t="skBankHint"></span></div><div class="skbanklist" id="skBankList"></div></div>
     </div>
     <div class="graphview" id="graphView" hidden>
-      <div class="bar"><div class="row"><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
+      <div class="bar"><div class="row"><button type="button" class="btn small solid" id="gBack" data-t="gBack"></button><button type="button" class="btn small" id="gLayout" data-t="gLayoutBtn"></button><button type="button" class="btn small" id="gFit" data-t="gFitBtn"></button><button type="button" class="btn small" id="gExpAll" data-t="gExpAllBtn"></button><button type="button" class="btn small" id="gWide" data-t="gWide"></button></div></div>
       <p class="fine" data-t="gIntro"></p>
       <div class="gcanvas" id="gCanvas" dir="ltr"><div id="gWorld"></div>
         <div class="gedit" id="gEdit" hidden><div id="gEditBody"></div></div></div>
     </div>
     <div class="mapview" id="mapView" hidden>
-      <div class="bar"><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="mech" data-t="k_mech"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
+      <div class="bar"><button type="button" class="btn small solid" id="mapToGraph" data-t="mapToGraph"></button><span class="seg" id="segMapKind"><button type="button" data-v="all" data-t="mapAll"></button><button type="button" data-v="data" data-t="k_data"></button><button type="button" data-v="power" data-t="k_power"></button><button type="button" data-v="water" data-t="k_water"></button><button type="button" data-v="mech" data-t="k_mech"></button><button type="button" data-v="other" data-t="k_other"></button></span></div>
       <p class="fine" data-t="mapIntro"></p>
       <div id="mapBody"></div>
       <section class="msys mform">
