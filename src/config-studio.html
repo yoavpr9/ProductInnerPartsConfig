@@ -220,6 +220,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 @media (prefers-reduced-motion:reduce){.toast,.btn,.seg button,.item,.hchk,.mname,.fchev{transition:none}.btn:active:not(:disabled){transform:none}}
 @media (max-width:1020px){ html,body{height:auto} .app{grid-template-columns:1fr;height:auto} .col{overflow:visible} .viewport{min-height:420px} .center{order:-1} }
 @media (max-width:600px){ .chipname{top:auto;bottom:26px;inset-inline-end:10px;max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .hint{display:none} .axes{bottom:6px} }
+.prparts{display:flex;flex-direction:column;gap:2px;max-height:220px;overflow:auto;padding:4px 0}.prparts b{margin-top:6px}.prparts .sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}#prModelSide{display:flex;flex-direction:column;gap:8px}
 </style>
 
 <div class="app" id="app">
@@ -415,7 +416,7 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
     <div class="prside">
       <div class="row"><span class="lab" data-t="prStyT"></span><span class="seg" id="prSty"><button type="button" data-v="model" data-t="prStyA"></button><button type="button" data-v="sch" data-t="prStyB"></button></span></div>
       <div class="row"><span class="lab" data-t="prSrcT"></span><span class="seg" id="prSrc"><button type="button" data-v="sketch" data-t="prSrcSk"></button><button type="button" data-v="work" data-t="prSrcW"></button></span></div>
-      <p class="fine prA" data-t="prHelp"></p><div id="prSchSide" class="prside" hidden></div>
+      <p class="fine prA" data-t="prHelp"></p><div id="prModelSide" class="prA"></div><div id="prSchSide" class="prside" hidden></div>
       <div class="row prA"><span class="lab" data-t="prZoomT"></span><button type="button" class="btn small" id="prZout">−</button><span class="mono" id="prZoomL">100%</span><button type="button" class="btn small" id="prZin">+</button><button type="button" class="btn small" id="prReset" data-t="prResetB"></button></div>
       <label class="f"><span data-t="prTitleL"></span><input type="text" id="prTitle" maxlength="90"></label>
       <label class="f"><span data-t="prNoteL"></span><textarea id="prNote" rows="5" maxlength="1500"></textarea></label>
