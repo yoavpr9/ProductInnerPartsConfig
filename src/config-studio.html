@@ -5,7 +5,7 @@
 /* Layout: three-column workbench — project/files/parts | 3D viewport | checks/inspector. Stacks to one column on phones. */
 :root{
   --bg:#f3f4ef; --panel:#fbfcf8; --viewport:#e9ece4; --ink:#1b1c1a; --mute:#666b63; --line:#cfd3c8; --grid:#b7bcb1;
-  --accent:#1c3f8f; --accent-ink:#ffffff; --warn:#a86a05; --crit:#c5432c; --ok:#2f7d4f; --chip:#e6e9df;
+  --accent:#1c3f8f; --accent-ink:#ffffff; --warn:#96600a; --crit:#c5432c; --ok:#2f7d4f; --chip:#e6e9df;
   --f-ui:"Heebo","Segoe UI",Arial,sans-serif; --f-head:"IBM Plex Sans Hebrew","Heebo",Arial,sans-serif; --f-mono:"IBM Plex Mono",Menlo,Consolas,monospace;
   --ease:cubic-bezier(.2,.8,.2,1); --t:150ms;
   --btn-line:color-mix(in srgb,var(--ink) 38%,transparent);
@@ -221,6 +221,25 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 @media (max-width:1020px){ html,body{height:auto} .app{grid-template-columns:1fr;height:auto} .col{overflow:visible} .viewport{min-height:420px} .center{order:-1} }
 @media (max-width:600px){ .chipname{top:auto;bottom:26px;inset-inline-end:10px;max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .hint{display:none} .axes{bottom:6px} }
 #prHxWrap{position:relative;overflow:hidden;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.25);background:#eef0f2}#prHx{position:absolute;top:0;left:0;width:1440px;height:900px;border:0;transform-origin:0 0}[dir=rtl] #prHx{left:auto;right:0;transform-origin:100% 0}#prHxBusy{position:absolute;top:8px;inset-inline-start:8px;background:#fff;padding:3px 8px;border-radius:6px;line-height:1.4}.prparts{display:flex;flex-direction:column;gap:2px;max-height:220px;overflow:auto;padding:4px 0}.prparts b{margin-top:6px}.prparts .sw{width:12px;height:12px;border-radius:3px;flex:0 0 auto}#prModelSide{display:flex;flex-direction:column;gap:8px}
+
+/* v1.32 UI review: phone view toolbar folds away, touch-size controls, readable hint */
+.hint{background:color-mix(in srgb,var(--viewport) 85%,transparent);padding:2px 6px;border-radius:6px}
+.hudtog{display:none}
+.fchev{width:14px;font-size:12px}
+@media (max-width:600px){
+  .hud{left:auto;transform:none;inset-inline-start:8px;max-width:calc(100% - 16px);justify-content:flex-start}
+  .hudtog{display:inline-flex;align-items:center;gap:4px;border:0}.hudtog:hover{background:transparent}
+  .hud:not(.open){padding:2px}
+  .hud:not(.open)>:not(.hudtog){display:none}
+  .hud.open .hudtog{flex-basis:100%;justify-content:flex-start}
+}
+@media (pointer:coarse){
+  .btn,.seg button,.hchk,.cath,.item{min-height:44px}
+  .btn.small,.hud .seg button{min-height:40px}
+  .btn{padding-inline:14px}.row,.hud{gap:8px}
+  input[type=text],input[type=number],select{min-height:44px}
+  .card>.fh{min-height:40px}
+}
 </style>
 
 <div class="app" id="app">
@@ -305,10 +324,11 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
         <button type="button" class="btn small" id="togEnforce" aria-pressed="true" data-t="enforce"></button>
         <button type="button" class="btn small" id="togOnly" aria-pressed="true" data-t="onlyLinked"></button>
       </div>
-      <button type="button" class="btn solid" id="btnTo2d" data-t="to2d"></button>
+      <button type="button" class="btn" id="btnTo2d" data-t="to2d"></button>
     </div>
     <div class="viewport" id="viewport">
       <div class="hud" id="hud">
+        <button type="button" class="btn small hudtog" id="hudTog" aria-expanded="false" aria-controls="hud"><span data-t="viewOpts"></span> ▾</button>
         <span class="seg" id="segView"><button type="button" data-v="front" data-t="vFront"></button><button type="button" data-v="side" data-t="vSide"></button><button type="button" data-v="top" data-t="vTop"></button><button type="button" data-v="iso">3D</button></span>
         <span class="hsep"></span>
         <span class="seg" id="segShell" title=""><button type="button" data-v="glass" data-t="mGlass"></button><button type="button" data-v="cut" data-t="mCut"></button><button type="button" data-v="solid" data-t="mSolid"></button><button type="button" data-v="off" data-t="mOff"></button></span>
