@@ -21,7 +21,7 @@
   --bg:#f3f4ef; --panel:#fbfcf8; --viewport:#e9ece4; --ink:#1b1c1a; --mute:#666b63; --line:#cfd3c8; --grid:#b7bcb1;
   --accent:#1c3f8f; --accent-ink:#ffffff; --warn:#a86a05; --crit:#c5432c; --ok:#2f7d4f; --chip:#e6e9df;
   --f-ui:"Heebo","Segoe UI",Arial,sans-serif; --f-head:"IBM Plex Sans Hebrew","Heebo",Arial,sans-serif; --f-mono:"IBM Plex Mono",Menlo,Consolas,monospace;
-  --ease:cubic-bezier(.23,1,.32,1); --ease-io:cubic-bezier(.77,0,.175,1); --t:150ms;
+  --ease:cubic-bezier(.2,.8,.2,1); --t:150ms;
   --btn-line:color-mix(in srgb,var(--ink) 38%,transparent);
   --on-bg:color-mix(in srgb,var(--accent) 13%,var(--panel));
   --shadow-1:0 2px 8px color-mix(in srgb,var(--ink) 9%,transparent);
@@ -49,7 +49,7 @@ h1,h3,.help h3{text-wrap:balance}.fine,.help li,.rule p{text-wrap:pretty}
 h1{font-family:var(--f-head);font-size:22px;margin:0;line-height:1.1}
 .brand p{margin:0;color:var(--mute);font-size:12.5px}
 .btn{border:1px solid var(--btn-line);background:transparent;border-radius:999px;padding:5px 12px;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;
-  transition:background-color var(--t) var(--ease),border-color var(--t) var(--ease),color var(--t) var(--ease),transform 140ms var(--ease)}
+  transition:background-color var(--t) var(--ease),border-color var(--t) var(--ease),color var(--t) var(--ease),transform 90ms var(--ease)}
 .btn:hover{background:var(--chip);border-color:var(--ink)}
 .btn:active:not(:disabled){transform:translateY(1px) scale(.98)}
 .btn.solid{background:var(--ink);color:var(--panel);border-color:var(--ink)}
@@ -99,7 +99,7 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .cat{font-size:11px;color:var(--mute);margin-top:6px;letter-spacing:.05em}
 /* foldable cards (SolidWorks-style property manager groups) */
 .card>.fh{cursor:pointer;user-select:none}
-.fchev{display:inline-block;width:12px;font-size:10px;color:var(--mute);transition:transform 200ms var(--ease-io)}
+.fchev{display:inline-block;width:12px;font-size:10px;color:var(--mute);transition:transform .15s}
 .card.folded .fchev{transform:rotate(-90deg)}[dir=rtl] .card.folded .fchev{transform:rotate(90deg)}
 .card.folded>:not(.fh){display:none!important}.card.folded{flex:0 0 auto!important;min-height:0!important}
 .led{width:9px;height:9px;border-radius:50%;flex:none;background:var(--line);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
@@ -132,7 +132,7 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .skviews{display:flex;gap:10px;justify-content:center;min-width:0}
 .skcellv{position:relative;flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:4px}
 .sklab{font-family:var(--f-head);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-align:center}
-.skview{border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:var(--viewport);align-self:center}.skview canvas{display:block;cursor:grab;touch-action:none}
+.skview{border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:var(--viewport);align-self:center;position:relative}.skax{position:absolute;top:8px;left:8px;width:96px;height:96px;pointer-events:none}.skax[data-who=world]{opacity:.6}.skview canvas{display:block;cursor:grab;touch-action:none}
 .skbank{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:6px}
 .skbanklist{display:flex;flex-wrap:nowrap;align-items:flex-end;gap:18px;overflow-x:auto;overflow-y:hidden;min-height:128px;padding:4px 2px}
 .skcell{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;touch-action:none}.skcell:hover .skpart{outline:2px solid var(--ink)}
@@ -163,7 +163,7 @@ ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 .gport .glab{color:var(--ink)}
 .gin,.gout,.gnone{position:absolute;top:4px;width:10px;height:10px;border-radius:50%}
 .gin{left:-6px;background:var(--panel);border:2px solid var(--mute)}
-.gout{right:-6px;cursor:crosshair;border:2px solid var(--panel)}.gout{transition:transform 150ms var(--ease)}@media (hover:hover) and (pointer:fine){.gout:hover{transform:scale(1.35)}}
+.gout{right:-6px;cursor:crosshair;border:2px solid var(--panel)}.gout:hover{transform:scale(1.35)}
 .gnone{right:-6px;display:none}
 .gadd{all:unset;cursor:pointer;display:block;padding:3px 8px 5px;font-size:11px;color:var(--accent)}
 .gedit{position:absolute;width:280px;max-height:calc(100% - 16px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;box-shadow:var(--shadow-2);z-index:5;cursor:default}
@@ -231,34 +231,6 @@ table.grid input:hover,table.grid select:hover{border-color:var(--line)}
 .code{font-family:var(--f-mono);font-size:11px;background:var(--chip);border-radius:4px;padding:0 5px}
 .toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--panel);padding:8px 16px;border-radius:999px;font-size:13px;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
 .toast.show{opacity:1}
-
-/* ===== Apple-style upgrade ===== */
-h1{letter-spacing:-0.015em}
-/* 5. frosted glass over the 3D view */
-.hud,.hmenu{background:color-mix(in srgb,var(--panel) 62%,transparent);backdrop-filter:blur(18px) saturate(170%);-webkit-backdrop-filter:blur(18px) saturate(170%);border-color:color-mix(in srgb,var(--line) 70%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 45%,transparent),var(--shadow-2)}
-.hud .btn,.hmenu .btn{font-weight:500}
-/* 4. windows grow from where you clicked, and go back the same way */
-.modal{background:color-mix(in srgb,#141613 38%,transparent);backdrop-filter:blur(10px) saturate(120%);-webkit-backdrop-filter:blur(10px) saturate(120%)}
-.modal.anim-in{animation:scrimIn 220ms ease-out both}.modal.anim-out{animation:scrimOut 160ms var(--ease) both;pointer-events:none}@keyframes scrimOut{to{background:transparent;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
-.modal.anim-in>.box{animation:boxIn 260ms var(--ease) both;transform-origin:center!important}
-.modal.anim-out>.box{animation:boxOut 160ms var(--ease) both;transform-origin:center!important}
-@keyframes scrimIn{from{background:transparent;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
-@keyframes boxIn{from{opacity:0;transform:scale(.96);filter:blur(2px)}}
-@keyframes boxOut{to{opacity:0;transform:scale(.97)}}
-.box{box-shadow:0 24px 60px color-mix(in srgb,#000 22%,transparent)}
-.drawer.anim-in{animation:drIn 320ms cubic-bezier(.32,.72,0,1) both}.drawer.anim-out{animation:drOut 220ms var(--ease) both}@keyframes drOut{to{transform:translateX(100%)}}@keyframes drOutR{to{transform:translateX(-100%)}}[dir=rtl] .drawer.anim-out{animation-name:drOutR}
-@keyframes drIn{from{transform:translateX(100%)}}[dir=rtl] .drawer.anim-in{animation-name:drInR}@keyframes drInR{from{transform:translateX(-100%)}}
-.hmenu.anim-in{animation:menuIn 180ms var(--ease) both;transform-origin:top right}[dir=rtl] .hmenu.anim-in{transform-origin:top left}
-@keyframes menuIn{from{opacity:0;transform:scale(.96)}}
-.toast{transition:opacity 400ms ease,transform 400ms ease;transform:translateX(-50%) translateY(calc(100% + 24px))}.toast.show{transform:translateX(-50%)}
-.item{cursor:pointer}.item:active{transform:scale(.985);transition:transform 80ms ease-out}
-.seg.haspill{position:relative;isolation:isolate}.segpill{position:absolute;top:0;bottom:0;left:0;width:0;border-radius:999px;background:var(--ink);z-index:-1;pointer-events:none;transition:transform 240ms var(--ease-io),width 240ms var(--ease-io)}
-.seg.haspill button[aria-pressed="true"]{background:transparent}.seg.haspill button{transition:color 180ms var(--ease),background-color var(--t) var(--ease)}
-.segpill.instant{transition:none}
-/* 8. accessibility */
-@media (prefers-reduced-motion:reduce){.segpill{transition:none}.modal.anim-in>.box,.modal.anim-out>.box{animation-name:fadeOnly}.drawer.anim-in,.drawer.anim-out,.hmenu.anim-in{animation-name:fadeOnly}.toast{transform:translateX(-50%)!important}.item:active{transform:none}@keyframes fadeOnly{from{opacity:0}}}
-@media (prefers-reduced-transparency:reduce){.hud,.hmenu,.modal{backdrop-filter:none;-webkit-backdrop-filter:none}.hud,.hmenu{background:var(--panel)}.modal{background:color-mix(in srgb,#141613 60%,transparent)}}
-@media (prefers-contrast:more){.hud,.hmenu{background:var(--panel);border-color:var(--ink)}}
 @media (prefers-reduced-motion:reduce){.toast,.btn,.seg button,.item,.hchk,.mname,.fchev{transition:none}.btn:active:not(:disabled){transform:none}}
 @media (max-width:1020px){ html,body{height:auto} .app{grid-template-columns:1fr;height:auto} .col{overflow:visible} .viewport{min-height:420px} .center{order:-1} }
 @media (max-width:600px){ .chipname{top:auto;bottom:26px;inset-inline-end:10px;max-width:calc(100% - 20px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .hint{display:none} .axes{bottom:6px} }
@@ -599,7 +571,7 @@ whyDefault:['הוצב במקום הפנוי שמשאיר את מרכז הכוב�
 whyRules:['הוצב לפי הכללים: ','Placed by the rules: '],target:['ביחס ל','Relative to'],dist:['מ"מ','mm'],forPart:['כללים לרכיב: ','Rules for part: '],bankOnly:['כל הכללים הזמינים. כדי לשייך כלל לרכיב, פתח את הבנק מתוך טבלת הרכיבים או מהרכיב הנבחר.','All available rules. To assign a rule to a part, open the bank from the parts table or from the selected part.'],
 custom:['כלל שלי','My rule'],links:['חיבורים','Connections'],k_mech:['מכני','mechanical'],mode:['אופן','How'],m_cable:['כבל או צינור גמיש','flexible cable or hose'],m_rigid:['צינור קשיח, קו ישר','rigid, straight'],m_via:['דרך נקודה','through a point'],m_beside:['לצד (נוגע בדופן)','beside (touches its side)'],m_axis:['על אותו ציר','on the same axis'],m_inside:['בתוך (בתוך הקופסה)','inside (in the box)'],w_sticksOut:['בולט מחוץ לרכיב המכיל','sticks out of the container'],shRole:['תפקיד המודל','Model role'],roleShell:['מעטפת חיצונית (הרכיבים בפנים)','Outer shell (parts inside)'],roleFrame:['שלד מרכזי (הרכיבים מולבשים עליו)','Central frame (parts mount on it)'],shMass:['משקל המודל (ק"ג)','Model mass (kg)'],shPart:['שורת השלד בטבלה','Frame row in the table'],noneOpt:['אף אחת','None'],frameModel:['מוצג כמודל השלד','shown as the frame model'],tFrameRow:['השורה הזאת היא השלד ומוצגת כמודל. לחיצה כפולה לעריכה.','This row is the frame and is shown as the model. Double-click to edit.'],massFromRow:['משקל מהשורה בטבלה: {a}','Mass from the table row: {a}'],dblEdit:['לחיצה כפולה: פרטי הרכיב והחיבורים','Double-click: part details and connections'],editPart:['פרטי הרכיב והחיבורים','Part details and connections'],pmLinks:['החיבורים של הרכיב','This part\'s connections'],pmNoLinks:['אין חיבורים לרכיב הזה.','No connections for this part.'],pmRulesHint:['כללים בקוד, מופרדים ב־; (למשל link:box_1554s:2:mech:inside). שינוי כאן מעדכן את הטבלה.','Rules as codes, separated by ; (e.g. link:box_1554s:2:mech:inside). Changes here update the table.'],tBadRules:['לא זוהו: {a}. הכללים לא נשמרו.','Not recognised: {a}. Rules not saved.'],snap:['הצמד חיבורים','Snap connections'],snapOne:['הצמד','Snap'],tSnap:['הוצמדו {a} חיבורים. עדיין חורגים: {b}.','Snapped {a} connections. Still failing: {b}.'],tSnapNone:['אין חיבור חורג להצמדה','No failing connection to snap'],behave:['התנהגות','Behaviour'],hideShow:['הצג / הסתר','Hide / show'],vPts:['נקודות על השלדה ושמותיהן','Points on the frame + names'],vLtags:['אורכי חיבורים','Connection lengths'],vMarks:['מרכז כובד ונקודת ייחוס','Centre of gravity + reference'],vFloor:['רצפה (רשת)','Floor grid'],hideAll:['הסתר את כל ההערות','Hide all annotations'],showAll:['הצג את כל ההערות','Show all annotations'],catAll:['פרוס / קפל הכל','Expand / collapse all'],rotT:['סיבוב (מעלות)','Rotation (degrees)'],rotStep:['צעד','Step'],ledNone:['אין מה לבדוק','Nothing to check'],ledOk:['הכל תקין','All good'],ledWarn:['יש דברים לשים לב אליהם','Things to look at'],ledBad:['יש בעיות','Problems'],whyMount:['יושב לפי החיבור המכני: ','Sits by its mechanical connection: '],tTryFrame:['המודל מוגדר כקופסה סגורה. אם זו שלדה, בחר "שלדה" בהגדרות המודל.','The model is set as a closed box. If it is a frame, choose "frame" in the model settings.'],m_at:['בדיוק על הנקודה','exactly on the point'],mWhere:['איפה הוא יושב','Where it sits'],mCableT:['סוג הכבל','Cable type'],limGap:['מרווח מותר (מ"מ)','Allowed gap (mm)'],limLen:['אורך מרבי (מ"מ)','Max length (mm)'],onlyLinked:['רק מחוברים','Connected only'],tOnlyOn:['מוצגים רק רכיבים שיש להם חיבור. רכיב שמחברים מופיע ונצמד לבד.','Only parts with a connection are shown. A part you connect appears and snaps by itself.'],tOnlyOff:['כל הרכיבים זמינים להצבה','All parts available to place'],tShown:['נוספו לתלת-ממד: {a}. הוסתרו: {b}.','Added to 3D: {a}. Hidden: {b}.'],pageGraph:['גרף חיבורים','Connection graph'],pageSketch:['סקיצה 2D','2D sketch'],skPull:['קבל מהתלת־ממד','Take from 3D'],skSend:['העבר לתלת־ממד ←','Send to 3D →'],skLock:['נעל את המיקומים בתלת־ממד','Lock the positions in 3D'],skGhostB:['הצג מוסתרים במקווקו','Show hidden dashed'],skFitB:['התאם גודל','Fit'],skClearB:['נקה סקיצה','Clear sketch'],skQClear:['להוציא את כל הרכיבים מהסקיצה?','Take all parts out of the sketch?'],skBack:['החזר לבנק','Back to bank'],skAllIn:['כל הרכיבים בסקיצה','All parts are in the sketch'],skHint:['גרור רכיב מהבנק אל אחד ההיטלים. כל היטל מזיז רק את שני הצירים שהוא מראה, וכולם מתעדכנים יחד. גלגלת = זום, גרירת רקע = הזזת התצוגה.','Drag a part from the bank onto a view. Each view moves only the two axes it shows; all update together. Wheel = zoom, drag the background = pan.'],skScaled:['מוקטן כדי להיכנס לבנק','shrunk to fit the bank'],skBankT:['בנק רכיבים זמינים','Available parts bank'],skBankHint:['גרור אל אחד ההיטלים · גרור לכאן כדי להוציא','Drag onto a view · drag here to take out'],skZoomT:['זום','Zoom'],cfgIn:['ייבא קונפיגורציות מקובץ','Import configurations from a file'],cfgInHint:['כדי לשתף: "ייצא" בכרטיס הפרויקט יוצר קובץ. מי שמקבל אותו פותח אותו ב"ייבא" כפרויקט נפרד משלו, ומחזיר לך קובץ. כאן מוסיפים את הקונפיגורציות שלו לפרויקט שלך בלי לגעת בשלך.','To share: "Export" on the project card makes a file. The other person opens it with "Import" as their own separate project and sends you a file back. Here you add their configurations to your project without touching yours.'],tCfgIn:['נוספו {a} קונפיגורציות מ{b}','{a} configurations added from {b}'],tCfgMiss:['{a} רכיבים בקובץ לא קיימים בפרויקט הזה ודולגו','{a} parts in the file are not in this project and were skipped'],skModeB:['בלוקים','Blocks'],skModeD:['קבצי STEP','STEP models'],skColCat:['צבע לפי קטגוריה','Colour by category'],skColPart:['צבע לכל רכיב','Colour per part'],skLegendT:['מקרא','Legend'],skWhyT:['למה הקונפיגורציה הזו עדיפה','Why this configuration'],skTitleL:['כותרת הדף','Sheet title'],skNoteL:['הסבר: למה הקונפיגורציה הזו עדיפה','Explanation: why this configuration is better'],skA4B:['ייצא תמונה A4','Export A4 image'],skSheetT:['דף להדפסה','Print sheet'],skScaleT:['קנה מידה בהדפסה A4','Scale printed on A4'],prOpenB:['הכן דף להדפסה (A4) ←','Prepare print sheet (A4) →'],prHead:['דף להדפסה · A4 לאורך','Print sheet · A4 portrait'],prPersp:['פרספקטיבה','Perspective'],prScale:['קנ"מ בהדפסה','print scale'],prHelp:['גרור בתוך היטל כדי להזיז אותו, גלגלת = זום לכיוון הסמן, עד פי 300 (שלושת ההיטלים באותו קנה מידה). בפרספקטיבה: גרירה מסובבת, Shift + גרירה מזיזה, גלגלת מקרבת. טקסט: גרור כדי למקם.','Drag inside a view to move it, wheel = zoom toward the pointer, up to ×300 (the three drawings share one scale). Perspective: drag turns, Shift + drag moves, wheel zooms. Text: drag to place.'],prTitleL:['כותרת','Title'],prNoteL:['למה הקונפיגורציה הזו עדיפה','Why this configuration is better'],prLegendC:['הצג מקרא','Show legend'],prLabelsC:['שמות ההיטלים','View names'],prZoomT:['קנה מידה','Scale'],prResetB:['איפוס מבטים','Reset views'],prAddTextB:['+ הוסף טקסט','+ Add text'],prNewText:['טקסט חדש','New text'],prSize:['גודל','Size'],prPngB:['הורד תמונה PNG','Download PNG'],prPdfB:['הורד PDF','Download PDF'],prSrcT:['מה מוצג','Show'],prSrcSk:['הסקיצה 2D','The 2D sketch'],prSrcW:['התלת־ממד','The 3D layout'],prFrameC:['הצג שלדה','Show frame'],prTextsT:['טקסטים על הדף','Text on the page'],skPulled:['הועתקו {a} רכיבים מהתלת־ממד','{a} parts copied from 3D'],skSent:['{a} רכיבים הועברו לתלת־ממד','{a} parts sent to 3D'],skEmpty:['אין רכיבים בסקיצה','No parts in the sketch'],whySketch:['מוקם בסקיצה 2D.','Placed in the 2D sketch.'],skIntro:['סקיצה חופשית בלי הלוגיקה: מה שתמקם כאן לא משנה את התלת־ממד עד שתלחץ "העבר לתלת־ממד". בתלת־ממד יש כפתור "העבר לסקיצה 2D" לכיוון ההפוך.','Free sketch without the logic: nothing here changes the 3D until you press "Send to 3D". The 3D page has "Send to 2D sketch" for the other way.'],gIntro:['גרור מנקודה צבעונית בצד ימין של כרטיס (סוג החיבור) אל כרטיס אחר, אל נקודת חיבור שלו, או אל נקודה על השלד. לחיצה על חוט: עריכה ומחיקה. לחיצה כפולה על כרטיס: פרטי הרכיב. גלגלת: זום, גרירה ברקע: הזזה.','Drag from a coloured dot on the right of a card (the connection type) to another card, one of its ports, or a point on the frame. Click a wire to edit or delete it. Double-click a card for the part details. Wheel zooms, dragging the background pans.'],gLayoutBtn:['סדר את הגרף','Tidy the graph'],gFitBtn:['התאם למסך','Fit to screen'],gExpAllBtn:['פרוס / קבץ עותקים','Expand / group copies'],gWide:['הרחב / הצר','Widen / narrow'],gExpand:['פרוס לכרטיס לכל עותק','One card per copy'],gCollapse:['קבץ לכרטיס אחד','Group into one card'],gCentre:['מרכז השלד','Frame centre'],gAddPort:['+ נקודת חיבור','+ Port'],gAddPt:['+ נקודה על המודל','+ Point on the model'],gDragHint:['גרור לרכיב אחר כדי לחבר','Drag to another part to connect'],gNeedPt:['בלי שורת שלד בטבלה צריך לגרור אל נקודה מסוימת על המודל','Without a frame row, drop on a specific point of the model'],gUpdated:['החיבור הקיים עודכן','Existing connection updated'],gFromPort:['מנקודה','From point'],gToPort:['אל נקודה','To point'],units:['איזו יחידה לאיזו','Which unit to which'],unitAuto:['אוטומטי','Auto'],unitHint:['כשמספר העותקים שווה, עותק 1 מתחבר ליעד 1, עותק 2 ליעד 2 וכן הלאה. אחרת לקרוב ביותר. אפשר לשנות כאן לכל עותק.','When the counts match, copy 1 connects to target 1, copy 2 to target 2 and so on; otherwise to the nearest. You can change it here for each copy.'],nearest:['הקרוב ביותר','nearest'],pattern:['תבנית לעותקים','Pattern for the copies'],patCirc:['סביב ציר','Around an axis'],patLin:['בשורה','In a row'],patAround:['סביב','Around'],patRef:['נקודת הייחוס','Reference point'],patModel:['מרכז המודל','Model centre'],patAxis:['ציר','Axis'],patR:['רדיוס (מ"מ)','Radius (mm)'],patA0:['זווית התחלה (°)','Start angle (°)'],patStep:['מרווח (מ"מ)','Spacing (mm)'],patRot:['סובב כל עותק עם התבנית','Turn each copy with the pattern'],patGo:['סדר בתבנית','Arrange in pattern'],patHint:['הגובה לאורך הציר נלקח מעותק 1. רכיבים שמחוברים לעותקים (למשל מדחף צמוד למנוע) זזים איתם.','The position along the axis comes from copy 1. Parts fixed to the copies (e.g. a prop touching a motor) move with them.'],tPat:['{a} עותקים סודרו בתבנית','{a} copies arranged'],delPart:['מחק רכיב','Delete part'],qDelPart:['למחוק את "{a}" מהרשימה? החיבורים אליו יימחקו גם.','Delete "{a}" from the list? Connections to it are deleted too.'],w_blocked:['רכיב חוסם את הקו הישר','a part blocks the straight line'],w_notLevel:['לא באותו גובה','not at the same height'],w_noWay:['נקודת המעבר לא נמצאה','waypoint not found'],mapWay:['דרך נקודה','Through point'],tWay:['בחר נקודת מעבר','Pick a waypoint'],tHeld:['חיבור מגביל את התנועה. Alt בזמן גרירה עוקף, או כבה "אכוף חיבורים".','A connection limits this move. Hold Alt while dragging to override, or turn off "Enforce connections".'],enforce:['אכוף חיבורים','Enforce connections'],tEnfOn:['גרירה מוגבלת לפי החיבורים','Dragging is limited by connections'],tEnfOff:['גרירה חופשית','Free dragging'],m_touch:['צמוד','touching'],m_above:['מעל (יושב עליו)','on top (sits on it)'],m_below:['מתחת (תלוי מתחתיו)','below (hangs under it)'],w_wrongSide:['בצד הלא נכון','on the wrong side'],w_noOverlap:['לא אחד מעל השני','not over each other'],port:['נקודת חיבור','Port'],centre:['מרכז הרכיב','Part centre'],mapPort:['נקודה','Point'],mapPickBtn:['סמן בתלת-ממד','Mark in 3D'],tPort:['נקודת חיבור נוספה ל: {a}','Port added to: {a}'],tPortPick:['לחץ על הרכיב במקום שבו נמצא המחבר','Click the part where the connector is'],tPortPart:['צריך ללחוץ על רכיב, לא על המעטפת','Click on a part, not the shell'],mapMaxHint:['מגבלה (מ"מ): אורך לכבל, מרווח לצמוד / מעל / מתחת','Limit (mm): length for a cable, gap for touching / above / below'],page3d:['תלת-ממד','3D'],pageMap:['מפת חיבורים','Connection map'],mapAll:['הכול','All'],mapBad:['חורגים','failing'],mapLinks:['חיבורים','links'],mapRoot:['מתחיל מ','Start from'],mapLone:['רכיבים בלי חיבור','Parts with no connection'],mapAlso:['מחובר גם ל','Also connected to '],mapDel:['מחק את החיבור','Delete this connection'],mapAdd:['הוסף חיבור','Add connection'],mapFrom:['מ','From'],mapTo:['אל','To'],mapMax:['מגבלה (מ"מ)','Limit (mm)'],mapPick:['בחר שני רכיבים שונים','Pick two different parts'],mapAdded:['החיבור נוסף','Connection added'],mapIntro:['כל מערכת מוצגת כעץ נפרד: מתחילים מהרכיב המרכזי ויורדים לפי סדר החיבור. ליד כל רכיב: האורך בפועל מול המותר. ירוק בתוך המותר, אדום חורג, אפור כשהרכיבים עוד לא הוצבו. ↺ = חיבור שסוגר מעגל.','Each system is its own tree, from the central part down in connection order. Beside each part: actual length vs. allowed. Green within the limit, red over it, grey when the parts are not placed yet. ↺ = a link that closes a loop.'],linksTog:['חיבורים','Connections'],linkNone:['אין חיבורים. תן לרכיב את הכלל "מחובר ל", או הוסף חיבור בעמוד מפת החיבורים.','No connections. Give a part the rule "Connected to", or add one on the connection map page.'],notPlaced:['היעד לא הוצב','target not placed'],linkMissing:[' · היעד לא הוצב או לא נמצא',' · target not placed or not found'],kind:['סוג','Type'],k_data:['נתונים','data'],k_power:['חשמל','power'],k_water:['מים','water'],k_other:['אחר','other'],helpTitle:['איך משתמשים','How to use'],openExample:['פרויקט לדוגמה','Example project'],feedback:['מצאת תקלה או שיש לך הצעה?','Found a problem or have a suggestion?'],feedbackLink:['כתוב ב-GitHub','Write on GitHub'],version:['גרסה','Version'],updated:['עודכן','updated'],points:['נקודות על המודל','Points on the model'],addPoint:['+ סמן נקודה','+ Mark a point'],pointsNote:['לחץ על "סמן נקודה" ואז על המקום במודל. אחר כך אפשר לכוון אליה כללים כמו "קרוב ל" ו"רחוק מ".','Press "Mark a point", then click the spot on the model. Rules such as "close to" and "away from" can then target it.'],point:['נקודה','Point'],tPick:['לחץ על המקום במודל. Esc לביטול.','Click the spot on the model. Esc cancels.'],optParts:['רכיבים','Parts'],optPoints:['נקודות','Points'],optCats:['קטגוריות','Categories'],cogLine:['X: {a} מ"מ, Z: {b} מ"מ.','X: {a} mm, Z: {b} mm.'],cogH:['גובה: {a} מ"מ.','Height: {a} mm.'],fillLine:['מלא {a}, ריק {b}.','Full {a}, empty {b}.'],fillShift:['בין מלא לריק מרכז הכובד זז {a} מ"מ אופקית ו-{b} מ"מ בגובה.','Between full and empty the centre of gravity moves {a} mm sideways and {b} mm in height.'],sheetCog:['מרכז כובד','Centre of gravity'],sheetChecks:['בדיקות','Checks'],date:['תאריך','Date']
 };
-var lang='he',VERSION='1.34',UPDATED='2026-11-24';
+var lang='he',VERSION='1.34',UPDATED='2026-11-21';
 function t(k,a,b){var s=(L[k]||[k,k])[lang==='he'?0:1];if(a!==undefined)s=s.replace('{a}',a);if(b!==undefined)s=s.replace('{b}',b);return s;}
 function applyLang(){
   document.documentElement.lang=lang;document.documentElement.dir=lang==='he'?'rtl':'ltr';
@@ -726,7 +698,7 @@ var scene=new THREE.Scene();
 scene.add(new THREE.HemisphereLight(0xffffff,0x8e98a3,0.9));
 var sun=new THREE.DirectionalLight(0xffffff,0.75);sun.position.set(400,1800,700);scene.add(sun);
 var persp=new THREE.PerspectiveCamera(30,1,10,40000),ortho=new THREE.OrthographicCamera(-600,600,600,-600,1,40000),camera=persp;
-var controls=new THREE.OrbitControls(persp,canvas);controls.enableDamping=true;controls.dampingFactor=0.09;controls.rotateSpeed=0.8;controls.addEventListener('change',requestRender);
+var controls=new THREE.OrbitControls(persp,canvas);controls.enableDamping=false;controls.addEventListener('change',requestRender);
 var theme={viewport:'#e9ece4',grid:'#b7bcb1',ink:'#1b1c1a',accent:'#1c3f8f',warn:'#a86a05',crit:'#c5432c'},gridH=null;
 function readTheme(){
   var cs=getComputedStyle(document.documentElement);
@@ -886,34 +858,9 @@ function buildRuntime(){
     RT[inst.iid]={inst:inst,root:root,block:block,detail:detail,hasMesh:!!hasMesh,outline:outline,tag:tag,min:[0,0,0],max:[0,0,0],cyl:-1,hit:false,out:false};
   });
 }
-
-/* ===== Apple-style motion: critically damped springs (no overshoot), started from where the part is on screen ===== */
-document.addEventListener('keydown',function(){SPR.kbd=performance.now();},true);
-var RM=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):{matches:false},SPR={active:[],T:0.38,last:0,kbd:-1e9};
-function springTo(r,it,instant){var t=r.root.position;r.tp=r.tp||new THREE.Vector3();r.tq=r.tq||new THREE.Quaternion();r.vel=r.vel||new THREE.Vector3();
-  r.tp.set(it.p[0],it.p[1],it.p[2]);r.tq.set(it.q[0],it.q[1],it.q[2],it.q[3]);
-  if(instant||RM.matches||!SPR.ready||performance.now()-SPR.kbd<80){t.copy(r.tp);r.root.quaternion.copy(r.tq);r.vel.set(0,0,0);return;}
-  if(t.distanceToSquared(r.tp)<1e-4&&r.root.quaternion.angleTo(r.tq)<1e-4)return;
-  if(SPR.active.indexOf(r)<0)SPR.active.push(r);requestRender();}
-function stepSprings(now){var dt=Math.min(0.05,(now-(SPR.last||now))/1000);SPR.last=now;if(!SPR.active.length||!dt)return;
-  var w=2*PI/SPR.T,keep=[];SPR.active.forEach(function(r){var p=r.root.position;
-    /* x'' = -w^2 (x - target) - 2 w x'  (damping ratio 1) */
-    ['x','y','z'].forEach(function(k){var x=p[k]-r.tp[k],v=r.vel[k],a=-w*w*x-2*w*v;v+=a*dt;r.vel[k]=v;p[k]+=v*dt;});
-    r.root.quaternion.slerp(r.tq,1-Math.exp(-dt*w*0.9));
-    var s=r.lift?1.035:1,cs=r.root.scale.x;if(Math.abs(cs-s)>1e-4)r.root.scale.setScalar(cs+(s-cs)*(1-Math.exp(-dt*22)));
-    if(p.distanceTo(r.tp)<0.05&&r.vel.length()<0.5&&r.root.quaternion.angleTo(r.tq)<1e-3&&Math.abs(r.root.scale.x-s)<1e-3){p.copy(r.tp);r.root.quaternion.copy(r.tq);r.root.scale.setScalar(s);r.vel.set(0,0,0);}else keep.push(r);});
-  SPR.active=keep;needsRender=true;}
-function liftPart(iid,on){var r=RT[iid];if(!r||RM.matches)return;r.lift=on;if(SPR.active.indexOf(r)<0)SPR.active.push(r);requestRender();}
-/* rubber band: the further past the wall, the less the part follows */
-function rubber(over,dim){var c=0.55;return over*dim*c/(dim+c*Math.abs(over));}
-/* camera flies to a new view instead of jumping */
-var CF=null;function camFly(fromPos,fromTgt,fromUp,cam){if(RM.matches)return;CF={cam:cam,p0:fromPos,t0:fromTgt,u0:fromUp,p1:cam.position.clone(),t1:controls.target.clone(),u1:cam.up.clone(),s:performance.now()};}
-function stepCam(now){if(!CF)return;var k=Math.min(1,(now-CF.s)/520),w=7.5*k,e=k>=1?1:1-(1+w)*Math.exp(-w);e=Math.min(1,e/(1-(1+7.5)*Math.exp(-7.5)));
-  CF.cam.position.lerpVectors(CF.p0,CF.p1,e);controls.target.lerpVectors(CF.t0,CF.t1,e);CF.cam.up.lerpVectors(CF.u0,CF.u1,e).normalize();CF.cam.lookAt(controls.target);
-  if(k>=1){CF.cam.position.copy(CF.p1);controls.target.copy(CF.t1);CF.cam.up.copy(CF.u1);CF=null;}needsRender=true;}
 function syncItem(iid){
   var r=RT[iid],it=P.work.items[iid],p=r.inst.part;
-  var wasOn=r.root.visible;r.root.visible=it.on;springTo(r,it,!wasOn||!it.on||(drag&&drag.set&&drag.set.indexOf(iid)>=0));
+  r.root.visible=it.on;r.root.position.set(it.p[0],it.p[1],it.p[2]);r.root.quaternion.set(it.q[0],it.q[1],it.q[2],it.q[3]);
   var det=ui.mode==='detail'&&r.hasMesh;r.detail.visible=det;r.block.visible=!det;
   var h=halfExtents(psize(p),it.q);for(var i=0;i<3;i++){r.min[i]=it.p[i]-h[i];r.max[i]=it.p[i]+h[i];}
   r.cyl=-1;var ca=cylAxis(p);
@@ -1085,7 +1032,7 @@ function renderShells(){
 }
 var trayT=null,trayLast=null;
 /* the list is redrawn on each click, so a double click is detected by hand: two clicks on the same part within 450 ms */
-function trayDbl(p){var n=Date.now(),hit=trayLast&&trayLast.id===p.id&&n-trayLast.t<450,pl=trayLast&&trayLast.placed;trayLast=hit?null:{id:p.id,t:n};if(hit){clearTimeout(trayT);if(pl)undo();openPart(p);}return hit;}
+function trayDbl(p){var n=Date.now(),hit=trayLast&&trayLast.id===p.id&&n-trayLast.t<450;trayLast=hit?null:{id:p.id,t:n};if(hit){clearTimeout(trayT);openPart(p);}return hit;}
 function renderTray(){
   var box=$('#tray');box.textContent='';var fp=framePart();
   if(fp){var ful=el('ul','plain'),fli=el('li','item on');fli.dataset.pid=fp.id;fli.title=t('dblEdit');fli.appendChild(el('span','sw'));fli.lastChild.style.background=theme.accent;fli.appendChild(el('span','nm',fp.name+' · '+t('frameModel')));fli.appendChild(el('span','mono',kg(shell.mass||0)));fli.onclick=function(){if(!trayDbl(fp))toast(t('tFrameRow'));};ful.appendChild(fli);box.appendChild(ful);}
@@ -1100,7 +1047,7 @@ function renderTray(){
       var it=P.work.items[i.iid],li=el('li','item'+(it.on?' on':'')+(selected===i.iid?' sel':''));
       var sw=el('span','sw');sw.style.background=catColor(c);li.appendChild(sw);li.appendChild(el('span','nm',i.label));li.appendChild(el('span','mono',kg(num(i.part.mass,0))));
       if(it.on)li.appendChild(el('span','mono','✓'));
-      li.dataset.pid=i.part.id;li.title=t('dblEdit');li.onclick=function(){if(trayDbl(i.part))return;if(it.on){select(i.iid);return;}clearTimeout(trayT);placeAtHome(i.iid);selected=i.iid;runChecks();snapMounts();commit();if(trayLast)trayLast.placed=true;};ul.appendChild(li);});
+      li.dataset.pid=i.part.id;li.title=t('dblEdit');li.onclick=function(){if(trayDbl(i.part))return;if(it.on){select(i.iid);return;}clearTimeout(trayT);trayT=setTimeout(function(){placeAtHome(i.iid);selected=i.iid;runChecks();snapMounts();commit();},280);};ul.appendChild(li);});
     box.appendChild(ul);});
   $('#trayCount').textContent=checks.placed+' / '+INST.length;
 }
@@ -1227,7 +1174,7 @@ function startDrag(iid,e,point){
   var nv=new THREE.Vector3(n===0?1:0,n===1?1:0,n===2?1:0);
   drag={iid:iid,plane:new THREE.Plane().setFromNormalAndCoplanarPoint(nv,point),grab:point.clone(),start:P.work.items[iid].p.slice(),free:free,moved:false,d:[0,0,0],warned:false};
   drag.group=followers(iid).map(function(g){return {iid:g,s:P.work.items[g].p.slice()};});drag.set=drag.group.map(function(g){return g.iid;});drag.v=groupViol(drag.set);
-  controls.enabled=false;canvas.setPointerCapture&&canvas.setPointerCapture(e.pointerId);drag.group.forEach(function(g){liftPart(g.iid,true);});
+  controls.enabled=false;canvas.setPointerCapture&&canvas.setPointerCapture(e.pointerId);
 }
 /* parts fixed onto the dragged one (their rule points at it: touching, above, below, same axis) move with it; the part that owns such a rule is held instead */
 /* move a part so a failing connection is met: the part that owns the rule moves (with what is fixed onto it); if it is locked, the target moves */
@@ -1280,9 +1227,6 @@ function moveDrag(e){
       onList().forEach(function(o){if(o.iid===drag.iid)return;var q=RT[o.iid],g=40;if(q.min[u]>p[u]+h[u]+g||q.max[u]<p[u]-h[u]-g||q.min[v]>p[v]+h[v]+g||q.max[v]<p[v]-h[v]-g)return;test(q.min[a]);test(q.max[a]);});
       if(shell.n){var cc=crossings(p,a);cc.forEach(test);}
       if(Math.abs(best)<7)p[a]+=best;});}
-  if(shell.n&&!it.ext&&shell.role!=='frame'&&!e.altKey){var hh=halfExtents(psize(INST_BY[drag.iid].part),it.q),ax=['x','y','z'];drag.rb=false;
-    drag.free.forEach(function(a){var lo=shell.box.min[ax[a]]+hh[a],hi=shell.box.max[ax[a]]-hh[a],dim=shell.box.max[ax[a]]-shell.box.min[ax[a]];if(hi<lo)return;
-      if(p[a]<lo){p[a]=Math.round((lo-rubber(lo-p[a],dim))*100)/100;drag.rb=true;}else if(p[a]>hi){p[a]=Math.round((hi+rubber(p[a]-hi,dim))*100)/100;drag.rb=true;}});}
   var nd=[p[0]-drag.start[0],p[1]-drag.start[1],p[2]-drag.start[2]];if(nd[0]===drag.d[0]&&nd[1]===drag.d[1]&&nd[2]===drag.d[2])return;
   applyDelta(nd);
   if(ui.enforce&&!e.altKey){var v=groupViol(drag.set);
@@ -1295,10 +1239,7 @@ canvas.addEventListener('pointerdown',function(e){if(e.button!==0)return;if(pick
   if(p){downAt.hit=p.iid;e.stopImmediatePropagation();e.preventDefault();if(selected!==p.iid)select(p.iid);if(!P.work.items[p.iid].lock)startDrag(p.iid,e,p.point);else toast(t('tLocked'));}},true);
 window.addEventListener('pointermove',function(e){if(drag)moveDrag(e);});
 window.addEventListener('pointerup',function(e){
-  if(drag){var ch=drag.moved,id=drag.iid,grp=drag.group,rb=drag.rb;drag=null;controls.enabled=true;grp.forEach(function(g){liftPart(g.iid,false);});
-    if(rb&&shell.n){var it2=P.work.items[id],hh=halfExtents(psize(INST_BY[id].part),it2.q),ax=['x','y','z'],d=[0,0,0];[0,1,2].forEach(function(a){var lo=shell.box.min[ax[a]]+hh[a],hi=shell.box.max[ax[a]]-hh[a];if(hi<lo)return;if(it2.p[a]<lo)d[a]=lo-it2.p[a];else if(it2.p[a]>hi)d[a]=hi-it2.p[a];});
-      grp.forEach(function(g){var q=P.work.items[g.iid];q.p=[0,1,2].map(function(a){return Math.round((q.p[a]+d[a])*100)/100;});syncItem(g.iid);});}
-    if(ch){P.work.items[id].why=null;commit();}return;}
+  if(drag){var ch=drag.moved,id=drag.iid;drag=null;controls.enabled=true;if(ch){P.work.items[id].why=null;commit();}return;}
   if(downAt&&!downAt.hit&&e.target===canvas&&Math.hypot(e.clientX-downAt.x,e.clientY-downAt.y)<4&&selected)select(null);downAt=null;});
 window.addEventListener('keydown',function(e){var tg=e.target.tagName;if(tg==='INPUT'||tg==='TEXTAREA'||tg==='SELECT')return;
   if((e.ctrlKey||e.metaKey)&&(e.key.toLowerCase()==='z'||e.key.toLowerCase()==='y')){e.preventDefault();var rd=e.shiftKey||e.key.toLowerCase()==='y';if(curPage==='sketch')skUndo(rd?1:-1);else if(rd)redo();else undo();return;}
@@ -1488,10 +1429,10 @@ function setOrtho(cam,view,w,h,b,pad){var c=b.getCenter(new THREE.Vector3()),s=b
   var k=Math.max((W+pad)/w,(H+pad)/h);cam.left=-w*k/2;cam.right=w*k/2;cam.top=h*k/2;cam.bottom=-h*k/2;cam.near=1;cam.far=20000;cam.zoom=1;cam.lookAt(c);cam.updateProjectionMatrix();return k;}
 function setIso(cam,w,h,b){var c=b.getCenter(new THREE.Vector3()),r=b.getSize(new THREE.Vector3()).length()/2,dist=r/Math.sin(cam.fov*PI/360)*1.05;cam.aspect=w/h;if(cam.aspect<1)dist/=cam.aspect;cam.position.set(c.x+dist*0.55,c.y+dist*0.42,c.z+dist*0.72);cam.up.set(0,1,0);cam.lookAt(c);cam.updateProjectionMatrix();return c;}
 function setView(name){
-  var _pc=camera,_p0=camera.position.clone(),_t0=controls.target.clone(),_u0=camera.up.clone();ui.view=name;var w=vp.clientWidth||800,h=vp.clientHeight||600,b=sceneBounds();
+  ui.view=name;var w=vp.clientWidth||800,h=vp.clientHeight||600,b=sceneBounds();
   if(name==='iso'){camera=persp;var c=setIso(persp,w,h,b);controls.object=persp;controls.target.copy(c);controls.enableRotate=true;}
   else{camera=ortho;setOrtho(ortho,name,w,h,b,160);controls.object=ortho;controls.target.copy(b.getCenter(new THREE.Vector3()));controls.enableRotate=false;}
-  controls.update();if(_pc===camera&&SPR.ready)camFly(_p0,_t0,_u0,camera);setSeg('segView',name);requestRender();
+  controls.update();setSeg('segView',name);requestRender();
 }
 function resize(){var w=vp.clientWidth,h=vp.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.setSize(w,h,false);
   persp.aspect=w/h;persp.updateProjectionMatrix();if(camera===ortho){var k=(ortho.top-ortho.bottom)/h;ortho.left=-w*k/2;ortho.right=w*k/2;ortho.updateProjectionMatrix();}requestRender();}
@@ -1499,7 +1440,7 @@ var needsRender=true;function requestRender(){needsRender=true;}
 function updateTags(){var w=vp.clientWidth,h=vp.clientHeight;INST.forEach(function(i){var r=RT[i.iid],it=P.work.items[i.iid],show=ui.labels&&it.on;r.tag.hidden=!show;if(!show)return;
   _v.set(it.p[0],r.max[1],it.p[2]).project(camera);r.tag.style.left=((_v.x+1)/2*w)+'px';r.tag.style.top=((1-_v.y)/2*h)+'px';});}
 function updatePtags(){var w=vp.clientWidth,h=vp.clientHeight,pts=activePoints();document.querySelectorAll('.ptag').forEach(function(e){var q=pts.filter(function(x){return x.id===e.dataset.pid;})[0];if(!q||!ui.pts){e.hidden=true;return;}e.hidden=false;_v.set(q.p[0],q.p[1],q.p[2]).project(camera);e.style.left=((_v.x+1)/2*w)+'px';e.style.top=((1-_v.y)/2*h)+'px';});}
-function loop(now){requestAnimationFrame(loop);now=now||performance.now();SPR.ready=true;stepSprings(now);stepCam(now);if(!CF&&controls.enabled!==false&&controls.enableDamping)controls.update();if(!needsRender)return;needsRender=false;renderer.render(scene,camera);updateTags();updatePtags();updateLtags();}
+function loop(){requestAnimationFrame(loop);if(!needsRender)return;needsRender=false;renderer.render(scene,camera);updateTags();updatePtags();updateLtags();}
 
 /* ================= auto-arrange ================= */
 function autoArrange(){
@@ -2257,9 +2198,9 @@ function dot3(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
 function skPush(){var s=JSON.stringify(skState());if(SK.hist[SK.hi]!==s){SK.hist=SK.hist.slice(0,SK.hi+1);SK.hist.push(s);if(SK.hist.length>80)SK.hist.shift();SK.hi=SK.hist.length-1;}touch();}
 function skUndo(d){var n=SK.hi+d;if(n<0||n>=SK.hist.length)return;SK.hi=n;P.sketch=JSON.parse(SK.hist[n]);if(SK.sel&&!skItem(SK.sel))SK.sel=null;skRender(true);}
 function skBuild(){var host=$('#skViews');host.textContent='';SK.rows.forEach(function(r){r.ren.dispose();});SK.rows=[];
-  SKV.forEach(function(V){var cell=el('div','skcellv'),lab=el('div','sklab',t(V.lab));cell.appendChild(lab);var vw=el('div','skview'),cv=document.createElement('canvas');vw.appendChild(cv);vw.dataset.v=V.v;cell.appendChild(vw);host.appendChild(cell);
+  SKV.forEach(function(V){var cell=el('div','skcellv'),lab=el('div','sklab',t(V.lab));cell.appendChild(lab);var vw=el('div','skview'),cv=document.createElement('canvas');vw.appendChild(cv);var ax=document.createElementNS('http://www.w3.org/2000/svg','svg');ax.setAttribute('class','skax');ax.setAttribute('viewBox','0 0 70 70');ax.setAttribute('aria-hidden','true');vw.appendChild(ax);vw.dataset.v=V.v;cell.appendChild(vw);host.appendChild(cell);
     var ren=new THREE.WebGLRenderer({canvas:cv,antialias:true,preserveDrawingBuffer:true});ren.setPixelRatio(Math.min(window.devicePixelRatio||1,2));ren.autoClear=false;
-    var cam=new THREE.OrthographicCamera(-1,1,1,-1,1,40000);var r={V:V,view:vw,cv:cv,ren:ren,cam:cam};SK.rows.push(r);
+    var cam=new THREE.OrthographicCamera(-1,1,1,-1,1,40000);var r={V:V,view:vw,cv:cv,ren:ren,cam:cam,ax:ax};SK.rows.push(r);
     cv.addEventListener('pointerdown',function(e){skDown(r,e);});
     cv.addEventListener('wheel',function(e){e.preventDefault();skZoomAt(r,e.clientX,e.clientY,e.deltaY<0?1.15:1/1.15);},{passive:false});});
   SK.built=true;}
@@ -2305,7 +2246,17 @@ function skZoomAt(r,cx,cy,f){skZoom(SK.zoom*f,r,cx,cy);}
 function skRender(relayout,fit){if(!P||$('#sketchView').hidden)return;if(!SK.built)skBuild();if(relayout||fit||SK.ver!==shell.ver){if(fit||SK.ver!==shell.ver){SK.zoom=1;SK.pan=[0,0,0];}skLayout(fit||SK.ver!==shell.ver);SK.ver=shell.ver;}
   var S=skScene();SK.meshes=S.meshes;var bg=new THREE.Color(theme.viewport||'#eeeeee');
   SK.rows.forEach(function(r){r.ren.setClearColor(bg,1);r.ren.clear();r.ren.render(S.sc,r.cam);if(SK.ghost)r.ren.render(S.gh,r.cam);});
-  skShelf();skInfo();skLegend();setSeg('skSegMode',SK.mode);setSeg('skSegCol',SK.colMode);$('#skUndo').disabled=SK.hi<=0;$('#skRedo').disabled=SK.hi>=SK.hist.length-1;$('#skGhost').setAttribute('aria-pressed',String(SK.ghost));$('#skLockC').checked=SK.lock;}
+  skAxes();skShelf();skInfo();skLegend();setSeg('skSegMode',SK.mode);setSeg('skSegCol',SK.colMode);$('#skUndo').disabled=SK.hi<=0;$('#skRedo').disabled=SK.hi>=SK.hist.length-1;$('#skGhost').setAttribute('aria-pressed',String(SK.ghost));$('#skLockC').checked=SK.lock;}
+/* a small axis cross in the top-left corner of each view: the selected part's own X/Y/Z as seen from that side (world axes when nothing is selected).
+   An axis pointing at you is a dot in a ring, one pointing away is a cross in a ring. */
+function skAxes(){var it=SK.sel?skItem(SK.sel):null,q=new THREE.Quaternion();if(it&&it.q)q.set(it.q[0],it.q[1],it.q[2],it.q[3]);
+  var A=[['X','#d9443a',[1,0,0]],['Y','#2f9e4f',[0,1,0]],['Z','#2f6fd6',[0,0,1]]],cx=33,cy=33,L=22;
+  SK.rows.forEach(function(r){var V=r.V,dot=function(a,v){return a[0]*v.x+a[1]*v.y+a[2]*v.z;},out='<circle cx="'+cx+'" cy="'+cy+'" r="31" fill="rgba(255,255,255,.72)" stroke="rgba(0,0,0,.12)"/>',tips=[],labs=[];
+    A.forEach(function(a){var v=new THREE.Vector3(a[2][0],a[2][1],a[2][2]).applyQuaternion(q),dx=dot(V.u,v),dy=-dot(V.w,v),dz=dot(V.d,v),len=Math.hypot(dx,dy);
+      if(len<0.2){var x=cx,y=cy,o=dz>0;tips.push([dz,'<circle cx="'+x+'" cy="'+y+'" r="5.5" fill="#fff" stroke="'+a[1]+'" stroke-width="1.8"/>'+(o?'<circle cx="'+x+'" cy="'+y+'" r="1.8" fill="'+a[1]+'"/>':'<path d="M'+(x-3)+' '+(y-3)+'l6 6M'+(x+3)+' '+(y-3)+'l-6 6" stroke="'+a[1]+'" stroke-width="1.6"/>')+'<text x="'+(x+8)+'" y="'+(y-6)+'" fill="'+a[1]+'" font-size="10" font-weight="700" font-family="sans-serif">'+a[0]+'</text>']);return;}
+      var ex=cx+dx*L,ey=cy+dy*L,ux=dx/len,uy=dy/len,hx=ex-ux*6,hy=ey-uy*6,px=-uy*3.5,py=ux*3.5,lx=cx+dx*L+ux*8,ly=cy+dy*L+uy*8+3.5;labs.forEach(function(p0){if(Math.hypot(p0[0]-lx,p0[1]-ly)<9){lx+=-uy*10;ly+=ux*10;}});labs.push([lx,ly]);
+      tips.push([dz,'<line x1="'+cx+'" y1="'+cy+'" x2="'+hx.toFixed(1)+'" y2="'+hy.toFixed(1)+'" stroke="'+a[1]+'" stroke-width="2.2" stroke-linecap="round" opacity="'+(dz<-0.3?0.55:1)+'"/><path d="M'+ex.toFixed(1)+' '+ey.toFixed(1)+'L'+(hx+px).toFixed(1)+' '+(hy+py).toFixed(1)+'L'+(hx-px).toFixed(1)+' '+(hy-py).toFixed(1)+'Z" fill="'+a[1]+'"/><text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" fill="'+a[1]+'" font-size="10" font-weight="700" font-family="sans-serif">'+a[0]+'</text>']);});
+    tips.sort(function(a,b){return a[0]-b[0];});r.ax.innerHTML=out+tips.map(function(t0){return t0[1];}).join('');r.ax.setAttribute('data-who',it?'part':'world');r.view.title=it?t('skAxPart'):t('skAxWorld');});}
 /* parts not yet placed in the sketch wait on a shelf beside each view, drawn at the same scale and seen from the same side */
 /* the bank: parts not yet placed, drawn from the front at the views' scale; copies of one part share a card */
 function skShelf(){var left=[],seen={};INST.forEach(function(i){if(skItem(i.iid))return;if(seen[i.part.id]){seen[i.part.id].n++;return;}var g={i:i,n:1};seen[i.part.id]=g;left.push(g);});
@@ -2401,7 +2352,7 @@ function skBind(){window.addEventListener('pointermove',function(e){if(SK.drag)s
 function skOpen(){skState();var nw=SK.pid!==P.id;if(nw){SK.pid=P.id;SK.sel=null;SK.hist=[JSON.stringify(skState())];SK.hi=0;}skRender(true,nw||!SK.c0);}
 
 /* ================= interactive HTML export: a landscape landing page built from the print sheet ================= */
-Object.assign(L,{tableOut:['ייצא את הטבלה ל-Excel','Export table to Excel'],skLgPick:['לחיצה בוחרת את הרכיב; לחיצה נוספת עוברת לעותק הבא','Click to select the part; click again for its next copy'],hxD3h:['לחיצה כפולה על רכיב = קלוז־אפ · Shift+גרירה = הזזה','Double-click a part = close-up · Shift+drag = move'],to2d:['→ העבר לסקיצה 2D','← Send to 2D sketch'],mapToGraph:['פתח גרף חיבורים','Open connection graph'],gBack:['→ חזרה למפת החיבורים','← Back to the connection map'],prOutT:['ייצוא ל','Output'],prOutP:['הדפסה','Print'],prOutH:['דף HTML','HTML page'],prHxGo:['הורד HTML','Download HTML'],prHxBusy:['מעדכן תצוגה…','Updating preview…'],prHxNote:['בדף ה-HTML התלת־ממד וההיטלים מוצגים באותה תצורה ובאותם צבעים. התצוגה כאן היא הדף עצמו, אפשר לגרור ולנסות.','In the HTML page the 3D and the projections share one shape and one colour scheme. The preview is the page itself: drag and try it.'],hxAsm:['מאוחד','Assembled'],hxExp:['מפוצץ','Exploded'],hxD3:['תלת־ממד','3D'],hxHold:['עמוד 2 שניות על רכיב כדי לראות אותו מסתובב','Rest on a part for 2 seconds to see it turn'],prModeT:['תצורה','Shape'],prColT:['צבעים','Colours'],prPartsT:['רכיבים בדף','Parts on the page'],prHtmlB:['דף HTML אינטראקטיבי','Interactive HTML'],prPdfB:['PDF להדפסה','PDF for print'],
+Object.assign(L,{skAxPart:['הצירים בפינה: הכיוון של הרכיב הנבחר (X אדום, Y ירוק, Z כחול)','Corner axes: the selected part\'s orientation (X red, Y green, Z blue)'],skAxWorld:['הצירים בפינה: כיווני העולם. בחר רכיב כדי לראות את הכיוון שלו','Corner axes: world directions. Select a part to see its orientation'],tableOut:['ייצא את הטבלה ל-Excel','Export table to Excel'],skLgPick:['לחיצה בוחרת את הרכיב; לחיצה נוספת עוברת לעותק הבא','Click to select the part; click again for its next copy'],hxD3h:['לחיצה כפולה על רכיב = קלוז־אפ · Shift+גרירה = הזזה','Double-click a part = close-up · Shift+drag = move'],to2d:['→ העבר לסקיצה 2D','← Send to 2D sketch'],mapToGraph:['פתח גרף חיבורים','Open connection graph'],gBack:['→ חזרה למפת החיבורים','← Back to the connection map'],prOutT:['ייצוא ל','Output'],prOutP:['הדפסה','Print'],prOutH:['דף HTML','HTML page'],prHxGo:['הורד HTML','Download HTML'],prHxBusy:['מעדכן תצוגה…','Updating preview…'],prHxNote:['בדף ה-HTML התלת־ממד וההיטלים מוצגים באותה תצורה ובאותם צבעים. התצוגה כאן היא הדף עצמו, אפשר לגרור ולנסות.','In the HTML page the 3D and the projections share one shape and one colour scheme. The preview is the page itself: drag and try it.'],hxAsm:['מאוחד','Assembled'],hxExp:['מפוצץ','Exploded'],hxD3:['תלת־ממד','3D'],hxHold:['עמוד 2 שניות על רכיב כדי לראות אותו מסתובב','Rest on a part for 2 seconds to see it turn'],prModeT:['תצורה','Shape'],prColT:['צבעים','Colours'],prPartsT:['רכיבים בדף','Parts on the page'],prHtmlB:['דף HTML אינטראקטיבי','Interactive HTML'],prPdfB:['PDF להדפסה','PDF for print'],
   hxViews:['כל המבטים','All views'],hxParts:['רשימת רכיבים','Parts list'],hxPlaced:['רכיבים מוצבים','parts placed'],hxMass:['ק"ג בלי השלדה','kg without the frame'],hxKinds:['סוגי רכיבים','part types'],
   hxHint:['גלגלת: זום · גרירה: הזזה · לחיצה כפולה: איפוס','Wheel: zoom · drag: move · double-click: reset'],hxMade:['נוצר ב-Config Studio','Made with Config Studio'],hxOrtho:['חזית, צד ומבט על','Front, side and top'],hxMain:['מבט ראשי','Main view'],hxReset:['איפוס','Reset']});
 var HX={ren:null};
@@ -2591,25 +2542,6 @@ function hxGeo(){var pr=prState(),nf=pr.frame===false,geos={},inst=[],fid=frameP
 window.__studio={hxGeo:function(){return hxGeo();},hxHtml:function(){return hxPage(hxData());},sk:SK,skRender:skRender,screenOf:function(iid){var it=P.work.items[iid];_v.set(it.p[0],RT[iid].max[1],it.p[2]).project(camera);var r=canvas.getBoundingClientRect();return [r.left+(_v.x+1)/2*r.width,r.top+(1-_v.y)/2*r.height];},get P(){return P;},get checks(){return checks;},select:select,syncAll:syncAll,parseRules:parseRules,rulesText:rulesText,commit:commit,autoArrange:autoArrange,rowsToParts:rowsToParts,pointState:pointState,inject:function(pj,gid,pk){geo[gid]=unpackGeo(pk);projects.push(pj);openProject(pj.id);refreshUI();}};
 start();
 })();
-
-/* ===== Apple-style windows: open from the click, close back the same way ===== */
-var SPR=window.__SPR=window.__SPR||{kbd:-1e9};document.addEventListener('keydown',function(){SPR.kbd=performance.now();},true);
-(function(){var lastPt=null;document.addEventListener('pointerdown',function(e){lastPt={x:e.clientX,y:e.clientY};},true);
-  function watch(el,box){var shown=!el.hasAttribute('hidden'),closing=false;new MutationObserver(function(){if(closing)return;var h=el.hasAttribute('hidden');if(h===!shown)return;shown=!h;
-    el.classList.remove('anim-in','anim-out');void el.offsetWidth;
-    if(shown){if(box&&lastPt){var r=box.getBoundingClientRect();box.style.transformOrigin=(lastPt.x-r.left)+'px '+(lastPt.y-r.top)+'px';}el.classList.add('anim-in');}
-    else if(performance.now()-SPR.kbd<80){}else{closing=true;el.removeAttribute('hidden');el.classList.add('anim-out');setTimeout(function(){el.classList.remove('anim-out');el.setAttribute('hidden','');setTimeout(function(){closing=false;},0);},190);}}).observe(el,{attributes:true,attributeFilter:['hidden']});}
-  document.querySelectorAll('.modal').forEach(function(m){watch(m,m.querySelector('.box'));});var d=document.getElementById('drawer');if(d)watch(d,null);
-  var hm=document.getElementById('hudMenu');if(hm)new MutationObserver(function(){hm.classList.remove('anim-in');if(!hm.hidden){void hm.offsetWidth;hm.classList.add('anim-in');}}).observe(hm,{attributes:true,attributeFilter:['hidden']});})();
-
-/* ===== segmented controls: one pill slides to the chosen option ===== */
-(function(){function place(s,instant){var p=s.querySelector(':scope>.segpill'),b=s.querySelector('button[aria-pressed="true"]');if(!p)return;if(!b||!b.offsetWidth){p.style.opacity='0';return;}
-  if(instant||p.style.opacity==='0')p.classList.add('instant');p.style.opacity='1';p.style.width=b.offsetWidth+'px';p.style.transform='translateX('+b.offsetLeft+'px)';if(p.classList.contains('instant')){void p.offsetWidth;p.classList.remove('instant');}}
-  var ro=new ResizeObserver(function(es){es.forEach(function(e){place(e.target,true);});});
-  function init(s){if(s.classList.contains('haspill'))return;var p=document.createElement('span');p.className='segpill';s.insertBefore(p,s.firstChild);s.classList.add('haspill');p.style.opacity='0';place(s,true);ro.observe(s);}
-  function scan(r){(r.matches&&r.matches('.seg')?[r]:[]).concat([].slice.call((r.querySelectorAll?r.querySelectorAll('.seg'):[]))).forEach(init);}
-  scan(document);var segObs=new MutationObserver(function(ms){ms.forEach(function(m){if(m.type==='attributes'){var s=m.target.closest&&m.target.closest('.seg');if(s&&s.classList.contains('haspill'))place(s,false);}else m.addedNodes.forEach(function(n){if(n.nodeType===1)scan(n);});});});
-  segObs.observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-pressed']});})();
 
 </script>
 
