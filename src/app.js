@@ -1960,7 +1960,9 @@ function hxViewer(){
       stop:function(){cancelAnimationFrame(raf);}};}
   var rv=[].slice.call(document.querySelectorAll('.rv'));if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.08});rv.forEach(function(e){io.observe(e);});}else rv.forEach(function(e){e.classList.add('on');});}
 function hxEsc(s){return scEsc(s);}
-function hxPage(d){var rtl=d.lang==='he',T=d.T,ortho=d.views,E=hxEsc,dl=0;
+function hxPage(d){var rtl=d.lang==='he',T=d.T,E=hxEsc,dl=0,
+  /* front top-left, top top-right, side wide below (the grid runs right-to-left in Hebrew) */
+  ord=rtl?['top','front','side']:['front','top','side'],ortho=d.views.slice().sort(function(a,b){return ord.indexOf(a.id)-ord.indexOf(b.id);});
   var zb='<div class="zb"><button type="button" data-z="+" aria-label="zoom in">+</button><button type="button" data-z="-" aria-label="zoom out">−</button><button type="button" data-z="0" aria-label="'+E(T.reset)+'">⟲</button></div>';
   var win=function(v,cls){dl+=70;return '<figure class="bz rv '+(cls||'')+'" style="--d:'+dl+'ms"><div class="core win"><div class="wh"><span class="tag">'+E(v.lab)+'</span><span class="zl">×1.0</span></div><div class="cv" data-view="'+v.id+'"></div>'+zb+'</div></figure>';};
   var chips=d.tb.map(function(c,ix){var prev=ix>0?d.tb[ix-1].cat:null;return (c.cat!==prev?'<span class="tcat">'+E(c.cat)+'</span>':'')+'<button type="button" class="chip" data-i="'+c.i+'" data-name="'+E(c.name)+'"><i style="background:'+c.c+'">'+(c.num||'')+'</i><span>'+E(c.name)+(c.n>1?' <b>×'+c.n+'</b>':'')+'</span></button>';}).join('');
